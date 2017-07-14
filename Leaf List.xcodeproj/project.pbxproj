@@ -14,7 +14,6 @@
 		37ECFF811F178722001A9314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37ECFF801F178722001A9314 /* Assets.xcassets */; };
 		37ECFF841F178722001A9314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ECFF821F178722001A9314 /* LaunchScreen.storyboard */; };
 		37ECFF8C1F179575001A9314 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFF8B1F179575001A9314 /* Task.swift */; };
-		37ECFF8E1F179585001A9314 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFF8D1F179585001A9314 /* Tag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		37ECFF831F178722001A9314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37ECFF851F178722001A9314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37ECFF8B1F179575001A9314 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		37ECFF8D1F179585001A9314 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 				37ECFF851F178722001A9314 /* Info.plist */,
 				37ECFF7D1F178722001A9314 /* Leaf_List.xcdatamodeld */,
 				37ECFF8B1F179575001A9314 /* Task.swift */,
-				37ECFF8D1F179585001A9314 /* Tag.swift */,
 			);
 			path = "Leaf List";
 			sourceTree = "<group>";
@@ -148,7 +145,6 @@
 			files = (
 				37ECFF8C1F179575001A9314 /* Task.swift in Sources */,
 				37ECFF791F178722001A9314 /* ViewController.swift in Sources */,
-				37ECFF8E1F179585001A9314 /* Tag.swift in Sources */,
 				37ECFF7F1F178722001A9314 /* Leaf_List.xcdatamodeld in Sources */,
 				37ECFF771F178722001A9314 /* AppDelegate.swift in Sources */,
 			);
