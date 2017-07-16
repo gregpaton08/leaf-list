@@ -43,6 +43,7 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.isUserInteractionEnabled = false
         if (textField.text?.characters.count == 0) {
             // TODO: delete the cell if the name is empty
         }
