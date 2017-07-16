@@ -37,13 +37,10 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Text field delegate
     
-    // Only allow new cells to be edited
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return textField.text?.characters.count == 0
-    }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
+        // Once the task is created disabled user interaction with the text field so that the cell can be clicked
         textField.isUserInteractionEnabled = false
+        
         if (textField.text?.characters.count == 0) {
             // TODO: delete the cell if the name is empty
         }
