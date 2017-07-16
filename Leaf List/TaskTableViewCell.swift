@@ -11,6 +11,7 @@ import UIKit
 class TaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var checkBox: CheckBox!
+    @IBOutlet weak var taskNameTextField: UITextField!
     
     @IBAction func selectCheckBox(_ sender: CheckBox) {
         checkBox.toggleState()

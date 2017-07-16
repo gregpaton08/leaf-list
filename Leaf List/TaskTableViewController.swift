@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskTableViewController: UITableViewController {
+class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     
     // temporary dummy model
     var numTasks = 0
@@ -32,6 +32,11 @@ class TaskTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
     // MARK: - Table view data source
 
@@ -49,6 +54,8 @@ class TaskTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
 
         // Configure the cell...
+        cell.taskNameTextField.delegate = self
+        cell.taskNameTextField.becomeFirstResponder()
 
         return cell
     }
