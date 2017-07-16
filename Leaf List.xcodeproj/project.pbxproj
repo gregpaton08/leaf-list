@@ -15,6 +15,7 @@
 		37ECFF8C1F179575001A9314 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFF8B1F179575001A9314 /* Task.swift */; };
 		37ECFFB41F1BED29001A9314 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFFB31F1BED29001A9314 /* CheckBox.swift */; };
 		37ECFFB61F1BEEF8001A9314 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFFB51F1BEEF8001A9314 /* TaskTableViewController.swift */; };
+		37ECFFB81F1BF088001A9314 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFFB71F1BF088001A9314 /* TaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		37ECFF8B1F179575001A9314 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		37ECFFB31F1BED29001A9314 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		37ECFFB51F1BEEF8001A9314 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
+		37ECFFB71F1BF088001A9314 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				37ECFF8B1F179575001A9314 /* Task.swift */,
 				37ECFFB31F1BED29001A9314 /* CheckBox.swift */,
 				37ECFFB51F1BEEF8001A9314 /* TaskTableViewController.swift */,
+				37ECFFB71F1BF088001A9314 /* TaskTableViewCell.swift */,
 			);
 			path = "Leaf List";
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			files = (
 				37ECFFB61F1BEEF8001A9314 /* TaskTableViewController.swift in Sources */,
 				37ECFF8C1F179575001A9314 /* Task.swift in Sources */,
+				37ECFFB81F1BF088001A9314 /* TaskTableViewCell.swift in Sources */,
 				37ECFF7F1F178722001A9314 /* Leaf_List.xcdatamodeld in Sources */,
 				37ECFF771F178722001A9314 /* AppDelegate.swift in Sources */,
 				37ECFFB41F1BED29001A9314 /* CheckBox.swift in Sources */,

@@ -18,9 +18,11 @@ class CheckBox: UIButton {
     }
     */
     
-    convenience init() {
-        self.init(frame: CGRect.zero)
-        
-        self.backgroundColor = UIColor.red
+    override var frame: CGRect {
+        didSet {
+            self.layer.cornerRadius = self.bounds.width / 2
+            self.layer.borderWidth = 2.0
+            self.layer.borderColor = UIColor.lightGray.cgColor
+        }
     }
 }
