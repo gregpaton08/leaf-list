@@ -35,6 +35,14 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Text field delegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField.text?.characters.count == 0) {
+            // TODO: delete the cell if the name is empty
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -58,7 +66,7 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         // Configure the cell...
         cell.taskNameTextField.delegate = self
         
-        // If a task is currently being added and this is the last cell then move focus to the cell's text field
+        // If a task is currently being added and this is the last cell then give keyboard focus to the cell's text field
         if (isAddingTask && indexPath.row == numTasks - 1) {
             cell.taskNameTextField.becomeFirstResponder()
             isAddingTask = false
