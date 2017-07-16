@@ -25,6 +25,7 @@ class CheckBox: UIButton {
             self.layer.cornerRadius = self.bounds.width / 2
             self.layer.borderWidth = 2.0
             self.layer.borderColor = UIColor.lightGray.cgColor
+            self.layer.backgroundColor = UIColor.clear.cgColor
         }
     }
     
