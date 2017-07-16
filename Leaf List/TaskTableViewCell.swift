@@ -10,6 +10,12 @@ import UIKit
 
 class TaskTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var checkBox: CheckBox!
+    
+    @IBAction func selectCheckBox(_ sender: CheckBox) {
+        checkBox.toggleState()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

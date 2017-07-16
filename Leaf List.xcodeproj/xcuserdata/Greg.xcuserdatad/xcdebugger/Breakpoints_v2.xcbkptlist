@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Leaf List/CheckBox.swift"
-            timestampString = "521925275.055056"
+            timestampString = "521925986.909741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "frame"
             landmarkType = "24">
          </BreakpointContent>
