@@ -11,7 +11,7 @@ import UIKit
 class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     
     // temporary dummy model
-    var numTasks = 0
+    private var numTasks = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,10 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    private var isAddingTask = false
     @IBAction func addTask(_ sender: UIBarButtonItem) {
         numTasks += 1
+        isAddingTask = true
         tableView.reloadData()
     }
     
@@ -55,7 +57,12 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
 
         // Configure the cell...
         cell.taskNameTextField.delegate = self
-        cell.taskNameTextField.becomeFirstResponder()
+        
+        // If a task is currently being added and this is the last cell then move focus to the cell's text field
+        if (isAddingTask && indexPath.row == numTasks - 1) {
+            cell.taskNameTextField.becomeFirstResponder()
+            isAddingTask = false
+        }
 
         return cell
     }
