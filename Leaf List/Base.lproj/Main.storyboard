@@ -46,7 +46,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="706-dR-Rku">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9W9-4U-SwU"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9W9-4U-SwU">
+                            <connections>
+                                <action selector="addTask:" destination="mHF-GJ-wxz" id="oHV-ed-j2m"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSK-ad-alr" userLabel="First Responder" sceneMemberID="firstResponder"/>
