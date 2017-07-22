@@ -12,6 +12,9 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     
     // temporary dummy model
     private var numTasks = 0
+    
+    // Parent task of the current view. Can be nil if current task is a "root".
+    var parentTask: Task?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +52,12 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print(textField.text ?? "Text field was empty")
         textField.resignFirstResponder()
+        
+        let context = AppDelegate.viewContext
+        let task = Task(context: context)
+        task.name = textField.text
+        task.dateCreated = NSDate()
+        
         return true
     }
 
