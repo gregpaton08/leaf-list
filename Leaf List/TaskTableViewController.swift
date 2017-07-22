@@ -47,6 +47,7 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print(textField.text ?? "Text field was empty")
         textField.resignFirstResponder()
         return true
     }
