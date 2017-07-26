@@ -85,17 +85,17 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
             cell.taskNameTextField.becomeFirstResponder()
             isAddingTask = false
         } else {
-//            let request: NSFetchRequest<Task> = Task.fetchRequest()
-//            
-//            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-//            request.sortDescriptors = [sortDescriptor]
-//            
+            let request: NSFetchRequest<Task> = Task.fetchRequest()
+            
+            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sortDescriptor]
+            
 //            let predicate = NSPredicate(format: "*")
 //            request.predicate = predicate
-//            
-//            let context = AppDelegate.viewContext
-//            let allTasks = try? context.fetch(request)
-//            print(allTasks)
+            
+            let context = AppDelegate.viewContext
+            let allTasks = try? context.fetch(request)
+            print(allTasks)
         }
 
         return cell
