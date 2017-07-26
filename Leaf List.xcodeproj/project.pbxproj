@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3720FE051F28C52E00174E5C /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720FE041F28C52E00174E5C /* FetchedResultsTableViewController.swift */; };
 		37ECFF771F178722001A9314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFF761F178722001A9314 /* AppDelegate.swift */; };
 		37ECFF7C1F178722001A9314 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ECFF7A1F178722001A9314 /* Main.storyboard */; };
 		37ECFF7F1F178722001A9314 /* Leaf_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFF7D1F178722001A9314 /* Leaf_List.xcdatamodeld */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3720FE041F28C52E00174E5C /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		37ECFF731F178722001A9314 /* Leaf List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leaf List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37ECFF761F178722001A9314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37ECFF7B1F178722001A9314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				37ECFF761F178722001A9314 /* AppDelegate.swift */,
+				3720FE041F28C52E00174E5C /* FetchedResultsTableViewController.swift */,
 				37ECFF7A1F178722001A9314 /* Main.storyboard */,
 				37ECFF801F178722001A9314 /* Assets.xcassets */,
 				37ECFF821F178722001A9314 /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				37ECFF8C1F179575001A9314 /* Task.swift in Sources */,
 				37ECFFB81F1BF088001A9314 /* TaskTableViewCell.swift in Sources */,
 				37ECFF7F1F178722001A9314 /* Leaf_List.xcdatamodeld in Sources */,
+				3720FE051F28C52E00174E5C /* FetchedResultsTableViewController.swift in Sources */,
 				37ECFF771F178722001A9314 /* AppDelegate.swift in Sources */,
 				37ECFFB41F1BED29001A9314 /* CheckBox.swift in Sources */,
 			);
@@ -320,6 +324,7 @@
 				37ECFF8A1F178722001A9314 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

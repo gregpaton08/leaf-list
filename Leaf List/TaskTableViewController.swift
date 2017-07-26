@@ -14,6 +14,8 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     // Parent task of the current view. Can be nil if current task is a "root".
     var parentTask: Task?
     
+//    lazy var fetchedResultsController = NSFetchedResultsController(fetchRequest: createFetchRequest(), managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+    
     private func createFetchRequest() -> NSFetchRequest<Task> {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         
