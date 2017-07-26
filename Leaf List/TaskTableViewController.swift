@@ -16,6 +16,21 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     
     // Parent task of the current view. Can be nil if current task is a "root".
     var parentTask: Task?
+    
+    private func createFetchRequest() -> NSFetchRequest<Task> {
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        if (parentTask != nil) {
+            request.predicate = NSPredicate(format: "parent = %@", parentTask!)
+        } else {
+            request.predicate = NSPredicate(format: "parent = nil")
+        }
+        
+        return request
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +92,7 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return numTasks
+        return try! AppDelegate.viewContext.count(for: createFetchRequest())
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,7 +119,12 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
             
             let context = AppDelegate.viewContext
             let allTasks = try? context.fetch(request)
+            
             print(allTasks)
+            
+            if (allTasks?.count ?? 0 > indexPath.row) {
+                cell.taskNameTextField.text = allTasks?[indexPath.row].name
+            }
         }
 
         return cell
