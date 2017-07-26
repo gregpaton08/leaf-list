@@ -9,11 +9,12 @@
 import UIKit
 import CoreData
 
-class TaskTableViewController: UITableViewController, UITextFieldDelegate {
+class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDelegate {
     
     // Parent task of the current view. Can be nil if current task is a "root".
-    var parentTask: Task?
+    var parentTask: Task? { didSet { updateUI() } }
     
+    var fetchedResultsController: NSFetchedResultsController<Task>?
 //    lazy var fetchedResultsController = NSFetchedResultsController(fetchRequest: createFetchRequest(), managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
     
     private func createFetchRequest() -> NSFetchRequest<Task> {
@@ -30,6 +31,13 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         
         return request
     }
+    
+    private func updateUI() {
+        fetchedResultsController = NSFetchedResultsController<Task>(fetchRequest: createFetchRequest(), managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController?.delegate = self
+        try? fetchedResultsController?.performFetch()
+        tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +47,8 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        updateUI()
     }
 
     private var isAddingTask = false
@@ -90,8 +100,13 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return try! AppDelegate.viewContext.count(for: createFetchRequest()) + (isAddingTask ? 1 : 0)
+        var numRows = isAddingTask ? 1 : 0
+        
+        if let sections = fetchedResultsController?.sections {
+            numRows += sections[section].numberOfObjects
+        }
+
+        return numRows
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,15 +119,10 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         if (isAddingTask && indexPath.row == self.tableView(self.tableView, numberOfRowsInSection: 0) - 1) {
             cell.taskNameTextField.becomeFirstResponder()
             isAddingTask = false
-        } else {
-            let context = AppDelegate.viewContext
-            let allTasks = try? context.fetch(createFetchRequest())
-            
-            if (allTasks?.count ?? 0 > indexPath.row) {
-                cell.taskNameTextField.text = allTasks?[indexPath.row].name
-            }
+        } else if let task = fetchedResultsController?.object(at: indexPath) {
+            cell.taskNameTextField.text = task.name
         }
-
+        
         return cell
     }
 
@@ -161,9 +171,8 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         if let taskTableView = segue.destination as? TaskTableViewController {
             if let cell = sender as? TaskTableViewCell {
                 if let indexPath = self.tableView.indexPath(for: cell) {
-                    let allTask = try? AppDelegate.viewContext.fetch(createFetchRequest())
-                    if (allTask != nil && allTask!.count > indexPath.row) {
-                        taskTableView.parentTask = allTask?[indexPath.row]
+                    if let task = fetchedResultsController?.object(at: indexPath) {
+                        taskTableView.parentTask = task
                     }
                 }
             }
