@@ -37,6 +37,20 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         try? fetchedResultsController?.performFetch()
         tableView.reloadData()
     }
+    
+    private func addTask(with name: String) {
+        let context = AppDelegate.viewContext
+        let task = Task(context: context)
+        task.name = name
+        task.dateCreated = NSDate()
+        task.parent = parentTask
+        
+        do {
+            try context.save()
+        } catch {
+            print("oh no...")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +66,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
 
     private var isAddingTask = false
     @IBAction func addTask(_ sender: UIBarButtonItem) {
-        isAddingTask = true
-        self.tableView.reloadData()
+        addTask(with: "TESTING")
+//        isAddingTask = true
+//        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,21 +110,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1 + (isAddingTask ? 1 : 0)
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section > 0) {
-            return 1
-        }
-        
-        var numRows = 0//isAddingTask ? 1 : 0
-        
         if let sections = fetchedResultsController?.sections {
-            numRows += sections[section].numberOfObjects
+            return sections[section].numberOfObjects
         }
 
-        return numRows
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,6 +175,18 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         return true
     }
     */
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "Testing"
+    }
+    
+//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "hello")
+//        
+//        footer?.textLabel?.text = "TESTING"
+//        
+//        return footer
+//    }
 
     // MARK: - Navigation
 
