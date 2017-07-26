@@ -103,19 +103,8 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
             cell.taskNameTextField.becomeFirstResponder()
             isAddingTask = false
         } else {
-            let request: NSFetchRequest<Task> = Task.fetchRequest()
-            
-            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-            request.sortDescriptors = [sortDescriptor]
-            
-            if (parentTask != nil) {
-                request.predicate = NSPredicate(format: "parent = %@", parentTask!)
-            } else {
-                request.predicate = NSPredicate(format: "parent = nil")
-            }
-            
             let context = AppDelegate.viewContext
-            let allTasks = try? context.fetch(request)
+            let allTasks = try? context.fetch(createFetchRequest())
             
             if (allTasks?.count ?? 0 > indexPath.row) {
                 cell.taskNameTextField.text = allTasks?[indexPath.row].name
