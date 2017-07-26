@@ -120,8 +120,6 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
             let context = AppDelegate.viewContext
             let allTasks = try? context.fetch(request)
             
-            print(allTasks)
-            
             if (allTasks?.count ?? 0 > indexPath.row) {
                 cell.taskNameTextField.text = allTasks?[indexPath.row].name
             }
@@ -171,6 +169,17 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let taskTableView = segue.destination as? TaskTableViewController {
+            if let cell = sender as? TaskTableViewCell {
+                if let indexPath = self.tableView.indexPath(for: cell) {
+                    let allTask = try? AppDelegate.viewContext.fetch(createFetchRequest())
+                    if (allTask != nil && allTask!.count > indexPath.row) {
+                        taskTableView.parentTask = allTask?[indexPath.row]
+                    }
+                }
+            }
+        }
     }
 
 }
