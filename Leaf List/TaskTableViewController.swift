@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     
@@ -83,6 +84,18 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         if (isAddingTask && indexPath.row == numTasks - 1) {
             cell.taskNameTextField.becomeFirstResponder()
             isAddingTask = false
+        } else {
+//            let request: NSFetchRequest<Task> = Task.fetchRequest()
+//            
+//            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+//            request.sortDescriptors = [sortDescriptor]
+//            
+//            let predicate = NSPredicate(format: "*")
+//            request.predicate = predicate
+//            
+//            let context = AppDelegate.viewContext
+//            let allTasks = try? context.fetch(request)
+//            print(allTasks)
         }
 
         return cell
