@@ -53,7 +53,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     private var isAddingTask = false
     @IBAction func addTask(_ sender: UIBarButtonItem) {
         isAddingTask = true
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,11 +95,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 1 + (isAddingTask ? 1 : 0)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numRows = isAddingTask ? 1 : 0
+        if (section > 0) {
+            return 1
+        }
+        
+        var numRows = 0//isAddingTask ? 1 : 0
         
         if let sections = fetchedResultsController?.sections {
             numRows += sections[section].numberOfObjects
@@ -115,11 +119,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         cell.taskNameTextField.delegate = self
         
         // If a task is currently being added and this is the last cell then give keyboard focus to the cell's text field
-        if (isAddingTask && indexPath.row == self.tableView(self.tableView, numberOfRowsInSection: 0) - 1) {
+        if (isAddingTask && indexPath.section == self.tableView.numberOfSections - 1) {
+//        if (isAddingTask && indexPath.row == self.tableView(self.tableView, numberOfRowsInSection: 0) - 1) {
+            cell.taskNameTextField.isUserInteractionEnabled = true
             cell.taskNameTextField.becomeFirstResponder()
             isAddingTask = false
         } else if let task = fetchedResultsController?.object(at: indexPath) {
             cell.taskNameTextField.text = task.name
+            cell.taskNameTextField.isUserInteractionEnabled = false
         }
         
         return cell
