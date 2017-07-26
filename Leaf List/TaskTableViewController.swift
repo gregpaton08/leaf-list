@@ -11,9 +11,6 @@ import CoreData
 
 class TaskTableViewController: UITableViewController, UITextFieldDelegate {
     
-    // temporary dummy model
-    private var numTasks = 0
-    
     // Parent task of the current view. Can be nil if current task is a "root".
     var parentTask: Task?
     
@@ -44,7 +41,6 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
 
     private var isAddingTask = false
     @IBAction func addTask(_ sender: UIBarButtonItem) {
-        numTasks += 1
         isAddingTask = true
         tableView.reloadData()
     }
@@ -92,7 +88,7 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return try! AppDelegate.viewContext.count(for: createFetchRequest())
+        return try! AppDelegate.viewContext.count(for: createFetchRequest()) + (isAddingTask ? 1 : 0)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,7 +98,7 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         cell.taskNameTextField.delegate = self
         
         // If a task is currently being added and this is the last cell then give keyboard focus to the cell's text field
-        if (isAddingTask && indexPath.row == numTasks - 1) {
+        if (isAddingTask && indexPath.row == self.tableView(self.tableView, numberOfRowsInSection: 0) - 1) {
             cell.taskNameTextField.becomeFirstResponder()
             isAddingTask = false
         } else {
