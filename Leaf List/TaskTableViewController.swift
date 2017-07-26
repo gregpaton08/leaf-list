@@ -69,6 +69,7 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         let task = Task(context: context)
         task.name = textField.text
         task.dateCreated = NSDate()
+        task.parent = parentTask
         
         do {
             try context.save()
