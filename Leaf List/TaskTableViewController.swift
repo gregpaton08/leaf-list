@@ -59,6 +59,12 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
         task.name = textField.text
         task.dateCreated = NSDate()
         
+        do {
+            try context.save()
+        } catch {
+            print("oh no...")
+        }
+        
         return true
     }
 
@@ -90,8 +96,11 @@ class TaskTableViewController: UITableViewController, UITextFieldDelegate {
             let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
             request.sortDescriptors = [sortDescriptor]
             
-//            let predicate = NSPredicate(format: "*")
-//            request.predicate = predicate
+            if (parentTask != nil) {
+                request.predicate = NSPredicate(format: "parent = %@", parentTask!)
+            } else {
+                request.predicate = NSPredicate(format: "parent = nil")
+            }
             
             let context = AppDelegate.viewContext
             let allTasks = try? context.fetch(request)
