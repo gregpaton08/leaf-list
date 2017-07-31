@@ -181,16 +181,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
 //    }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let reuseId = "footerViewId"
-//        
-//        var footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseId)
-//        if (footer == nil) {
-//            footer = UITableViewHeaderFooterView(reuseIdentifier: reuseId)
-        //
         
         let footer = TaskTableViewCell()
         
         footer.textLabel?.text = "FOOTER TESTING"
+        footer.backgroundColor = UIColor.white
         
         return footer
     }
