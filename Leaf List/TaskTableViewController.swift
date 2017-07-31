@@ -176,17 +176,28 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     }
     */
     
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "Testing"
+//    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//        return nil
+//    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let reuseId = "footerViewId"
+//        
+//        var footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseId)
+//        if (footer == nil) {
+//            footer = UITableViewHeaderFooterView(reuseIdentifier: reuseId)
+        //
+        
+        let footer = TaskTableViewCell()
+        
+        footer.textLabel?.text = "FOOTER TESTING"
+        
+        return footer
     }
     
-//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "hello")
-//        
-//        footer?.textLabel?.text = "TESTING"
-//        
-//        return footer
-//    }
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return TaskTableViewCell().frame.height
+    }
 
     // MARK: - Navigation
 
