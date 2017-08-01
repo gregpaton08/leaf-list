@@ -91,17 +91,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         print(textField.text ?? "Text field was empty")
         textField.resignFirstResponder()
         
-        let context = AppDelegate.viewContext
-        let task = Task(context: context)
-        task.name = textField.text
-        task.dateCreated = NSDate()
-        task.parent = parentTask
-        
-        do {
-            try context.save()
-        } catch {
-            print("oh no...")
-        }
+        addTask(with: textField.text!)
         
         return true
     }
