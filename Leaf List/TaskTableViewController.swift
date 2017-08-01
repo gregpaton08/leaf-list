@@ -110,13 +110,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         // Configure the cell...
         cell.taskNameTextField.delegate = self
         
-        // If a task is currently being added and this is the last cell then give keyboard focus to the cell's text field
-        if (isAddingTask && indexPath.section == self.tableView.numberOfSections - 1) {
-//        if (isAddingTask && indexPath.row == self.tableView(self.tableView, numberOfRowsInSection: 0) - 1) {
-            cell.taskNameTextField.isUserInteractionEnabled = true
-            cell.taskNameTextField.becomeFirstResponder()
-            isAddingTask = false
-        } else if let task = fetchedResultsController?.object(at: indexPath) {
+        if let task = fetchedResultsController?.object(at: indexPath) {
             cell.taskNameTextField.text = task.name
             cell.taskNameTextField.isUserInteractionEnabled = false
         }
