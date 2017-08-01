@@ -72,6 +72,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <connections>
+                                    <outlet property="newTaskTextField" destination="ABU-JZ-yzz" id="lof-Dm-9pU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

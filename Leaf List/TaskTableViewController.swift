@@ -183,7 +183,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") {
+        if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") as? TaskTableViewFooter {
+            footer.newTaskTextField.delegate = self
             return footer
         }
         

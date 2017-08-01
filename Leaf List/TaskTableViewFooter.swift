@@ -10,6 +10,8 @@ import UIKit
 
 class TaskTableViewFooter: UITableViewCell {
 
+    @IBOutlet weak var newTaskTextField: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
