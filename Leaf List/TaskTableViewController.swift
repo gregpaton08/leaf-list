@@ -90,11 +90,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     // MARK: - Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        addTask(with: textField.text!)
-        
-        textField.text = nil
+        if (textField.text == nil || textField.text?.characters.count == 0) {
+            textField.resignFirstResponder()
+        } else {
+            addTask(with: textField.text!)
+            textField.text = nil
+        }
         
         return true
     }
