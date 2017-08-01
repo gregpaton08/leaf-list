@@ -63,7 +63,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         updateUI()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
     }
 
     private var isAddingTask = false
@@ -199,6 +201,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     
     // MARK: - Keyboard Notifications
     
+    func keyboardWillShow(notification: NSNotification) {
+        // Need to manually set the content inset height since this is within a tab bar view controller. The tab bar offsets the inset by its height and pushes the header too high when the keyboard appears.
+        tableView.contentInset.bottom = 0
+    }
+    
+    /*
     func keyboardWasShown(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -207,5 +215,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         // Need to manually set the content inset height since this is within a tab bar view controller. The tab bar offsets the inset by its height and pushes the header too high when the keyboard appears.
         tableView.contentInset.bottom = keyboardFrame.size.height
     }
+    */
 
 }
