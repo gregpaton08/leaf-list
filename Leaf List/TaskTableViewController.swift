@@ -81,13 +81,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         updateUI()
     }
-
-    private var isAddingTask = false
-    @IBAction func addTask(_ sender: UIBarButtonItem) {
-        addTask(with: "TESTING \(tableView(self.tableView, numberOfRowsInSection: 0))")
-//        isAddingTask = true
-//        self.tableView.reloadData()
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

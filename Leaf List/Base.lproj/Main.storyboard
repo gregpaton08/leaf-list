@@ -52,7 +52,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CO7-GN-Ufn" id="wgo-Pr-7iP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ABU-JZ-yzz">
@@ -83,13 +83,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="706-dR-Rku">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9W9-4U-SwU">
-                            <connections>
-                                <action selector="addTask:" destination="mHF-GJ-wxz" id="oHV-ed-j2m"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="706-dR-Rku"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSK-ad-alr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
