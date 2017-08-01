@@ -39,5 +39,23 @@ class FetchedResultsTableViewController: UITableViewController, NSFetchedResults
     
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+        
+        // Fixes bug where footer gets stuck to bottom of table view when cells are deleted such that all the cells become visible on screen.
+        if (tableView.numCells == tableView.visibleCells.count) {
+            tableView.reloadData()
+        }
+    }
+}
+
+
+extension UITableView {
+    var numCells: Int {
+        var count = 0
+        let numSections = self.numberOfSections
+        for i in 0..<numSections {
+            count += self.numberOfRows(inSection: i)
+        }
+        
+        return count
     }
 }
