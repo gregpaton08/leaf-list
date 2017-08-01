@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3720FE051F28C52E00174E5C /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720FE041F28C52E00174E5C /* FetchedResultsTableViewController.swift */; };
+		3720FE091F3012DC00174E5C /* TaskTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720FE081F3012DC00174E5C /* TaskTableViewFooter.swift */; };
 		37ECFF771F178722001A9314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFF761F178722001A9314 /* AppDelegate.swift */; };
 		37ECFF7C1F178722001A9314 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ECFF7A1F178722001A9314 /* Main.storyboard */; };
 		37ECFF7F1F178722001A9314 /* Leaf_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFF7D1F178722001A9314 /* Leaf_List.xcdatamodeld */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		3720FE041F28C52E00174E5C /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
+		3720FE081F3012DC00174E5C /* TaskTableViewFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewFooter.swift; sourceTree = "<group>"; };
 		37ECFF731F178722001A9314 /* Leaf List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leaf List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37ECFF761F178722001A9314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37ECFF7B1F178722001A9314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				37ECFF8B1F179575001A9314 /* Task.swift */,
 				37ECFFB31F1BED29001A9314 /* CheckBox.swift */,
 				37ECFFB51F1BEEF8001A9314 /* TaskTableViewController.swift */,
+				3720FE081F3012DC00174E5C /* TaskTableViewFooter.swift */,
 				37ECFFB71F1BF088001A9314 /* TaskTableViewCell.swift */,
 			);
 			path = "Leaf List";
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37ECFFB61F1BEEF8001A9314 /* TaskTableViewController.swift in Sources */,
+				3720FE091F3012DC00174E5C /* TaskTableViewFooter.swift in Sources */,
 				37ECFF8C1F179575001A9314 /* Task.swift in Sources */,
 				37ECFFB81F1BF088001A9314 /* TaskTableViewCell.swift in Sources */,
 				37ECFF7F1F178722001A9314 /* Leaf_List.xcdatamodeld in Sources */,
