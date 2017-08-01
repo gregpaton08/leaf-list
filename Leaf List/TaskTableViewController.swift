@@ -110,30 +110,50 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        // Section 0: list of tasks.
+        // Section 1: single cell for adding a new task.
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController?.sections {
-            return sections[section].numberOfObjects
+        switch section {
+        case 0:
+            if let sections = fetchedResultsController?.sections {
+                return sections[section].numberOfObjects
+            }
+        case 1:
+            return 1
+        default:
+            break
         }
 
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-
-        // Configure the cell...
-        cell.taskNameTextField.delegate = self
-        
-        if let task = fetchedResultsController?.object(at: indexPath) {
-            cell.taskNameTextField.text = task.name
-            cell.taskNameTextField.isUserInteractionEnabled = false
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+            
+            // Configure the cell...
+            cell.taskNameTextField.delegate = self
+            
+            if let task = fetchedResultsController?.object(at: indexPath) {
+                cell.taskNameTextField.text = task.name
+                cell.taskNameTextField.isUserInteractionEnabled = false
+            }
+            
+            return cell
+        case 1:
+            if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") as? TaskTableViewFooter {
+                footer.newTaskTextField.delegate = self
+                return footer
+            }
+        default:
+            break
         }
         
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
     }
 
     /*
@@ -172,25 +192,25 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
 //        return nil
 //    }
     
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") as? TaskTableViewFooter {
-            footer.newTaskTextField.delegate = self
-            return footer.contentView
-            
-            // Wrap footer in a UIView so that it doesn't disappar when cells are edited.
-//            let view = UIView()
-//            view.addSubview(footer)
+//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        
+//        if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") as? TaskTableViewFooter {
+//            footer.newTaskTextField.delegate = self
+//            return footer.contentView
 //            
-//            return view
-        }
-        
-        return nil
-    }
+//            // Wrap footer in a UIView so that it doesn't disappar when cells are edited.
+////            let view = UIView()
+////            view.addSubview(footer)
+////            
+////            return view
+//        }
+//        
+//        return nil
+//    }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 44//TaskTableViewCell().frame.height
-    }
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 44//TaskTableViewCell().frame.height
+//    }
 
     // MARK: - Navigation
 
