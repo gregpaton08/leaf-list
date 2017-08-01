@@ -97,7 +97,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     // MARK: - Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(textField.text ?? "Text field was empty")
         textField.resignFirstResponder()
         
         addTask(with: textField.text!)
@@ -145,7 +144,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             
             return cell
         case 1:
-            if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") as? TaskTableViewFooter {
+            if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? TaskTableViewFooter {
                 footer.newTaskTextField.delegate = self
                 return footer
             }
