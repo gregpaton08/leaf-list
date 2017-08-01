@@ -62,6 +62,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         updateUI()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
     }
 
     private var isAddingTask = false
@@ -193,6 +195,16 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
                 }
             }
         }
+    }
+    
+    // MARK: - Keyboard Notifications
+    
+    func keyboardWasShown(notification: NSNotification) {
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        print(keyboardFrame)
+        
+        tableView.contentInset.bottom = keyboardFrame.size.height
     }
 
 }
