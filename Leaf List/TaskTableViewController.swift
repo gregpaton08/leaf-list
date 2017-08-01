@@ -39,6 +39,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     }
     
     private func addTask(with name: String) {
+        if (name.characters.count == 0) {
+            return
+        }
+        
         let context = AppDelegate.viewContext
         let task = Task(context: context)
         task.name = name
