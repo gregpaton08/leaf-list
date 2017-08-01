@@ -66,7 +66,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
 
     private var isAddingTask = false
     @IBAction func addTask(_ sender: UIBarButtonItem) {
-        addTask(with: "TESTING")
+        addTask(with: "TESTING \(tableView(self.tableView, numberOfRowsInSection: 0))")
 //        isAddingTask = true
 //        self.tableView.reloadData()
     }
@@ -149,17 +149,18 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     }
     */
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            if let task = fetchedResultsController?.object(at: indexPath) {
+                AppDelegate.viewContext.delete(task)
+            }
+//            tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
