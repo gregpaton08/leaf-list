@@ -204,6 +204,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         print(keyboardFrame)
         
+        // Need to manually set the content inset height since this is within a tab bar view controller. The tab bar offsets the inset by its height and pushes the header too high when the keyboard appears.
         tableView.contentInset.bottom = keyboardFrame.size.height
     }
 
