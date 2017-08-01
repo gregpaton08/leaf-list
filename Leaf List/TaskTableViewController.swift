@@ -69,16 +69,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             }
         }
     }
-    
-    private func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,8 +80,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         updateUI()
-        
-        registerKeyboardNotifications()
     }
 
     private var isAddingTask = false
@@ -220,36 +208,4 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             }
         }
     }
-    
-    // MARK: - Keyboard Notifications
-    
-    func keyboardWillShow(notification: NSNotification) {
-        // Need to manually set the content inset height since this is within a tab bar view controller. The tab bar offsets the inset by its height and pushes the header too high when the keyboard appears.
-        tableView.contentInset.bottom = 0
-    }
-    
-    /*
-    func keyboardWasShown(notification: NSNotification) {
-        let info = notification.userInfo!
-        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        print(keyboardFrame)
-        
-        // Need to manually set the content inset height since this is within a tab bar view controller. The tab bar offsets the inset by its height and pushes the header too high when the keyboard appears.
-        tableView.contentInset.bottom = keyboardFrame.size.height
-    }
-     */
-    
-    func keyboardWillHide(notification: NSNotification) {
-        // Reset the content inset back to the height of the tab bar (if there is a tab bar).
-//        if let tabBarHeight = self.tabBarController?.tabBar.frame.size.height {
-//            tableView.contentInset.bottom = tabBarHeight
-//        }
-    }
-    
-    func keyboardWasHidden(notification: NSNotification) {
-//        if let tabBarHeight = self.tabBarController?.tabBar.frame.size.height {
-//            tableView.contentInset.bottom = tabBarHeight
-//        }
-    }
-
 }
