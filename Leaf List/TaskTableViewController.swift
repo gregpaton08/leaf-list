@@ -36,6 +36,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         fetchedResultsController?.delegate = self
         try? fetchedResultsController?.performFetch()
         tableView.reloadData()
+        
+        if let task = parentTask {
+            self.title = task.name
+        }
     }
     
     private func addTask(with name: String) {
