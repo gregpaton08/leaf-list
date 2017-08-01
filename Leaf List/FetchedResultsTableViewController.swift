@@ -41,9 +41,9 @@ class FetchedResultsTableViewController: UITableViewController, NSFetchedResults
         tableView.endUpdates()
         
         // Fixes bug where footer gets stuck to bottom of table view when cells are deleted such that all the cells become visible on screen.
-        if (tableView.numCells == tableView.visibleCells.count) {
-            tableView.reloadData()
-        }
+//        if (tableView.numCells == tableView.visibleCells.count) {
+//            tableView.reloadData()
+//        }
     }
 }
 

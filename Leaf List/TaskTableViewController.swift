@@ -55,6 +55,30 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             print("oh no...")
         }
     }
+    
+    private func deleteTask(at indexPath: IndexPath) {
+        if let task = fetchedResultsController?.object(at: indexPath) {
+            let context = AppDelegate.viewContext
+            
+            context.delete(task)
+            
+            do {
+                try context.save()
+            } catch {
+                print("oh no...")
+            }
+        }
+    }
+    
+    private func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,11 +91,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         updateUI()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        registerKeyboardNotifications()
     }
 
     private var isAddingTask = false
@@ -139,11 +159,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            if let task = fetchedResultsController?.object(at: indexPath) {
-                AppDelegate.viewContext.delete(task)
-            }
-//            tableView.deleteRows(at: [indexPath], with: .fade)
+            deleteTask(at: indexPath)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -225,7 +241,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     
     func keyboardWillHide(notification: NSNotification) {
         // Reset the content inset back to the height of the tab bar (if there is a tab bar).
-        tableView.contentInset.bottom = self.tabBarController?.tabBar.frame.size.height ?? 0
+//        if let tabBarHeight = self.tabBarController?.tabBar.frame.size.height {
+//            tableView.contentInset.bottom = tabBarHeight
+//        }
+    }
+    
+    func keyboardWasHidden(notification: NSNotification) {
+//        if let tabBarHeight = self.tabBarController?.tabBar.frame.size.height {
+//            tableView.contentInset.bottom = tabBarHeight
+//        }
     }
 
 }
