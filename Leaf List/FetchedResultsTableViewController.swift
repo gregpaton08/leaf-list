@@ -39,9 +39,5 @@ class FetchedResultsTableViewController: UITableViewController, NSFetchedResults
     
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
-        
-        // Hack to fix bug where section footer disappears when cells are added/deleted.
-        // TODO: find a more optimal fix. Reloading the entire table is inefficient.
-        tableView.reloadData()
     }
 }
