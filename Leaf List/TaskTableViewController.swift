@@ -187,30 +187,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         return true
     }
     */
-    
-//    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        return nil
-//    }
-    
-//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        
-//        if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") as? TaskTableViewFooter {
-//            footer.newTaskTextField.delegate = self
-//            return footer.contentView
-//            
-//            // Wrap footer in a UIView so that it doesn't disappar when cells are edited.
-////            let view = UIView()
-////            view.addSubview(footer)
-////            
-////            return view
-//        }
-//        
-//        return nil
-//    }
-    
-//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 44//TaskTableViewCell().frame.height
-//    }
 
     // MARK: - Navigation
 
