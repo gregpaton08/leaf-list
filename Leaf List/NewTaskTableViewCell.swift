@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskTableViewFooter: UITableViewCell {
+class NewTaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var newTaskTextField: UITextField!
     

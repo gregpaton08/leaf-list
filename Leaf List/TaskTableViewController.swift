@@ -144,7 +144,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             
             return cell
         case 1:
-            if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? TaskTableViewFooter {
+            if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
                 footer.newTaskTextField.delegate = self
                 return footer
             }
