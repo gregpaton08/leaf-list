@@ -78,20 +78,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     
     // MARK: - Text field delegate
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // Once the task is created disabled user interaction with the text field so that the cell can be clicked
-        textField.isUserInteractionEnabled = false
-        
-        if (textField.text?.characters.count == 0) {
-            // TODO: delete the cell if the name is empty
-        }
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print(textField.text ?? "Text field was empty")
         textField.resignFirstResponder()
         
         addTask(with: textField.text!)
+        
+        textField.text = nil
         
         return true
     }
