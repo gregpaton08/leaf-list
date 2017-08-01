@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Tasks-->
         <scene sceneID="2Ry-tO-3Gx">
             <objects>
                 <tableViewController id="mHF-GJ-wxz" customClass="TaskTableViewController" customModule="Leaf_List" customModuleProvider="target" sceneMemberID="viewController">
@@ -83,7 +83,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="706-dR-Rku"/>
+                    <navigationItem key="navigationItem" title="Tasks" id="706-dR-Rku"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSK-ad-alr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
