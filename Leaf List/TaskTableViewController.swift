@@ -69,7 +69,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     private var isAddingTask = false
@@ -219,6 +221,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         // Need to manually set the content inset height since this is within a tab bar view controller. The tab bar offsets the inset by its height and pushes the header too high when the keyboard appears.
         tableView.contentInset.bottom = keyboardFrame.size.height
     }
-    */
+     */
+    
+    func keyboardWillHide(notification: NSNotification) {
+        // Reset the content inset back to the height of the tab bar (if there is a tab bar).
+        tableView.contentInset.bottom = self.tabBarController?.tabBar.frame.size.height ?? 0
+    }
 
 }
