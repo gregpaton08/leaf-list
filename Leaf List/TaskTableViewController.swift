@@ -176,12 +176,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") as? TaskTableViewFooter {
             footer.newTaskTextField.delegate = self
+            return footer.contentView
             
             // Wrap footer in a UIView so that it doesn't disappar when cells are edited.
-            let view = UIView()
-            view.addSubview(footer)
-            
-            return view
+//            let view = UIView()
+//            view.addSubview(footer)
+//            
+//            return view
         }
         
         return nil
