@@ -116,7 +116,7 @@
         <scene sceneID="Taa-yf-vsD">
             <objects>
                 <tabBarController id="ffS-gv-eBu" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Z6u-LQ-isx">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="Z6u-LQ-isx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
