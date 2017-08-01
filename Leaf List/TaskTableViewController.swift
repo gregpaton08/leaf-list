@@ -168,19 +168,19 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         if let footer = tableView.dequeueReusableCell(withIdentifier: "sectionFooter") as? TaskTableViewFooter {
             footer.newTaskTextField.delegate = self
-            return footer
+            
+            // Wrap footer in a UIView so that it doesn't disappar when cells are edited.
+            let view = UIView()
+            view.addSubview(footer)
+            
+            return view
         }
         
-        let footer = TaskTableViewCell()
-        
-        footer.textLabel?.text = "FOOTER TESTING"
-        footer.backgroundColor = UIColor.white
-        
-        return footer
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return TaskTableViewCell().frame.height
+        return 44//TaskTableViewCell().frame.height
     }
 
     // MARK: - Navigation
