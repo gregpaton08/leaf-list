@@ -14,6 +14,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     // Parent task of the current view. Can be nil if current task is a "root".
     var parentTask: Task? { didSet { updateUI() } }
     
+    enum TaskType {
+        case task
+        case group
+    }
+    
+    var taskType: TaskType = .group
+    
     private var fetchedResultsController: NSFetchedResultsController<Task>?
     
     private func createFetchRequest() -> NSFetchRequest<Task> {
@@ -22,10 +29,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         
-        if (parentTask != nil) {
-            request.predicate = NSPredicate(format: "parent = %@", parentTask!)
-        } else {
-            request.predicate = NSPredicate(format: "parent = nil")
+        switch taskType {
+        case .task:
+            request.predicate = NSPredicate(format: "children.@count == 0")
+        case .group:
+            if (parentTask != nil) {
+                request.predicate = NSPredicate(format: "parent = %@", parentTask!)
+            } else {
+                request.predicate = NSPredicate(format: "parent = nil")
+            }
         }
         
         return request
