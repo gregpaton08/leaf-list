@@ -14,7 +14,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     // Parent task of the current view. Can be nil if current task is a "root".
     var parentTask: Task? { didSet { updateUI() } }
     
-    var fetchedResultsController: NSFetchedResultsController<Task>?
+    private var fetchedResultsController: NSFetchedResultsController<Task>?
     
     private func createFetchRequest() -> NSFetchRequest<Task> {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
