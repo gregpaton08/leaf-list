@@ -9,12 +9,24 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    
+    private func resizeImage(_ image: UIImage, toSize size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        image.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         viewControllers?[0].tabBarItem.title = "Tasks"
+        if let image = UIImage(named: "leaf.png") {
+            viewControllers?[0].tabBarItem.image = resizeImage(image, toSize: CGSize.init(width: 30, height: 30))
+        }
+        
         viewControllers?[1].tabBarItem.title = "Groups"
     }
 
