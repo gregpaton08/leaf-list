@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NotesViewController: UIViewController {
+class NotesViewController: UIViewController, UITextViewDelegate {
     
     var task: Task?
 
@@ -20,18 +20,22 @@ class NotesViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         notesTextView.text = task?.notes
+        notesTextView.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if task?.notes?.compare(notesTextView.text) != .orderedSame {
-            task?.notes = notesTextView.text
-            do {
-                try AppDelegate.viewContext.save()
-            } catch {
-                print("oh no...")
-            }
+        do {
+            try AppDelegate.viewContext.save()
+        } catch {
+            print("oh no...")
         }
+    }
+    
+    // MARK: - Text view delegate
+    
+    func textViewDidChange(_ textView: UITextView) {
+        task?.notes = textView.text
     }
 }
