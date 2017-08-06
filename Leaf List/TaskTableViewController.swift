@@ -401,6 +401,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
         } else if let notesView = segue.destination as? NotesViewController {
             notesView.task = parentTask
+            notesView.readOnly = taskType == .trash
         }
     }
     
