@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDelegate {
+class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDelegate, TaskTableViewCellDelegate {
     
     // Parent task of the current view. Can be nil if current task is a "root".
     var parentTask: Task? { didSet { updateUI() } }
@@ -102,6 +102,21 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         }
     }
     
+    private func setTask(at indexPath: IndexPath, asCompleted completed: Bool) {
+        if let task = fetchedResultsController?.object(at: indexPath) {
+            let context = AppDelegate.viewContext
+            
+            task.taskCompleted = completed
+            task.dateCompleted = NSDate()
+            
+            do {
+                try context.save()
+            } catch {
+                print("oh no...")
+            }
+        }
+    }
+    
     private func deleteTask(at indexPath: IndexPath) {
         if let task = fetchedResultsController?.object(at: indexPath) {
             let context = AppDelegate.viewContext
@@ -185,9 +200,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
+                cell.taskNameLabel.isEnabled = !task.taskCompleted
+                cell.checkBox.isChecked = task.taskCompleted
+                
                 if task.children?.count ?? 0 > 0 {
                     cell.checkBox.isHidden = true
                 }
+                
+                cell.delegate = self
             }
             
             return cell
@@ -250,6 +270,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
                     }
                 }
             }
+        }
+    }
+    
+    // MARK: - Task table view cell delegate
+    
+    func checkBoxSelectedFor(_ cell: TaskTableViewCell) {
+        if let indexPath = self.tableView.indexPath(for: cell) {
+            setTask(at: indexPath, asCompleted: cell.checkBox.isChecked)
         }
     }
 }

@@ -19,9 +19,9 @@ class CheckBox: UIButton {
     }
      */
     
-    @IBInspectable var isChecked : Bool {
-        get {
-            return _isChecked
+    @IBInspectable var isChecked : Bool = false {
+        didSet {
+            self.layer.backgroundColor = isChecked ? checkedBoxColor.cgColor : UIColor.clear.cgColor
         }
     }
     
@@ -34,16 +34,8 @@ class CheckBox: UIButton {
     @IBInspectable var checkedBoxColor: UIColor = UIColor.black
     
     func toggleState() {
-        _isChecked = !_isChecked
-        
-        if _isChecked {
-            self.layer.backgroundColor = checkedBoxColor.cgColor
-        } else {
-            self.layer.backgroundColor = UIColor.clear.cgColor
-        }
+        isChecked = !isChecked
     }
-    
-    private var _isChecked = false
     
     override var frame: CGRect {
         didSet {
