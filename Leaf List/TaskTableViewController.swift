@@ -125,6 +125,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         if let task = parentTask {
             self.title = task.name
+        } else {
+            self.title = navigationController?.tabBarItem.title
         }
         
         updateUI()
