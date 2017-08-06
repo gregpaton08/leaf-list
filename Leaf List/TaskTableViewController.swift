@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDelegate, TaskTableViewCellDelegate {
+class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, TaskTableViewCellDelegate {
     
     // Parent task of the current view. Can be nil if current task is a top level group.
     var parentTask: Task?
@@ -187,7 +187,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         updateUI()
         
-        
+        navigationController?.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -295,6 +295,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         return true
     }
     */
+    
+    // MARK: - Navigation view controller delegate
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if let nextVC = viewController as? TaskTableViewController {
+                nextVC.showCompletedTasks = showCompletedTasks
+        }
+    }
 
     // MARK: - Navigation
 
