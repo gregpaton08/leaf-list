@@ -19,8 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskCell" id="9QU-V4-PBy" customClass="TaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskInfoCell" id="dUR-Rs-sTP">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dUR-Rs-sTP" id="kKE-zf-3zZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Placeholder text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Fa-Au-n17">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6Fa-Au-n17" firstAttribute="trailing" secondItem="kKE-zf-3zZ" secondAttribute="trailingMargin" id="I5y-1Z-QDW"/>
+                                        <constraint firstItem="6Fa-Au-n17" firstAttribute="leading" secondItem="kKE-zf-3zZ" secondAttribute="leadingMargin" id="RDI-Gv-iFh"/>
+                                        <constraint firstItem="6Fa-Au-n17" firstAttribute="top" secondItem="kKE-zf-3zZ" secondAttribute="top" id="fkf-27-h4T"/>
+                                        <constraint firstItem="6Fa-Au-n17" firstAttribute="centerY" secondItem="kKE-zf-3zZ" secondAttribute="centerY" id="ryC-L4-yIz"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskDateCell" id="e26-WL-0Ka" customClass="NewTaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e26-WL-0Ka" id="jzI-6e-U6x">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskCell" id="9QU-V4-PBy" customClass="TaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9QU-V4-PBy" id="rCc-4M-DkK">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
@@ -65,7 +97,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newTaskCell" id="CO7-GN-Ufn" customClass="NewTaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CO7-GN-Ufn" id="wgo-Pr-7iP">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
