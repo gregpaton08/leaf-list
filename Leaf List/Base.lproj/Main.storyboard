@@ -39,30 +39,25 @@
                                     <outlet property="taskNameTextField" destination="yPi-cJ-H4S" id="26O-EV-zs8"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskInfoCell" id="dUR-Rs-sTP" customClass="TaskInfoTableViewCell" customModule="Leaf_List" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskNotesCell" id="dUR-Rs-sTP">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dUR-Rs-sTP" id="kKE-zf-3zZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Placeholder text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Fa-Au-n17">
-                                            <rect key="frame" x="8" y="0.0" width="359" height="44"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oig-EH-W9E">
+                                            <rect key="frame" x="8" y="0.0" width="107" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="6Fa-Au-n17" firstAttribute="trailing" secondItem="kKE-zf-3zZ" secondAttribute="trailingMargin" id="I5y-1Z-QDW"/>
-                                        <constraint firstItem="6Fa-Au-n17" firstAttribute="leading" secondItem="kKE-zf-3zZ" secondAttribute="leadingMargin" id="RDI-Gv-iFh"/>
-                                        <constraint firstItem="6Fa-Au-n17" firstAttribute="top" secondItem="kKE-zf-3zZ" secondAttribute="top" id="fkf-27-h4T"/>
-                                        <constraint firstItem="6Fa-Au-n17" firstAttribute="centerY" secondItem="kKE-zf-3zZ" secondAttribute="centerY" id="ryC-L4-yIz"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <connections>
-                                    <outlet property="taskInfoTextView" destination="6Fa-Au-n17" id="wgP-uu-djg"/>
+                                    <segue destination="o4o-0w-tmk" kind="show" id="Sp3-9e-6jA"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskDateCell" id="e26-WL-0Ka" customClass="NewTaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
@@ -168,6 +163,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSK-ad-alr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1448.8" y="-346.77661169415296"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Pxf-ge-oKQ">
+            <objects>
+                <viewController id="o4o-0w-tmk" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lqY-dX-HFj"/>
+                        <viewControllerLayoutGuide type="bottom" id="3G9-wz-TGn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZLd-Nh-dZU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="57s-xY-EJw">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Zw-x2-O93" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2444" y="-346.77661169415296"/>
         </scene>
         <!--More-->
         <scene sceneID="eV5-Op-BdX">
