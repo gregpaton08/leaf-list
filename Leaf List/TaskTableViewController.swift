@@ -259,7 +259,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
         case getTaskSection():
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-            if let task = fetchedResultsController?.object(at: indexPath) {
+            if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
                 cell.taskNameLabel.text = task.name
                 cell.taskNameLabel.isEnabled = !task.taskCompleted
                 
