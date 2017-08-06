@@ -392,7 +392,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if let taskTableView = segue.destination as? TaskTableViewController {
             if let cell = sender as? TaskTableViewCell {
                 if let indexPath = self.tableView.indexPath(for: cell) {
-                    if let task = fetchedResultsController?.object(at: indexPath) {
+                    if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
                         taskTableView.parentTask = task
                         taskTableView.showCompletedTasks = showCompletedTasks
                         taskTableView.taskType = taskType
