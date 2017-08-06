@@ -17,6 +17,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     enum TaskType {
         case task
         case group
+        case trash
     }
     
     var taskType: TaskType = .group { didSet {
@@ -68,6 +69,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 predicate = NSPredicate(format: "parent = nil")
             }
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate])
+        case .trash:
+            request.predicate = NSPredicate(format: "taskDeleted == YES")
         }
         
         
@@ -88,12 +91,16 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func setupTabBarItem() {
-        switch taskType {
-        case .task:
-            navigationController?.tabBarItem.title = "Tasks"
-        case .group:
-            navigationController?.tabBarItem.title = "Groups"
-        }
+        navigationController?.tabBarItem.title = {
+            switch self.taskType {
+            case .task:
+                return "Tasks"
+            case .group:
+                return "Groups"
+            case .trash:
+                return "Trash"
+            }
+        }()
         
         navigationController?.tabBarItem.image = resizeImage(tabBarItemImage, toSize: CGSize(width: 30, height: 30))
     }
@@ -179,7 +186,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        if let task = parentTask {
+        if taskType == .trash {
+            self.title = "Trash"
+        } else if let task = parentTask {
             self.title = task.name
         } else {
             self.title = navigationController?.tabBarItem.title
