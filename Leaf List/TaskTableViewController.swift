@@ -152,7 +152,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if let task = fetchedResultsController?.object(at: indexPath) {
             let context = AppDelegate.viewContext
             
-            context.delete(task)
+            task.taskDeleted = true
             
             do {
                 try context.save()
@@ -166,7 +166,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: false)]
-        
         if (parentTask != nil) {
             request.predicate = NSPredicate(format: "parent = %@", parentTask!)
         } else {
