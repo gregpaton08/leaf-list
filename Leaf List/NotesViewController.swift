@@ -9,9 +9,11 @@
 import UIKit
 import CoreData
 
-class NotesViewController: UIViewController, UITextViewDelegate {
+class NotesViewController: UIViewController {
     
     var task: Task?
+    
+    var readOnly = false
 
     @IBOutlet weak var notesTextView: UITextView!
     
@@ -20,13 +22,13 @@ class NotesViewController: UIViewController, UITextViewDelegate {
 
         // Do any additional setup after loading the view.
         notesTextView.text = task?.notes
-        notesTextView.delegate = self
+        notesTextView.isUserInteractionEnabled = !readOnly
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if task?.notes?.compare(notesTextView.text) != .orderedSame {
+        if !readOnly && task?.notes?.compare(notesTextView.text) != .orderedSame {
             task?.notes = notesTextView.text
             do {
                 try AppDelegate.viewContext.save()
