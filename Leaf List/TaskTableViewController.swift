@@ -182,13 +182,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-            
-            // Configure the cell...
-            cell.taskNameTextField.delegate = self
-            
             if let task = fetchedResultsController?.object(at: indexPath) {
-                cell.taskNameTextField.text = task.name
-                cell.taskNameTextField.isUserInteractionEnabled = false
+                cell.taskNameLabel.text = task.name
             }
             
             return cell
