@@ -10,6 +10,12 @@ import UIKit
 
 class TaskInfoTableViewCell: UITableViewCell {
 
+    var height: CGFloat {
+        get {
+            return max(44.0, taskInfoTextView.contentSize.height)
+        }
+    }
+    
     @IBOutlet weak var taskInfoTextView: UITextView!
     
     override func awakeFromNib() {

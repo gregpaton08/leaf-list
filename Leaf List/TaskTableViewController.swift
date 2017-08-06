@@ -232,6 +232,19 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     func textViewDidEndEditing(_ textView: UITextView) {
         
     }
+    
+    private var taskInfoCellHeight: CGFloat = 44.0
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text.contains("\n") {
+            print("NEW LINE FOUND")
+            taskInfoCellHeight += 20.0
+            tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+            textView.becomeFirstResponder()
+        }
+        
+        return true
+    }
 
     // MARK: - Table view data source
     
@@ -276,8 +289,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 cell.taskNameTextField.delegate = self
                 return cell
             case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskInfoCell")
-                return cell!
+                let cell = tableView.dequeueReusableCell(withIdentifier: "taskInfoCell") as! TaskInfoTableViewCell
+                cell.taskInfoTextView.delegate = self
+                return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskDateCell")
                 
@@ -329,7 +343,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if showDetails && indexPath.section == 0 && indexPath.row == 1 {
-                return 200.0
+            return taskInfoCellHeight
         }
         
         return 44.0
