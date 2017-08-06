@@ -400,6 +400,16 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if taskType == .trash {
+            if sender is TaskTableViewCell {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
     // MARK: - Task table view cell delegate
     
     func checkBoxSelectedFor(_ cell: TaskTableViewCell) {
