@@ -6,3 +6,4 @@
 * Add search option
 * Add "trash" view
 * add "completed" view
+* Subclass UITextView to add placeholder text

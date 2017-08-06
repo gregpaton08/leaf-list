@@ -253,6 +253,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 return cell!
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskDateCell")
+                
+                // TODO: compare to current date:
+                //     * If year is the same, do not display the year
+                //     * If day is the same then display 'today' instead of the date (or '10 minutes ago'?)
+                let formatter = DateFormatter()
+                formatter.locale = Locale.init(identifier: "en_US")
+                formatter.setLocalizedDateFormatFromTemplate("MMMMdyyyyHH:mma")
+                cell?.textLabel?.text = "Created on " + formatter.string(from: (parentTask?.dateCreated as Date?)!)
                 return cell!
             default:
                 break
