@@ -79,7 +79,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate, notDeletedPredicate])
         case .trash:
-            request.predicate = NSPredicate(format: "taskDeleted == YES")
+            if parentTask != nil {
+                request.predicate = NSPredicate(value: false)
+            } else {
+                request.predicate = NSPredicate(format: "taskDeleted == YES")
+            }
         }
         
         return request
@@ -398,16 +402,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         } else if let notesView = segue.destination as? NotesViewController {
             notesView.task = parentTask
         }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if taskType == .trash {
-            if sender is TaskTableViewCell {
-                return false
-            }
-        }
-        
-        return true
     }
     
     // MARK: - Task table view cell delegate
