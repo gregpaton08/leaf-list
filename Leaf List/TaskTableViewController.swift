@@ -163,9 +163,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func getHighestPriority() -> Int {
-        let request = NSFetchRequest<Task>()
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: false)]
+        
         if (parentTask != nil) {
             request.predicate = NSPredicate(format: "parent = %@", parentTask!)
         } else {
@@ -309,7 +310,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let nextVC = viewController as? TaskTableViewController {
-                nextVC.showCompletedTasks = showCompletedTasks
+            nextVC.showCompletedTasks = showCompletedTasks
         }
     }
 
