@@ -262,6 +262,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 }
                 
                 cell.delegate = self
+                
+                if taskType == .trash && task.children?.count == 0 {
+                    cell.accessoryType = .none
+                } else {
+                    cell.accessoryType = .detailDisclosureButton
+                }
             }
             
             return cell
