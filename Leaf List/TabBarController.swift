@@ -24,6 +24,7 @@ class TabBarController: UITabBarController {
         // Do any additional setup after loading the view.
         if let taskVC = viewControllers?[0].rootViewController as? TaskTableViewController {
             taskVC.taskType = .group
+            taskVC.tabBarItemImage = UIImage(named: "branch.png")
         }
         
         if let taskVC = viewControllers?[1].rootViewController as? TaskTableViewController {

@@ -25,7 +25,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     }
     
     var tabBarItemImage: UIImage? { didSet {
-        setupTabBarItem()
+            setupTabBarItem()
         }
     }
 
