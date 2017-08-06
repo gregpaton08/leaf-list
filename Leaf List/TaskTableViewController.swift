@@ -30,6 +30,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         }
     }
 
+    @IBAction func showCompleted(_ sender: UIBarButtonItem) {
+        showCompletedTasks = !showCompletedTasks
+        updateUI()
+    }
+    
+    private var showCompletedTasks = false
     
     private var fetchedResultsController: NSFetchedResultsController<Task>?
     
@@ -39,7 +45,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         let sortDescriptor = NSSortDescriptor(key: "priority", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         
-        let uncompletePredicate = NSPredicate(format: "taskCompleted == NO")
+        let uncompletePredicate = showCompletedTasks ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
         switch taskType {
         case .task:
             // TODO: need to update this to pull only the highest priority tasks.

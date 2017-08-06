@@ -99,7 +99,13 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" title="Tasks" id="706-dR-Rku"/>
+                    <navigationItem key="navigationItem" title="Tasks" id="706-dR-Rku">
+                        <barButtonItem key="rightBarButtonItem" title="Completed" id="VZx-IA-cbO">
+                            <connections>
+                                <action selector="showCompleted:" destination="mHF-GJ-wxz" id="585-hj-bBL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSK-ad-alr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
