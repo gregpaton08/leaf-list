@@ -11,6 +11,8 @@ import CoreData
 
 class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, TaskTableViewCellDelegate {
     
+    // MARK: - API
+    
     // Parent task of the current view. Can be nil if current task is a top level group.
     var parentTask: Task?
     
@@ -29,6 +31,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             setupTabBarItem()
         }
     }
+    
+    var showCompletedTasks = false {
+        didSet {
+            updateCompletedButtonColor()
+        }
+    }
+    
+    // MARK: - UI
 
     @IBOutlet weak var completedButton: UIBarButtonItem!
     
@@ -37,15 +47,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         updateUI()
     }
     
-    var showCompletedTasks = false {
-        didSet {
-            updateCompletedButtonColor()
-        }
-    }
-    
     private func updateCompletedButtonColor() {
         completedButton.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
     }
+    
+    // MARK: - Data model
     
     private var fetchedResultsController: NSFetchedResultsController<Task>?
     
@@ -73,24 +79,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             request.predicate = NSPredicate(format: "taskDeleted == YES")
         }
         
-        
-        
         return request
     }
     
-    private func resizeImage(_ image: UIImage?, toSize size: CGSize) -> UIImage? {
-        if let imageToResize = image {
-            UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-            imageToResize.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return newImage!
-        }
-        
-        return nil
-    }
-    
     private func setupTabBarItem() {
+        // TODO: use associated values in TaskType enum to clean this up?
         navigationController?.tabBarItem.title = {
             switch self.taskType {
             case .task:
@@ -102,7 +95,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
         }()
         
-        navigationController?.tabBarItem.image = resizeImage(tabBarItemImage, toSize: CGSize(width: 30, height: 30))
+        navigationController?.tabBarItem.image = UIImage.createImageOfSize(CGSize(width: 30, height: 30), fromImage: tabBarItemImage)
     }
     
     private func updateUI() {
@@ -172,6 +165,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let highestPriorityTask = try? context.fetch(request)
         return Int(highestPriorityTask?.first?.priority ?? -1)
     }
+    
+    // MARK: - View
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -355,5 +350,20 @@ extension UIColor {
         get {
             return UIColor.init(colorLiteralRed: 10.0 / 255, green: 106.0 / 255, blue: 255.0 / 255, alpha: 1.0)
         }
+    }
+}
+
+
+extension UIImage {
+    static func createImageOfSize(_ size: CGSize, fromImage image: UIImage?) -> UIImage? {
+        if let imageToResize = image {
+            UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+            imageToResize.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return newImage!
+        }
+        
+        return nil
     }
 }
