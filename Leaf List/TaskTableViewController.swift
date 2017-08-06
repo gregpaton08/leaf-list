@@ -11,13 +11,12 @@ import CoreData
 
 class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDelegate, TaskTableViewCellDelegate {
     
-    // Parent task of the current view. Can be nil if current task is a "root".
-    var parentTask: Task? { didSet { updateUI() } }
+    // Parent task of the current view. Can be nil if current task is a top level group.
+    var parentTask: Task?
     
     enum TaskType {
         case task
         case group
-        case completed
     }
     
     var taskType: TaskType = .group { didSet {
@@ -69,15 +68,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
                 predicate = NSPredicate(format: "parent = nil")
             }
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate])
-        case .completed:
-//            request.predicate = NSPredicate(format: "hasCompletedTask == YES")
-            request.predicate = NSPredicate(block: { (object, bindings) -> Bool in
-                if let task = object as? Task {
-                    return task.hasCompletedTask
-                }
-                return false
-            })
-            break
         }
         
         
@@ -103,8 +93,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             navigationController?.tabBarItem.title = "Tasks"
         case .group:
             navigationController?.tabBarItem.title = "Groups"
-        case .completed:
-            navigationController?.tabBarItem.title = "Complete"
         }
         
         navigationController?.tabBarItem.image = resizeImage(tabBarItemImage, toSize: CGSize(width: 30, height: 30))
