@@ -38,17 +38,22 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         let sortDescriptor = NSSortDescriptor(key: "priority", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         
+        var taskTypePredicate: NSPredicate?
         switch taskType {
         case .task:
             // TODO: need to update this to pull only the highest priority tasks.
-            request.predicate = NSPredicate(format: "children.@count == 0")
+            taskTypePredicate = NSPredicate(format: "children.@count == 0")
         case .group:
             if (parentTask != nil) {
-                request.predicate = NSPredicate(format: "parent = %@", parentTask!)
+                taskTypePredicate = NSPredicate(format: "parent = %@", parentTask!)
             } else {
-                request.predicate = NSPredicate(format: "parent = nil")
+                taskTypePredicate = NSPredicate(format: "parent = nil")
             }
         }
+        
+        let uncompletePredicate = NSPredicate(format: "taskCompleted == NO")
+        
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [taskTypePredicate!, uncompletePredicate])
         
         return request
     }
