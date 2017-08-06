@@ -48,10 +48,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         fetchedResultsController?.delegate = self
         try? fetchedResultsController?.performFetch()
         tableView.reloadData()
-        
-        if let task = parentTask {
-            self.title = task.name
-        }
     }
     
     private func addTask(with name: String) {
@@ -94,6 +90,19 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        switch navigationController?.tabBarItem.title {
+        case "Tasks"?:
+            taskType = .task
+        case "Groups"?:
+            taskType = .group
+        default:
+            print("unkown bar title \(tabBarItem.title ?? "Unkown title")")
+        }
+        
+        if let task = parentTask {
+            self.title = task.name
+        }
         
         updateUI()
     }
