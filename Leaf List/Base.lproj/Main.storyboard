@@ -134,6 +134,7 @@
                     <connections>
                         <segue destination="EDR-4r-UMj" kind="relationship" relationship="viewControllers" id="nC0-z2-cQn"/>
                         <segue destination="EDR-4r-UMj" kind="relationship" relationship="viewControllers" id="Ttu-xZ-ErI"/>
+                        <segue destination="EDR-4r-UMj" kind="relationship" relationship="viewControllers" id="Hua-Gl-IrU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H5t-CR-boa" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -17,6 +17,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     enum TaskType {
         case task
         case group
+        case completed
     }
     
     var taskType: TaskType = .group { didSet {
@@ -38,22 +39,26 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         let sortDescriptor = NSSortDescriptor(key: "priority", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         
-        var taskTypePredicate: NSPredicate?
+        let uncompletePredicate = NSPredicate(format: "taskCompleted == NO")
         switch taskType {
         case .task:
             // TODO: need to update this to pull only the highest priority tasks.
-            taskTypePredicate = NSPredicate(format: "children.@count == 0")
+            let predicate = NSPredicate(format: "children.@count == 0")
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate])
         case .group:
+            var predicate: NSPredicate?
             if (parentTask != nil) {
-                taskTypePredicate = NSPredicate(format: "parent = %@", parentTask!)
+                predicate = NSPredicate(format: "parent = %@", parentTask!)
             } else {
-                taskTypePredicate = NSPredicate(format: "parent = nil")
+                predicate = NSPredicate(format: "parent = nil")
             }
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate])
+        case .completed:
+            request.predicate = NSPredicate(format: "taskCompleted == YES")
+            break
         }
         
-        let uncompletePredicate = NSPredicate(format: "taskCompleted == NO")
         
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [taskTypePredicate!, uncompletePredicate])
         
         return request
     }
@@ -76,6 +81,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             navigationController?.tabBarItem.title = "Tasks"
         case .group:
             navigationController?.tabBarItem.title = "Groups"
+        case .completed:
+            navigationController?.tabBarItem.title = "Complete"
         }
         
         navigationController?.tabBarItem.image = resizeImage(tabBarItemImage, toSize: CGSize(width: 30, height: 30))

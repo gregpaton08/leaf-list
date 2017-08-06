@@ -31,6 +31,11 @@ class TabBarController: UITabBarController {
             taskVC.taskType = .task
             taskVC.tabBarItemImage = UIImage(named: "leaf.png")
         }
+        
+        if let taskVC = viewControllers?[2].rootViewController as? TaskTableViewController {
+            taskVC.taskType = .completed
+//            taskVC.tabBarItemImage = UIImage(named: "leaf.png")
+        }
     }
 
     override func didReceiveMemoryWarning() {
