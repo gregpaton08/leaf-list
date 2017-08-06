@@ -64,11 +64,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         request.sortDescriptors = [sortDescriptor]
         
         let uncompletePredicate = showCompletedTasks ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
+        let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
         switch taskType {
         case .task:
             // TODO: need to update this to pull only the highest priority tasks.
             let predicate = NSPredicate(format: "children.@count == 0")
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate])
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate, notDeletedPredicate])
         case .group:
             var predicate: NSPredicate?
             if (parentTask != nil) {
@@ -76,7 +77,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             } else {
                 predicate = NSPredicate(format: "parent = nil")
             }
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate])
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate, notDeletedPredicate])
         case .trash:
             request.predicate = NSPredicate(format: "taskDeleted == YES")
         }
