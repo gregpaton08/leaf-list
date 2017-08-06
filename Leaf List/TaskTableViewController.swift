@@ -143,6 +143,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
+    private func updateName(_ name: String, forTask task: Task) {
+        task.name = name
+        save(AppDelegate.viewContext)
+    }
+    
     private func deleteTask(at indexPath: IndexPath) {
         if let task = fetchedResultsController?.object(at: indexPath) {
             let context = AppDelegate.viewContext
@@ -198,11 +203,20 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if (textField.text == nil || textField.text?.characters.count == 0) {
+        if textField.superview?.superview is TaskNameTableViewCell {
             textField.resignFirstResponder()
+            if textField.text?.characters.count ?? 0 > 0 {
+                updateName(textField.text!, forTask: parentTask!)
+            } else {
+                textField.text = parentTask?.name
+            }
         } else {
-            addTask(with: textField.text!)
-            textField.text = nil
+            if (textField.text == nil || textField.text?.characters.count == 0) {
+                textField.resignFirstResponder()
+            } else {
+                addTask(with: textField.text!)
+                textField.text = nil
+            }
         }
         
         return true
@@ -248,6 +262,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskNameCell") as! TaskNameTableViewCell
                 cell.taskNameTextField.text = parentTask?.name
+                cell.taskNameTextField.delegate = self
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskInfoCell")
