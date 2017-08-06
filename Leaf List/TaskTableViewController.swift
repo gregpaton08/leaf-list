@@ -174,10 +174,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     // MARK: - View
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    private func configureNavBar() {
         if taskType == .trash {
             self.title = "Trash"
             completedButton.title = nil
@@ -187,6 +185,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         } else {
             self.title = navigationController?.tabBarItem.title
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureNavBar()
         
         showDetails = parentTask != nil
         
@@ -207,6 +211,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             textField.resignFirstResponder()
             if textField.text?.characters.count ?? 0 > 0 {
                 updateName(textField.text!, forTask: parentTask!)
+                configureNavBar()
             } else {
                 textField.text = parentTask?.name
             }
