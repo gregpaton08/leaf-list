@@ -188,6 +188,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         if taskType == .trash {
             self.title = "Trash"
+            completedButton.title = nil
+            completedButton.tintColor = UIColor.clear
         } else if let task = parentTask {
             self.title = task.name
         } else {
@@ -251,7 +253,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
                 cell.taskNameLabel.isEnabled = !task.taskCompleted
+                
                 cell.checkBox.isChecked = task.taskCompleted
+                cell.checkBox.isHidden = taskType == .trash
                 
                 if task.children?.count ?? 0 > 0 {
                     cell.checkBox.isHidden = true
