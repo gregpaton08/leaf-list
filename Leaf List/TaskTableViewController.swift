@@ -93,7 +93,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         task.name = name
         task.dateCreated = NSDate()
         task.parent = parentTask
-        task.priority = getHighestPriority() + 1
+        task.priority = Int32(getHighestPriority() + 1)
         
         do {
             try context.save()
