@@ -264,8 +264,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 cell.delegate = self
                 
                 if taskType == .trash && task.children?.count == 0 {
+                    cell.selectionStyle = .none
                     cell.accessoryType = .none
                 } else {
+                    cell.selectionStyle = .default
                     cell.accessoryType = .detailDisclosureButton
                 }
             }
@@ -346,20 +348,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 }
             }
         }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if taskType == .trash {
-            if let cell = sender as? TaskTableViewCell {
-                if let indexPath = self.tableView.indexPath(for: cell) {
-                    if let task = fetchedResultsController?.object(at: indexPath) {
-                        return task.children?.count ?? 0 > 0
-                    }
-                }
-            }
-        }
-        
-        return true
     }
     
     // MARK: - Task table view cell delegate
