@@ -35,7 +35,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     private func createFetchRequest() -> NSFetchRequest<Task> {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "priority", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         
         switch taskType {
