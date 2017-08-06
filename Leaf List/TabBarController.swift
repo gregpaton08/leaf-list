@@ -14,6 +14,8 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        viewControllers?[0].tabBarItem.title = "Tasks"
+        viewControllers?[1].tabBarItem.title = "Groups"
     }
 
     override func didReceiveMemoryWarning() {
