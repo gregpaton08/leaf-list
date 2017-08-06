@@ -38,6 +38,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
+    var showDetails = false
+    
     // MARK: - UI
 
     @IBOutlet weak var completedButton: UIBarButtonItem!
@@ -181,6 +183,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             self.title = navigationController?.tabBarItem.title
         }
         
+        showDetails = parentTask != nil
+        
         updateUI()
         
         navigationController?.delegate = self
@@ -206,34 +210,54 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
 
     // MARK: - Table view data source
     
+    private func getDetailsSection() -> Int {
+        return showDetails ? 0 : -1
+    }
+    
     private func getTaskSection() -> Int {
-        return 0
+        return showDetails ? 1 : 0
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Section 0: list of tasks.
-        // Section 1: single cell for adding a new task.
-        return 2
+        // Section order:
+        //    * Details (if enabled) - info, date
+        //    * Task list - list of current sub-tasks
+        //    * New Task - single cell for adding a new task
+        return showDetails ? 3 : 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case getDetailsSection():
+            return 3
+        case getTaskSection():
             if let sections = fetchedResultsController?.sections {
-                return sections[section].numberOfObjects
+                return sections[0].numberOfObjects
             }
-        case 1:
-            return 1
         default:
-            break
+            return 1
         }
-
+        
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
+        case getDetailsSection():
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "taskNameCell")
+                return cell!
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "taskInfoCell")
+                return cell!
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "taskDateCell")
+                return cell!
+            default:
+                break
+            }
+        case getTaskSection():
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
@@ -258,13 +282,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
             
             return cell
-        case 1:
+        default:
             if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
                 footer.newTaskTextField.delegate = self
                 return footer
             }
-        default:
-            break
         }
         
         return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
