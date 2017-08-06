@@ -326,6 +326,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if showDetails && indexPath.section == 0 && indexPath.row == 1 {
+                return 200.0
+        }
+        
+        return 44.0
+    }
 
     /*
     // Override to support conditional editing of the table view.
