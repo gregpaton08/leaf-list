@@ -92,6 +92,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         task.name = name
         task.dateCreated = NSDate()
         task.parent = parentTask
+        task.priority = Int32(tableView.numberOfRows(inSection: getTaskSection()))
         
         do {
             try context.save()
@@ -130,8 +131,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         }
         
         updateUI()
-        
-//        setupTabBarItem()
     }
     
     override func didReceiveMemoryWarning() {
@@ -153,6 +152,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     }
 
     // MARK: - Table view data source
+    
+    private func getTaskSection() -> Int {
+        return 0
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // Section 0: list of tasks.
