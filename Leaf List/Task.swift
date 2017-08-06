@@ -11,4 +11,21 @@ import CoreData
 
 class Task: NSManagedObject {
 
+    var hasCompletedTask: Bool {
+        get {
+            if self.taskCompleted {
+                return true
+            } else {
+                var retVal = false
+                children?.forEach { child in
+                    if let task = child as? Task, task.taskCompleted {
+                        retVal = true
+                        return
+                    }
+                }
+                return retVal
+            }
+        }
+    }
+    
 }

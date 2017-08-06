@@ -54,7 +54,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             }
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate])
         case .completed:
-            request.predicate = NSPredicate(format: "taskCompleted == YES")
+//            request.predicate = NSPredicate(format: "hasCompletedTask == YES")
+            request.predicate = NSPredicate(block: { (object, bindings) -> Bool in
+                if let task = object as? Task {
+                    return task.hasCompletedTask
+                }
+                return false
+            })
             break
         }
         
