@@ -30,12 +30,22 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         }
     }
 
+    @IBOutlet weak var completedButton: UIBarButtonItem!
+    
     @IBAction func showCompleted(_ sender: UIBarButtonItem) {
         showCompletedTasks = !showCompletedTasks
         updateUI()
     }
     
-    private var showCompletedTasks = false
+    var showCompletedTasks = false {
+        didSet {
+            updateCompletedButtonColor()
+        }
+    }
+    
+    private func updateCompletedButtonColor() {
+        completedButton.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
+    }
     
     private var fetchedResultsController: NSFetchedResultsController<Task>?
     
@@ -105,6 +115,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         fetchedResultsController?.delegate = self
         try? fetchedResultsController?.performFetch()
         tableView.reloadData()
+        
+        updateCompletedButtonColor()
     }
     
     private func addTask(with name: String) {
@@ -186,6 +198,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         }
         
         updateUI()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -306,6 +320,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
                 if let indexPath = self.tableView.indexPath(for: cell) {
                     if let task = fetchedResultsController?.object(at: indexPath) {
                         taskTableView.parentTask = task
+                        taskTableView.showCompletedTasks = showCompletedTasks
                     }
                 }
             }
@@ -317,6 +332,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
     func checkBoxSelectedFor(_ cell: TaskTableViewCell) {
         if let indexPath = self.tableView.indexPath(for: cell) {
             setTask(at: indexPath, asCompleted: cell.checkBox.isChecked)
+        }
+    }
+}
+
+
+extension UIColor {
+    static var defaultButtonBlue: UIColor {
+        get {
+            return UIColor.init(colorLiteralRed: 10.0 / 255, green: 106.0 / 255, blue: 255.0 / 255, alpha: 1.0)
         }
     }
 }
