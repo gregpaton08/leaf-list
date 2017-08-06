@@ -245,10 +245,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // Section order:
-        //    * Details (if enabled) - info, date
-        //    * Task list - list of current sub-tasks
-        //    * New Task - single cell for adding a new task
-        return showDetails ? 3 : 2
+        //    * Details (if enabled)    - info, date
+        //    * Task list               - list of current sub-tasks
+        //    * New Task (if enabled)   - single cell for adding a new task
+        
+        var numSections = 1
+        numSections += showDetails ? 1 : 0
+        numSections += taskType != .trash ? 1 : 0
+        return numSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -387,6 +391,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                     if let task = fetchedResultsController?.object(at: indexPath) {
                         taskTableView.parentTask = task
                         taskTableView.showCompletedTasks = showCompletedTasks
+                        taskTableView.taskType = taskType
                     }
                 }
             }
