@@ -13,6 +13,7 @@
 		371524EA1F37771D00A394B8 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371524E91F37771D00A394B8 /* MoreTableViewController.swift */; };
 		371524EC1F37982E00A394B8 /* TaskNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371524EB1F37982E00A394B8 /* TaskNameTableViewCell.swift */; };
 		371524EE1F379C4300A394B8 /* TaskInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371524ED1F379C4300A394B8 /* TaskInfoTableViewCell.swift */; };
+		371524F01F37B3CB00A394B8 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371524EF1F37B3CB00A394B8 /* NotesViewController.swift */; };
 		3720FE051F28C52E00174E5C /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720FE041F28C52E00174E5C /* FetchedResultsTableViewController.swift */; };
 		3720FE0B1F30BA1A00174E5C /* NewTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720FE0A1F30BA1A00174E5C /* NewTaskTableViewCell.swift */; };
 		37ECFF771F178722001A9314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECFF761F178722001A9314 /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 		371524E91F37771D00A394B8 /* MoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
 		371524EB1F37982E00A394B8 /* TaskNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskNameTableViewCell.swift; sourceTree = "<group>"; };
 		371524ED1F379C4300A394B8 /* TaskInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInfoTableViewCell.swift; sourceTree = "<group>"; };
+		371524EF1F37B3CB00A394B8 /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		3720FE041F28C52E00174E5C /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		3720FE0A1F30BA1A00174E5C /* NewTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskTableViewCell.swift; sourceTree = "<group>"; };
 		37ECFF731F178722001A9314 /* Leaf List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leaf List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 				371524E11F36D6BE00A394B8 /* TabBarController.swift */,
 				37ECFF8B1F179575001A9314 /* Task.swift */,
 				37ECFFB51F1BEEF8001A9314 /* TaskTableViewController.swift */,
+				371524EF1F37B3CB00A394B8 /* NotesViewController.swift */,
 				37ECFFB71F1BF088001A9314 /* TaskTableViewCell.swift */,
 			);
 			path = "Leaf List";
@@ -182,6 +185,7 @@
 				371524EE1F379C4300A394B8 /* TaskInfoTableViewCell.swift in Sources */,
 				371524EA1F37771D00A394B8 /* MoreTableViewController.swift in Sources */,
 				37ECFF7F1F178722001A9314 /* Leaf_List.xcdatamodeld in Sources */,
+				371524F01F37B3CB00A394B8 /* NotesViewController.swift in Sources */,
 				3720FE051F28C52E00174E5C /* FetchedResultsTableViewController.swift in Sources */,
 				3720FE0B1F30BA1A00174E5C /* NewTaskTableViewCell.swift in Sources */,
 				371524EC1F37982E00A394B8 /* TaskNameTableViewCell.swift in Sources */,

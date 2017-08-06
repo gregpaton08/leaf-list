@@ -367,6 +367,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Navigation view controller delegate
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        // Pass the state of the 'Completed' button back up the navigation controller stack when views are popped off.
         if let nextVC = viewController as? TaskTableViewController {
             nextVC.showCompletedTasks = showCompletedTasks
         }
@@ -388,6 +389,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                     }
                 }
             }
+        } else if let notesView = segue.destination as? NotesViewController {
+            notesView.task = parentTask
         }
     }
     

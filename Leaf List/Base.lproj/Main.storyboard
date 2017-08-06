@@ -164,10 +164,10 @@
             </objects>
             <point key="canvasLocation" x="1448.8" y="-346.77661169415296"/>
         </scene>
-        <!--View Controller-->
+        <!--Notes View Controller-->
         <scene sceneID="Pxf-ge-oKQ">
             <objects>
-                <viewController id="o4o-0w-tmk" sceneMemberID="viewController">
+                <viewController id="o4o-0w-tmk" customClass="NotesViewController" customModule="Leaf_List" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lqY-dX-HFj"/>
                         <viewControllerLayoutGuide type="bottom" id="3G9-wz-TGn"/>
@@ -187,6 +187,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="notesTextView" destination="57s-xY-EJw" id="pTg-FV-Dhr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zw-x2-O93" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
