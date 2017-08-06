@@ -11,15 +11,6 @@ import CoreData
 
 class FetchedResultsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate
 {
-    lazy var allCellsWereVisible: Bool = {
-        [unowned self] in
-        return self.areAllCellsVisible()
-    }()
-    
-    private func areAllCellsVisible() -> Bool {
-        return tableView.numCells == tableView.visibleCells.count
-    }
-    
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -48,25 +39,5 @@ class FetchedResultsTableViewController: UITableViewController, NSFetchedResults
     
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
-        
-        // Fixes bug where footer gets stuck to bottom of table view when cells are deleted such that all the cells become visible on screen.
-//        let cellsAreVisible = areAllCellsVisible()
-//        if (allCellsWereVisible != cellsAreVisible) {
-//            allCellsWereVisible = cellsAreVisible
-//            tableView.reloadData()
-//        }
-    }
-}
-
-
-extension UITableView {
-    var numCells: Int {
-        var count = 0
-        let numSections = self.numberOfSections
-        for i in 0..<numSections {
-            count += self.numberOfRows(inSection: i)
-        }
-        
-        return count
     }
 }
