@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, TaskTableViewCellDelegate {
+class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, TaskTableViewCellDelegate {
     
     // MARK: - API
     
@@ -225,6 +225,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
         
         return true
+    }
+    
+    // MARK: - Text view delegate
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
     }
 
     // MARK: - Table view data source

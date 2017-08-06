@@ -10,6 +10,8 @@ import UIKit
 
 class TaskInfoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var taskInfoTextView: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
