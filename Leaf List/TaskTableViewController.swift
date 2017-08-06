@@ -351,6 +351,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 1 where showDetails:
+            return "Tasks"
+        default:
+            return nil
+        }
+    }
 
     /*
     // Override to support rearranging the table view.
@@ -367,7 +376,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     */
     
-    // MARK: = Table view delegate
+    // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         return nil
