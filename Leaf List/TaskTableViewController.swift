@@ -114,6 +114,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         updateCompletedButtonColor()
     }
     
+    private func save(_ context: NSManagedObjectContext) {
+        do {
+            try context.save()
+        } catch {
+            print("oh no...")
+        }
+    }
+    
     private func addTask(with name: String) {
         if (name.characters.count == 0) {
             return
@@ -126,11 +134,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         task.parent = parentTask
         task.priority = Int32(getHighestPriority() + 1)
         
-        do {
-            try context.save()
-        } catch {
-            print("oh no...")
-        }
+        save(context)
     }
     
     private func setTask(at indexPath: IndexPath, asCompleted completed: Bool) {
@@ -140,11 +144,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             task.taskCompleted = completed
             task.dateCompleted = NSDate()
             
-            do {
-                try context.save()
-            } catch {
-                print("oh no...")
-            }
+            save(context)
         }
     }
     
@@ -154,11 +154,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             task.taskDeleted = true
             
-            do {
-                try context.save()
-            } catch {
-                print("oh no...")
-            }
+            save(context)
         }
     }
     
