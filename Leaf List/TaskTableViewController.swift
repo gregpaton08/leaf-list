@@ -315,6 +315,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     */
     
+    // MARK: = Table view delegate
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return nil
+    }
+    
     // MARK: - Navigation view controller delegate
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -340,6 +346,20 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 }
             }
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if taskType == .trash {
+            if let cell = sender as? TaskTableViewCell {
+                if let indexPath = self.tableView.indexPath(for: cell) {
+                    if let task = fetchedResultsController?.object(at: indexPath) {
+                        return task.children?.count ?? 0 > 0
+                    }
+                }
+            }
+        }
+        
+        return true
     }
     
     // MARK: - Task table view cell delegate
