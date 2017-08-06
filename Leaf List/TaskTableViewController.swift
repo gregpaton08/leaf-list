@@ -40,6 +40,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         
         switch taskType {
         case .task:
+            // TODO: need to update this to pull only the highest priority tasks.
             request.predicate = NSPredicate(format: "children.@count == 0")
         case .group:
             if (parentTask != nil) {
@@ -184,6 +185,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
+                if task.children?.count ?? 0 > 0 {
+                    cell.checkBox.isHidden = true
+                }
             }
             
             return cell
