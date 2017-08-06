@@ -22,12 +22,14 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        viewControllers?[0].tabBarItem.title = "Tasks"
-        if let image = UIImage(named: "leaf.png") {
-            viewControllers?[0].tabBarItem.image = resizeImage(image, toSize: CGSize.init(width: 30, height: 30))
+        if let taskVC = viewControllers?[0].rootViewController as? TaskTableViewController {
+            taskVC.taskType = .group
         }
         
-        viewControllers?[1].tabBarItem.title = "Groups"
+        if let taskVC = viewControllers?[1].rootViewController as? TaskTableViewController {
+            taskVC.taskType = .task
+            taskVC.tabBarItemImage = UIImage(named: "leaf.png")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,4 +48,17 @@ class TabBarController: UITabBarController {
     }
     */
 
+}
+
+
+extension UIViewController {
+    var rootViewController: UIViewController {
+        get {
+            if let navVC = self as? UINavigationController {
+                return navVC.viewControllers[0]
+            }
+            
+            return self
+        }
+    }
 }

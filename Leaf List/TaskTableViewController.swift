@@ -19,7 +19,16 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         case group
     }
     
-    var taskType: TaskType = .group
+    var taskType: TaskType = .group { didSet {
+            setupTabBarItem()
+        }
+    }
+    
+    var tabBarItemImage: UIImage? { didSet {
+        setupTabBarItem()
+        }
+    }
+
     
     private var fetchedResultsController: NSFetchedResultsController<Task>?
     
@@ -41,6 +50,29 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         }
         
         return request
+    }
+    
+    private func resizeImage(_ image: UIImage?, toSize size: CGSize) -> UIImage? {
+        if let imageToResize = image {
+            UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+            imageToResize.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return newImage!
+        }
+        
+        return nil
+    }
+    
+    private func setupTabBarItem() {
+        switch taskType {
+        case .task:
+            navigationController?.tabBarItem.title = "Tasks"
+        case .group:
+            navigationController?.tabBarItem.title = "Groups"
+        }
+        
+        navigationController?.tabBarItem.image = resizeImage(tabBarItemImage, toSize: CGSize(width: 30, height: 30))
     }
     
     private func updateUI() {
@@ -91,20 +123,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        switch navigationController?.tabBarItem.title {
-        case "Tasks"?:
-            taskType = .task
-        case "Groups"?:
-            taskType = .group
-        default:
-            print("unkown bar title \(tabBarItem.title ?? "Unkown title")")
-        }
-        
         if let task = parentTask {
             self.title = task.name
         }
         
         updateUI()
+        
+//        setupTabBarItem()
     }
     
     override func didReceiveMemoryWarning() {
