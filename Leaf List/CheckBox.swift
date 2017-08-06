@@ -19,7 +19,7 @@ class CheckBox: UIButton {
     }
      */
     
-    var isChecked : Bool {
+    @IBInspectable var isChecked : Bool {
         get {
             return _isChecked
         }
@@ -50,7 +50,7 @@ class CheckBox: UIButton {
             self.layer.cornerRadius = self.bounds.width / 2
             self.layer.borderWidth = 2.0
             self.layer.borderColor = UIColor.lightGray.cgColor
-            self.layer.backgroundColor = UIColor.clear.cgColor
+            self.layer.backgroundColor = isChecked ? checkedBoxColor.cgColor : UIColor.clear.cgColor
         }
     }
 }
