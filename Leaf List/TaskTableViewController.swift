@@ -246,8 +246,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         case getDetailsSection():
             switch indexPath.row {
             case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskNameCell")
-                return cell!
+                let cell = tableView.dequeueReusableCell(withIdentifier: "taskNameCell") as! TaskNameTableViewCell
+                cell.taskNameTextField.text = parentTask?.name
+                return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskInfoCell")
                 return cell!
