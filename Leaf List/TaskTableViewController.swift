@@ -130,6 +130,21 @@ class TaskTableViewController: FetchedResultsTableViewController, UITextFieldDel
             }
         }
     }
+    
+    private func getHighestPriority() -> Int {
+        let request = NSFetchRequest<Task>()
+        request.fetchLimit = 1
+        request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: false)]
+        if (parentTask != nil) {
+            request.predicate = NSPredicate(format: "parent = %@", parentTask!)
+        } else {
+            request.predicate = NSPredicate(format: "parent = nil")
+        }
+        
+        let context = AppDelegate.viewContext
+        let highestPriorityTask = try? context.fetch(request)
+        return Int(highestPriorityTask?.first?.priority ?? -1)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
