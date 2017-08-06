@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class CheckBox: UIButton {
 
     /*
@@ -16,7 +17,31 @@ class CheckBox: UIButton {
     override func draw(_ rect: CGRect) {
         // Drawing code
     }
-    */
+     */
+    
+    var isChecked : Bool {
+        get {
+            return _isChecked
+        }
+    }
+    
+    @IBInspectable var borderColor: UIColor? {
+        didSet {
+            layer.borderColor = borderColor?.cgColor
+        }
+    }
+    
+    @IBInspectable var checkedBoxColor: UIColor = UIColor.black
+    
+    func toggleState() {
+        _isChecked = !_isChecked
+        
+        if _isChecked {
+            self.layer.backgroundColor = checkedBoxColor.cgColor
+        } else {
+            self.layer.backgroundColor = UIColor.clear.cgColor
+        }
+    }
     
     private var _isChecked = false
     
@@ -25,22 +50,6 @@ class CheckBox: UIButton {
             self.layer.cornerRadius = self.bounds.width / 2
             self.layer.borderWidth = 2.0
             self.layer.borderColor = UIColor.lightGray.cgColor
-            self.layer.backgroundColor = UIColor.clear.cgColor
-        }
-    }
-    
-    var isChecked : Bool {
-        get {
-            return _isChecked
-        }
-    }
-    
-    func toggleState() {
-        _isChecked = !_isChecked
-        
-        if _isChecked {
-            self.layer.backgroundColor = UIColor.black.cgColor
-        } else {
             self.layer.backgroundColor = UIColor.clear.cgColor
         }
     }

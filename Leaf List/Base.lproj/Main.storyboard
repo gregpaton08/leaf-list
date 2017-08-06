@@ -36,24 +36,20 @@
                                                 <action selector="selectCheckBox:" destination="9QU-V4-PBy" eventType="touchUpInside" id="FMi-E7-lHZ"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Jh-qE-SQA">
-                                            <rect key="frame" x="46" y="0.0" width="296" height="36"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="296" id="gk8-N0-VBi"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Testing this label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Jh-qE-SQA">
+                                            <rect key="frame" x="46" y="0.0" width="296" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="9Jh-qE-SQA" secondAttribute="trailing" id="1fg-90-Aqy"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="BjL-rX-5dG" secondAttribute="leading" id="5aF-0M-4uh"/>
-                                        <constraint firstItem="9Jh-qE-SQA" firstAttribute="leading" secondItem="BjL-rX-5dG" secondAttribute="trailing" constant="8" symbolic="YES" id="I1G-L3-JIF"/>
-                                        <constraint firstItem="BjL-rX-5dG" firstAttribute="bottom" secondItem="9Jh-qE-SQA" secondAttribute="bottom" id="LbT-EV-02m"/>
-                                        <constraint firstItem="9Jh-qE-SQA" firstAttribute="top" secondItem="rCc-4M-DkK" secondAttribute="top" id="TdX-dK-gGG"/>
                                         <constraint firstItem="BjL-rX-5dG" firstAttribute="centerY" secondItem="rCc-4M-DkK" secondAttribute="centerY" id="YSq-CX-Big"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="9Jh-qE-SQA" secondAttribute="bottom" constant="-0.5" id="YsV-5M-Z0A"/>
+                                        <constraint firstItem="9Jh-qE-SQA" firstAttribute="centerY" secondItem="rCc-4M-DkK" secondAttribute="centerY" id="Yyv-Ci-EiH"/>
+                                        <constraint firstItem="9Jh-qE-SQA" firstAttribute="leading" secondItem="BjL-rX-5dG" secondAttribute="trailing" constant="8" symbolic="YES" id="aWQ-Vr-gVu"/>
+                                        <constraint firstAttribute="trailing" secondItem="9Jh-qE-SQA" secondAttribute="trailing" id="aYj-cX-NkY"/>
+                                        <constraint firstItem="9Jh-qE-SQA" firstAttribute="top" secondItem="rCc-4M-DkK" secondAttribute="top" id="weF-BN-djN"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
