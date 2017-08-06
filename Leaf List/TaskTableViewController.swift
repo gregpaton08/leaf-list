@@ -320,7 +320,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                     cell.accessoryType = .none
                 } else {
                     cell.selectionStyle = .default
-                    cell.accessoryType = .detailDisclosureButton
+                    cell.accessoryType = .disclosureIndicator
                 }
             }
             
