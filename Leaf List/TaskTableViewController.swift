@@ -345,6 +345,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         return nil
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetailView", sender: tableView.cellForRow(at: indexPath))
+    }
+    
     // MARK: - Navigation view controller delegate
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {

@@ -35,7 +35,7 @@
                 <outlet property="checkBox" destination="VaA-BY-xRx" id="8aH-0z-YRb"/>
                 <outlet property="taskNameLabel" destination="gT1-lE-O2i" id="dVr-iF-zee"/>
             </connections>
-            <point key="canvasLocation" x="44.5" y="-58"/>
+            <point key="canvasLocation" x="112" y="-49"/>
         </tableViewCell>
     </objects>
 </document>
