@@ -27,9 +27,7 @@ class DetailsMasterViewController: UIViewController, TaskDisplay {
             if let detailsTableView = childView as? DetailsTableViewController {
                 detailsTableView.task = task
             } else if var taskDisplay = childView as? TaskDisplay {
-                taskDisplay.task = task
-                taskDisplay.displayStyle = displayStyle
-                taskDisplay.showCompleted = showCompleted
+                taskDisplay.initFromTaskDisplay(self)
             }
         }
     }
