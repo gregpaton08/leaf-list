@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DetailsTableViewController: UITableViewController, UITextFieldDelegate {
+class DetailsTableViewController: UITableViewController, UITextFieldDelegate, TaskDisplay {
 
     // MARK: - API
     
@@ -18,6 +18,9 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate {
             updateUI()
         }
     }
+    
+    var displayStyle: TaskDisplayStyle = .group
+    var showCompleted: Bool = false
     
     // MARK: - UI
     
@@ -54,6 +57,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let notesView = segue.destination as? NotesViewController {
             notesView.task = task
+            notesView.readOnly = displayStyle == .trash
         }
     }
     
