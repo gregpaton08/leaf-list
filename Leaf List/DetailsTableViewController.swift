@@ -13,18 +13,28 @@ class DetailsTableViewController: UITableViewController {
 
     // MARK: - API
     
-    var task: Task?
+    var task: Task? {
+        didSet {
+            updateUI()
+        }
+    }
     
     // MARK: - UI
     
     @IBOutlet weak var taskNameTextField: UITextField!
     @IBOutlet weak var dateCreatedCell: UITableViewCell!
     
+    private func updateUI() {
+        if isViewLoaded {
+            taskNameTextField.text = task?.name ?? "ERROR!"
+            dateCreatedCell.textLabel?.text = formatDate(task?.dateCreated)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        taskNameTextField.text = task?.name ?? "ERROR!"
-        dateCreatedCell.textLabel?.text = formatDate(task?.dateCreated)
+        updateUI()
     }
 
     // MARK: - Navigation
