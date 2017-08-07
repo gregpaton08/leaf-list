@@ -20,6 +20,8 @@ class NotesViewController: UIViewController, TaskDisplay {
     
     // MARK: - View
     
+    private var doneBarButton: UIBarButtonItem!
+    
     private var readOnly: Bool {
         get {
             return displayStyle == .trash
@@ -37,6 +39,8 @@ class NotesViewController: UIViewController, TaskDisplay {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.handleTapGesture(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
+        
+        doneBarButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,10 +56,29 @@ class NotesViewController: UIViewController, TaskDisplay {
         }
     }
     
+    func doneButtonPressed(_ sender: UIBarButtonItem) {
+        dismissKeyboard()
+    }
+    
+    private func showKeyboard() {
+        notesTextView.isEditable = true
+        notesTextView.becomeFirstResponder()
+        visibleNavigationItem.setRightBarButton(doneBarButton, animated: true)
+    }
+    
+    private func dismissKeyboard() {
+        notesTextView.resignFirstResponder()
+        notesTextView.isEditable = false
+        visibleNavigationItem.setRightBarButton(nil, animated: true)
+    }
+    
     // MARK: - Gestures
     
     func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
-        notesTextView.isEditable = true
-        notesTextView.becomeFirstResponder()
+        if notesTextView.isFirstResponder {
+            dismissKeyboard()
+        } else {
+            showKeyboard()
+        }
     }
 }
