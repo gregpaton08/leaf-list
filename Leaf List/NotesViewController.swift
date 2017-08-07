@@ -37,6 +37,8 @@ class NotesViewController: UIViewController, TaskDisplay {
         notesTextView.text = task?.notes
         notesTextView.isUserInteractionEnabled = !readOnly
         
+        navigationItem.title = "Notes"
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.handleTapGesture(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
         
