@@ -55,9 +55,8 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let notesView = segue.destination as? NotesViewController {
-            notesView.task = task
-            notesView.readOnly = displayStyle == .trash
+        if var taskDisplay = segue.destination as? TaskDisplay {
+            taskDisplay.initFromTaskDisplay(self)
         }
     }
     

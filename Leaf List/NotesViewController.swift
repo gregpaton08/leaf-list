@@ -9,11 +9,22 @@
 import UIKit
 import CoreData
 
-class NotesViewController: UIViewController {
+class NotesViewController: UIViewController, TaskDisplay {
+    
+    
+    // MARK: - API
     
     var task: Task?
+    var displayStyle: TaskDisplayStyle = .group
+    var showCompleted: Bool = false
     
-    var readOnly = false
+    // MARK: - View
+    
+    private var readOnly: Bool {
+        get {
+            return displayStyle == .trash
+        }
+    }
 
     @IBOutlet weak var notesTextView: UITextView!
     
@@ -22,7 +33,7 @@ class NotesViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         notesTextView.text = task?.notes
-        notesTextView.isUserInteractionEnabled = !readOnly
+        notesTextView.isUserInteractionEnabled = readOnly
     }
     
     override func viewWillDisappear(_ animated: Bool) {
