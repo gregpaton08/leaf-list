@@ -127,8 +127,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mj-RH-bvc">
-                                <rect key="frame" x="0.0" y="319" width="375" height="348"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mj-RH-bvc">
+                                <rect key="frame" x="0.0" y="181" width="375" height="486"/>
                                 <connections>
                                     <segue destination="11T-oD-qrG" kind="embed" id="4Gs-gJ-oXW"/>
                                 </connections>
@@ -142,12 +142,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="JyK-f7-nRG" firstAttribute="leading" secondItem="7mj-RH-bvc" secondAttribute="leading" id="7nL-D0-jCx"/>
+                            <constraint firstItem="7mj-RH-bvc" firstAttribute="top" secondItem="JyK-f7-nRG" secondAttribute="bottom" id="9Tr-Ig-DLl"/>
+                            <constraint firstItem="7mj-RH-bvc" firstAttribute="leading" secondItem="JyK-f7-nRG" secondAttribute="leading" id="KDb-Ql-hIj"/>
                             <constraint firstAttribute="bottom" secondItem="JyK-f7-nRG" secondAttribute="bottom" constant="486" id="O1f-Nx-pv3"/>
-                            <constraint firstItem="JyK-f7-nRG" firstAttribute="trailing" secondItem="7mj-RH-bvc" secondAttribute="trailing" id="Sda-dI-eDJ"/>
                             <constraint firstItem="JyK-f7-nRG" firstAttribute="leading" secondItem="X7b-x4-H6o" secondAttribute="leading" id="bKK-Va-K0j"/>
                             <constraint firstItem="JyK-f7-nRG" firstAttribute="top" secondItem="Aqt-7p-vpq" secondAttribute="bottom" id="cfb-v0-EqN"/>
+                            <constraint firstItem="7mj-RH-bvc" firstAttribute="bottom" secondItem="PUx-in-twh" secondAttribute="top" id="dNV-wn-l6W"/>
                             <constraint firstAttribute="trailing" secondItem="JyK-f7-nRG" secondAttribute="trailing" id="e7f-Mk-Whh"/>
+                            <constraint firstItem="7mj-RH-bvc" firstAttribute="trailing" secondItem="JyK-f7-nRG" secondAttribute="trailing" id="kBV-sg-yFD"/>
                         </constraints>
                     </view>
                 </viewController>
