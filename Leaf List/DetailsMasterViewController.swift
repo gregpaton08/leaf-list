@@ -22,6 +22,8 @@ class DetailsMasterViewController: UIViewController {
         for childView in childViewControllers {
             if let detailsTableView = childView as? DetailsTableViewController {
                 detailsTableView.task = task
+            } else if let taskTableView = childView as? TaskTableViewController {
+                taskTableView.parentTask = task
             }
         }
     }
