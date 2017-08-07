@@ -14,6 +14,9 @@ class DetailsMasterViewController: UIViewController {
     // MARK: - API
     
     var task: Task?
+    var showCompletedTasks = false
+    
+    // MARK: View
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,7 @@ class DetailsMasterViewController: UIViewController {
                 detailsTableView.task = task
             } else if let taskTableView = childView as? TaskTableViewController {
                 taskTableView.parentTask = task
+                taskTableView.showCompletedTasks = showCompletedTasks
             }
         }
     }
