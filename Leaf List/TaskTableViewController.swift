@@ -105,11 +105,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
         
         let context = AppDelegate.viewContext
-        let task = Task(context: context)
-        task.name = name
-        task.dateCreated = NSDate()
-        task.parent = task
-        task.priority = Int32(getHighestPriority() + 1)
+        let newTask = Task(context: context)
+        newTask.name = name
+        newTask.dateCreated = NSDate()
+        newTask.parent = task
+        newTask.priority = Int32(getHighestPriority() + 1)
         
         save(context)
     }
@@ -136,12 +136,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func deleteTask(at indexPath: IndexPath) {
-        if let task = fetchedResultsController?.object(at: indexPath) {
-            let context = AppDelegate.viewContext
-            
-            task.taskDeleted = true
-            
-            save(context)
+        if let taskToDelete = fetchedResultsController?.object(at: indexPath) {
+            taskToDelete.taskDeleted = true
+            save(AppDelegate.viewContext)
         }
     }
     
