@@ -40,7 +40,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     var showCompletedTasks = false {
         didSet {
-            updateCompletedButtonColor()
+            if isViewLoaded {
+                updateUI()
+            } else {
+                updateCompletedButtonColor()
+            }
         }
     }
     
@@ -50,7 +54,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     @IBAction func showCompleted(_ sender: UIBarButtonItem) {
         showCompletedTasks = !showCompletedTasks
-        updateUI()
     }
     
     private func updateCompletedButtonColor() {
