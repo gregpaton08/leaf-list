@@ -207,11 +207,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.register(UINib.init(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "taskCell")
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
