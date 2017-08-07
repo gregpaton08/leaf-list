@@ -85,7 +85,7 @@
             <objects>
                 <tableViewController id="0jt-ci-lWw" customClass="DetailsTableViewController" customModule="Leaf_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ViC-B5-2cp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="198"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -169,7 +169,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JyK-f7-nRG">
-                                <rect key="frame" x="0.0" y="64" width="375" height="198"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="0jt-ci-lWw" kind="embed" id="aXC-Rn-vJ4"/>
@@ -192,7 +192,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3G9-wz-TGn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZLd-Nh-dZU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="198"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="57s-xY-EJw">
