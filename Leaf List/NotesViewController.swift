@@ -33,7 +33,7 @@ class NotesViewController: UIViewController, TaskDisplay {
 
         // Do any additional setup after loading the view.
         notesTextView.text = task?.notes
-        notesTextView.isUserInteractionEnabled = readOnly
+        notesTextView.isUserInteractionEnabled = !readOnly
     }
     
     override func viewWillDisappear(_ animated: Bool) {
