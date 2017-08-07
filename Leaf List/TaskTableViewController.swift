@@ -365,17 +365,33 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
 
     // MARK: - Navigation
+    
+    private func getTaskForCell(_ sender: Any?) -> Task? {
+        if let cell = sender as? TaskTableViewCell {
+            if let indexPath = self.tableView.indexPath(for: cell) {
+                return fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0))
+            }
+        }
+        
+        return nil
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if let taskTableView = segue.destination as? TaskTableViewController {
+        if var taskDisplay = segue.destination as? TaskDisplay {
+            if let taskForCell = getTaskForCell(sender) {
+                taskDisplay.initFromTaskDisplay(self)
+                taskDisplay.task = taskForCell
+            }
+        }
+        else if let taskTableView = segue.destination as? TaskTableViewController {
             if let cell = sender as? TaskTableViewCell {
                 if let indexPath = self.tableView.indexPath(for: cell) {
-                    if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
-                        taskTableView.task = task
+                    if let taskForCell = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
+                        taskTableView.task = taskForCell
                         taskTableView.showCompleted = showCompleted
                         taskTableView.displayStyle = displayStyle
                     }
