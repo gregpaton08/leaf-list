@@ -389,7 +389,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 if let indexPath = self.tableView.indexPath(for: cell) {
                     if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
                         detailsView.task = task
-                        detailsView.showCompletedTasks = showCompleted
+                        detailsView.showCompleted = showCompleted
                     }
                 }
             }

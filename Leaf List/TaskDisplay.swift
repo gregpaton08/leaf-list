@@ -27,3 +27,12 @@ protocol TaskDisplay {
     // Flag for whether or not to display completed tasks
     var showCompleted: Bool { get set }
 }
+
+
+extension TaskDisplay {
+    func initTaskDisplay(_ destination: inout TaskDisplay, fromTaskDisplay source: TaskDisplay) {
+        destination.task = source.task
+        destination.displayStyle = source.displayStyle
+        destination.showCompleted = source.showCompleted
+    }
+}

@@ -9,12 +9,13 @@
 import UIKit
 import CoreData
 
-class DetailsMasterViewController: UIViewController {
+class DetailsMasterViewController: UIViewController, TaskDisplay {
     
     // MARK: - API
     
     var task: Task?
-    var showCompletedTasks = false
+    var displayStyle: TaskDisplayStyle = .group
+    var showCompleted: Bool = false
     
     // MARK: View
 
@@ -25,9 +26,10 @@ class DetailsMasterViewController: UIViewController {
         for childView in childViewControllers {
             if let detailsTableView = childView as? DetailsTableViewController {
                 detailsTableView.task = task
-            } else if let taskTableView = childView as? TaskTableViewController {
-                taskTableView.task = task
-                taskTableView.showCompleted = showCompletedTasks
+            } else if var taskDisplay = childView as? TaskDisplay {
+                taskDisplay.task = task
+                taskDisplay.displayStyle = displayStyle
+                taskDisplay.showCompleted = showCompleted
             }
         }
     }
