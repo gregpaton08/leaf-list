@@ -49,6 +49,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     private func updateCompletedButtonColor() {
 //        completedButton.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
+        if navigationItem.rightBarButtonItem == nil {
+            let button = UIBarButtonItem(title: "Completed", style: .plain, target: self, action: #selector(TaskTableViewController.showCompleted(_:)))
+            navigationItem.setRightBarButton(button, animated: true)
+        }
+        navigationItem.rightBarButtonItem?.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
     }
     
     // MARK: - Data model
