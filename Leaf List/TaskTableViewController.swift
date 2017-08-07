@@ -9,12 +9,12 @@
 import UIKit
 import CoreData
 
-class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, TaskTableViewCellDelegate {
+class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, TaskTableViewCellDelegate, TaskDisplay {
     
     // MARK: - API
     
     // Parent task of the current view. Can be nil if current task is a top level group.
-    var parentTask: Task? {
+    var task: Task? {
         didSet {
             if isViewLoaded {
                 updateUI()
@@ -22,18 +22,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
-    enum TaskType {
-        case task
-        case group
-        case trash
-    }
-    
-    var taskType: TaskType = .group { didSet {
+    var displayStyle: TaskDisplayStyle = .group {
+        didSet {
             setupTabBarItem()
         }
     }
     
-    var showCompletedTasks = false {
+    var showCompleted = false {
         didSet {
             if isViewLoaded {
                 updateUI()
@@ -51,7 +46,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - UI
     
     @IBAction func showCompleted(_ sender: UIBarButtonItem) {
-        showCompletedTasks = !showCompletedTasks
+        showCompleted = !showCompleted
     }
     
     private func updateCompletedButtonColor() {
@@ -60,7 +55,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             visibleNavigationItem.setRightBarButton(button, animated: true)
         }
         
-        visibleNavigationItem.rightBarButtonItem?.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
+        visibleNavigationItem.rightBarButtonItem?.tintColor = showCompleted ? UIColor.defaultButtonBlue : UIColor.gray
     }
     
     // MARK: - Data model
@@ -73,23 +68,23 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let sortDescriptor = NSSortDescriptor(key: "priority", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         
-        let uncompletePredicate = showCompletedTasks ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
+        let uncompletePredicate = showCompleted ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
-        switch taskType {
+        switch displayStyle {
         case .task:
             // TODO: need to update this to pull only the highest priority tasks.
             let predicate = NSPredicate(format: "children.@count == 0")
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate, notDeletedPredicate])
         case .group:
             var predicate: NSPredicate?
-            if (parentTask != nil) {
-                predicate = NSPredicate(format: "parent = %@", parentTask!)
+            if (task != nil) {
+                predicate = NSPredicate(format: "parent = %@", task!)
             } else {
                 predicate = NSPredicate(format: "parent = nil")
             }
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate, notDeletedPredicate])
         case .trash:
-            if parentTask != nil {
+            if task != nil {
                 request.predicate = NSPredicate(value: false)
             } else {
                 request.predicate = NSPredicate(format: "taskDeleted == YES")
@@ -100,9 +95,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func setupTabBarItem() {
-        // TODO: use associated values in TaskType enum to clean this up?
+        // TODO: use associated values in displayStyle enum to clean this up?
         navigationController?.tabBarItem.title = {
-            switch self.taskType {
+            switch self.displayStyle {
             case .task:
                 return "Tasks"
             case .group:
@@ -143,7 +138,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let task = Task(context: context)
         task.name = name
         task.dateCreated = NSDate()
-        task.parent = parentTask
+        task.parent = task
         task.priority = Int32(getHighestPriority() + 1)
         
         save(context)
@@ -184,8 +179,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: false)]
-        if (parentTask != nil) {
-            request.predicate = NSPredicate(format: "parent = %@", parentTask!)
+        if (task != nil) {
+            request.predicate = NSPredicate(format: "parent = %@", task!)
         } else {
             request.predicate = NSPredicate(format: "parent = nil")
         }
@@ -198,9 +193,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - View
     
     private func configureNavBar() {
-        if taskType == .trash {
+        if displayStyle == .trash {
             self.title = "Trash"
-        } else if let task = parentTask {
+        } else if let task = task {
             self.title = task.name
         } else {
             self.title = navigationController?.tabBarItem.title
@@ -226,10 +221,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if textField.superview?.superview is TaskNameTableViewCell {
             textField.resignFirstResponder()
             if textField.text?.characters.count ?? 0 > 0 {
-                updateName(textField.text!, forTask: parentTask!)
+                updateName(textField.text!, forTask: task!)
                 configureNavBar()
             } else {
-                textField.text = parentTask?.name
+                textField.text = task?.name
             }
         } else {
             if (textField.text == nil || textField.text?.characters.count == 0) {
@@ -251,7 +246,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         //    * New Task (if enabled)   - single cell for adding a new task
         
         var numSections = 1
-        numSections += taskType != .trash ? 1 : 0
+        numSections += displayStyle != .trash ? 1 : 0
         return numSections
     }
 
@@ -278,7 +273,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 cell.taskNameLabel.isEnabled = !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
-                cell.checkBox.isHidden = taskType == .trash
+                cell.checkBox.isHidden = displayStyle == .trash
                 
                 if task.children?.count ?? 0 > 0 {
                     cell.checkBox.isHidden = true
@@ -286,7 +281,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 
                 cell.delegate = self
                 
-                if taskType == .trash && task.children?.count == 0 {
+                if displayStyle == .trash && task.children?.count == 0 {
                     cell.selectionStyle = .none
                     cell.accessoryType = .none
                 } else {
@@ -365,7 +360,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         // Pass the state of the 'Completed' button back up the navigation controller stack when views are popped off.
         if let nextVC = viewController as? TaskTableViewController {
-            nextVC.showCompletedTasks = showCompletedTasks
+            nextVC.showCompleted = showCompleted
         }
     }
 
@@ -380,21 +375,21 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             if let cell = sender as? TaskTableViewCell {
                 if let indexPath = self.tableView.indexPath(for: cell) {
                     if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
-                        taskTableView.parentTask = task
-                        taskTableView.showCompletedTasks = showCompletedTasks
-                        taskTableView.taskType = taskType
+                        taskTableView.task = task
+                        taskTableView.showCompleted = showCompleted
+                        taskTableView.displayStyle = displayStyle
                     }
                 }
             }
         } else if let notesView = segue.destination as? NotesViewController {
-            notesView.task = parentTask
-            notesView.readOnly = taskType == .trash
+            notesView.task = task
+            notesView.readOnly = displayStyle == .trash
         } else if let detailsView = segue.destination as? DetailsMasterViewController {
             if let cell = sender as? TaskTableViewCell {
                 if let indexPath = self.tableView.indexPath(for: cell) {
                     if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
                         detailsView.task = task
-                        detailsView.showCompletedTasks = showCompletedTasks
+                        detailsView.showCompletedTasks = showCompleted
                     }
                 }
             }

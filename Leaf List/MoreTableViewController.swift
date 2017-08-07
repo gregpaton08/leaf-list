@@ -32,8 +32,8 @@ class MoreTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let taskVC = segue.destination as? TaskTableViewController {
-            taskVC.taskType = .trash
-            taskVC.showCompletedTasks = true
+            taskVC.displayStyle = .trash
+            taskVC.showCompleted = true
         }
     }
 
