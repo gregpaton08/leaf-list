@@ -202,8 +202,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     private func configureNavBar() {
         if taskType == .trash {
             self.title = "Trash"
-            completedButton.title = nil
-            completedButton.tintColor = UIColor.clear
         } else if let task = parentTask {
             self.title = task.name
         } else {
