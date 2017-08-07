@@ -19,11 +19,24 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         for (index, data) in viewControllerData {
-            if let taskView = viewControllers?[index] as? TaskTableViewController {
+            if let taskView = viewControllers?[index].rootViewController as? TaskTableViewController {
                 taskView.displayStyle = data.displayStyle
                 taskView.navigationController?.tabBarItem.title = data.title
                 taskView.navigationController?.tabBarItem.image = UIImage.createImageOfSize(CGSize(width: 30, height: 30), fromImage: UIImage(named: data.image))
             }
+        }
+    }
+}
+
+
+extension UIViewController {
+    var rootViewController: UIViewController {
+        get {
+            if let navVC = self as? UINavigationController {
+                return navVC.viewControllers[0]
+            }
+            
+            return self
         }
     }
 }
