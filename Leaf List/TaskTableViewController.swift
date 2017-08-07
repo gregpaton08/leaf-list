@@ -263,36 +263,31 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            switch indexPath.row {
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+            
+            if let task = fetchedResultsController?.object(at: indexPath) {
+                cell.taskNameLabel.text = task.name
+                cell.taskNameLabel.isEnabled = !task.taskCompleted
                 
-                if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
-                    cell.taskNameLabel.text = task.name
-                    cell.taskNameLabel.isEnabled = !task.taskCompleted
-                    
-                    cell.checkBox.isChecked = task.taskCompleted
-                    cell.checkBox.isHidden = taskType == .trash
-                    
-                    if task.children?.count ?? 0 > 0 {
-                        cell.checkBox.isHidden = true
-                    }
-                    
-                    cell.delegate = self
-                    
-                    if taskType == .trash && task.children?.count == 0 {
-                        cell.selectionStyle = .none
-                        cell.accessoryType = .none
-                    } else {
-                        cell.selectionStyle = .default
-                        cell.accessoryType = .disclosureIndicator
-                    }
+                cell.checkBox.isChecked = task.taskCompleted
+                cell.checkBox.isHidden = taskType == .trash
+                
+                if task.children?.count ?? 0 > 0 {
+                    cell.checkBox.isHidden = true
                 }
                 
-                return cell
-            default:
-                break
+                cell.delegate = self
+                
+                if taskType == .trash && task.children?.count == 0 {
+                    cell.selectionStyle = .none
+                    cell.accessoryType = .none
+                } else {
+                    cell.selectionStyle = .default
+                    cell.accessoryType = .disclosureIndicator
+                }
             }
+            
+            return cell
         default:
             if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
                 footer.newTaskTextField.delegate = self
