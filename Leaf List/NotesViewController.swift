@@ -40,7 +40,7 @@ class NotesViewController: UIViewController, TaskDisplay {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.handleTapGesture(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
         
-        doneBarButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
+        doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
