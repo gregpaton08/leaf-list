@@ -14,7 +14,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - API
     
     // Parent task of the current view. Can be nil if current task is a top level group.
-    var parentTask: Task?
+    var parentTask: Task? {
+        didSet {
+            if isViewLoaded {
+                updateUI()
+            }
+        }
+    }
     
     enum TaskType {
         case task
