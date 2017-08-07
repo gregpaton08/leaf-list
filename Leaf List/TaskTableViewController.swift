@@ -95,19 +95,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func setupTabBarItem() {
-        // TODO: use associated values in displayStyle enum to clean this up?
-        navigationController?.tabBarItem.title = {
-            switch self.displayStyle {
-            case .task:
-                return "Tasks"
-            case .group:
-                return "Groups"
-            case .trash:
-                return "Trash"
-            }
-        }()
-        
-//        navigationController?.tabBarItem.image = UIImage.createImageOfSize(CGSize(width: 30, height: 30), fromImage: tabBarItemImage)
     }
     
     private func updateUI() {
