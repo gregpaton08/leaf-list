@@ -54,12 +54,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func updateCompletedButtonColor() {
-//        completedButton.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
-        if navigationItem.rightBarButtonItem == nil {
+        if visibleNavigationItem.rightBarButtonItem == nil {
             let button = UIBarButtonItem(title: "Completed", style: .plain, target: self, action: #selector(TaskTableViewController.showCompleted(_:)))
-            navigationItem.setRightBarButton(button, animated: true)
+            visibleNavigationItem.setRightBarButton(button, animated: true)
         }
-        navigationItem.rightBarButtonItem?.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
+        
+        visibleNavigationItem.rightBarButtonItem?.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
     }
     
     // MARK: - Data model
@@ -121,6 +121,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.reloadData()
         
         updateCompletedButtonColor()
+        
+        
     }
     
     private func save(_ context: NSManagedObjectContext) {
@@ -396,6 +398,20 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     func checkBoxSelectedFor(_ cell: TaskTableViewCell) {
         if let indexPath = self.tableView.indexPath(for: cell) {
             setTask(at: indexPath, asCompleted: cell.checkBox.isChecked)
+        }
+    }
+}
+
+
+extension UIViewController {
+    // If the view controller is embedded in a container view then the navigation item will be one level up. Add this convenience variable to access the navgiation item wherever it may be.
+    var visibleNavigationItem: UINavigationItem {
+        get {
+            if parent is DetailsMasterViewController {
+                return parent!.navigationItem
+            } else {
+                return self.navigationItem
+            }
         }
     }
 }
