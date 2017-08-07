@@ -145,6 +145,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="dateCreatedCell" destination="0KZ-dq-Jsr" id="Dgo-z0-bdX"/>
                         <outlet property="taskNameTextField" destination="bSU-p8-GTP" id="qUt-Ld-fe1"/>
                     </connections>
                 </tableViewController>
