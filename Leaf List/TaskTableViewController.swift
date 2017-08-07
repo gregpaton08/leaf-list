@@ -107,7 +107,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
         }()
         
-        navigationController?.tabBarItem.image = UIImage.createImageOfSize(CGSize(width: 30, height: 30), fromImage: tabBarItemImage)
+//        navigationController?.tabBarItem.image = UIImage.createImageOfSize(CGSize(width: 30, height: 30), fromImage: tabBarItemImage)
     }
     
     private func updateUI() {
