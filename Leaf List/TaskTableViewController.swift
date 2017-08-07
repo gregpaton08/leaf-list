@@ -38,8 +38,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
-    var showDetails = false
-    
     // MARK: - UI
 
     @IBOutlet weak var completedButton: UIBarButtonItem!
@@ -202,8 +200,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         configureNavBar()
         
-        showDetails = parentTask != nil
-        
         updateUI()
         
         navigationController?.delegate = self
@@ -238,34 +234,22 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
 
     // MARK: - Table view data source
-    
-    private func getDetailsSection() -> Int {
-        return showDetails ? 0 : -1
-    }
-    
-    private func getTaskSection() -> Int {
-        return showDetails ? 1 : 0
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // Section order:
-        //    * Details (if enabled)    - info, date
         //    * Task list               - list of current sub-tasks
         //    * New Task (if enabled)   - single cell for adding a new task
         
         var numSections = 1
-        numSections += showDetails ? 1 : 0
         numSections += taskType != .trash ? 1 : 0
         return numSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case getDetailsSection():
-            return 3
-        case getTaskSection():
+        case 0:
             if let sections = fetchedResultsController?.sections {
-                return sections[0].numberOfObjects
+                return sections[section].numberOfObjects
             }
         default:
             return 1
@@ -276,55 +260,36 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case getDetailsSection():
+        case 0:
             switch indexPath.row {
             case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskNameCell") as! TaskNameTableViewCell
-                cell.taskNameTextField.text = parentTask?.name
-                cell.taskNameTextField.delegate = self
-                return cell
-            case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskNotesCell")!
-                return cell
-            case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskDateCell")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+                if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
+                    cell.taskNameLabel.text = task.name
+                    cell.taskNameLabel.isEnabled = !task.taskCompleted
+                    
+                    cell.checkBox.isChecked = task.taskCompleted
+                    cell.checkBox.isHidden = taskType == .trash
+                    
+                    if task.children?.count ?? 0 > 0 {
+                        cell.checkBox.isHidden = true
+                    }
+                    
+                    cell.delegate = self
+                    
+                    if taskType == .trash && task.children?.count == 0 {
+                        cell.selectionStyle = .none
+                        cell.accessoryType = .none
+                    } else {
+                        cell.selectionStyle = .default
+                        cell.accessoryType = .disclosureIndicator
+                    }
+                }
                 
-                // TODO: compare to current date:
-                //     * If year is the same, do not display the year
-                //     * If day is the same then display 'today' instead of the date (or '10 minutes ago'?)
-                let formatter = DateFormatter()
-                formatter.locale = Locale.init(identifier: "en_US")
-                formatter.setLocalizedDateFormatFromTemplate("MMMMdyyyyHH:mma")
-                cell?.textLabel?.text = "Created on " + formatter.string(from: (parentTask?.dateCreated as Date?)!)
-                return cell!
+                return cell
             default:
                 break
             }
-        case getTaskSection():
-            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-            if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
-                cell.taskNameLabel.text = task.name
-                cell.taskNameLabel.isEnabled = !task.taskCompleted
-                
-                cell.checkBox.isChecked = task.taskCompleted
-                cell.checkBox.isHidden = taskType == .trash
-                
-                if task.children?.count ?? 0 > 0 {
-                    cell.checkBox.isHidden = true
-                }
-                
-                cell.delegate = self
-                
-                if taskType == .trash && task.children?.count == 0 {
-                    cell.selectionStyle = .none
-                    cell.accessoryType = .none
-                } else {
-                    cell.selectionStyle = .default
-                    cell.accessoryType = .disclosureIndicator
-                }
-            }
-            
-            return cell
         default:
             if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
                 footer.newTaskTextField.delegate = self
@@ -350,15 +315,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 1 where showDetails:
-            return "Tasks"
-        default:
-            return nil
-        }
     }
 
     /*

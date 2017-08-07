@@ -43,6 +43,8 @@ class CheckBox: UIButton {
             self.layer.borderWidth = 2.0
             self.layer.borderColor = UIColor.lightGray.cgColor
             self.layer.backgroundColor = isChecked ? checkedBoxColor.cgColor : UIColor.clear.cgColor
+            titleLabel?.text = nil
+            titleLabel?.isHidden = true
         }
     }
 }
