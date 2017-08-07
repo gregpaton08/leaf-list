@@ -30,12 +30,6 @@ protocol TaskDisplay {
 
 
 extension TaskDisplay {
-    static func initTaskDisplay(_ destination: inout TaskDisplay, fromTaskDisplay source: TaskDisplay) {
-        destination.task = source.task
-        destination.displayStyle = source.displayStyle
-        destination.showCompleted = source.showCompleted
-    }
-    
     mutating func initFromTaskDisplay(_ taskDisplay: TaskDisplay) {
         task = taskDisplay.task
         displayStyle = taskDisplay.displayStyle
