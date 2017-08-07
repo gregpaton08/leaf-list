@@ -390,18 +390,3 @@ extension UIColor {
         }
     }
 }
-
-
-extension UIImage {
-    static func createImageOfSize(_ size: CGSize, fromImage image: UIImage?) -> UIImage? {
-        if let imageToResize = image {
-            UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-            imageToResize.draw(in: CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return newImage!
-        }
-        
-        return nil
-    }
-}
