@@ -48,7 +48,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func updateCompletedButtonColor() {
-        completedButton.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
+//        completedButton.tintColor = showCompletedTasks ? UIColor.defaultButtonBlue : UIColor.gray
     }
     
     // MARK: - Data model
