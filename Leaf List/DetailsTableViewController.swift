@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DetailsTableViewController: UITableViewController {
+class DetailsTableViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: - API
     
@@ -35,6 +35,18 @@ class DetailsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         updateUI()
+        
+        taskNameTextField.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        do {
+            try AppDelegate.viewContext.save()
+        } catch {
+            print("oh no...")
+        }
     }
 
     // MARK: - Navigation
@@ -43,6 +55,19 @@ class DetailsTableViewController: UITableViewController {
         if let notesView = segue.destination as? NotesViewController {
             notesView.task = task
         }
+    }
+    
+    // MARK: - Test field delegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField.text?.characters.count ?? 0 > 0 {
+            task?.name = textField.text
+        } else {
+            textField.text = task?.name
+        }
+        
+        return true
     }
     
     // MARK: - Supporting functions
