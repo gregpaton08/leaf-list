@@ -205,6 +205,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         navigationController?.delegate = self
         
         tableView.register(UINib.init(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "taskCell")
+        tableView.register(UINib.init(nibName: "NewTaskTableViewCell", bundle: nil), forCellReuseIdentifier: "newTaskCell")
     }
     
     // MARK: - Text field delegate
