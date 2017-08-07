@@ -91,7 +91,6 @@
 				37ECFF7A1F178722001A9314 /* Main.storyboard */,
 				371524F71F38B00F00A394B8 /* DetailsMasterViewController.swift */,
 				371524F51F38A6C300A394B8 /* DetailsTableViewController.swift */,
-				371524F31F37E4E900A394B8 /* TaskTableViewCell.xib */,
 				371524EB1F37982E00A394B8 /* TaskNameTableViewCell.swift */,
 				371524E91F37771D00A394B8 /* MoreTableViewController.swift */,
 				37ECFF801F178722001A9314 /* Assets.xcassets */,
@@ -104,6 +103,7 @@
 				37ECFF8B1F179575001A9314 /* Task.swift */,
 				37ECFFB51F1BEEF8001A9314 /* TaskTableViewController.swift */,
 				371524EF1F37B3CB00A394B8 /* NotesViewController.swift */,
+				371524F31F37E4E900A394B8 /* TaskTableViewCell.xib */,
 				37ECFFB71F1BF088001A9314 /* TaskTableViewCell.swift */,
 			);
 			path = "Leaf List";
