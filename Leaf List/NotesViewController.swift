@@ -34,6 +34,9 @@ class NotesViewController: UIViewController, TaskDisplay {
         // Do any additional setup after loading the view.
         notesTextView.text = task?.notes
         notesTextView.isUserInteractionEnabled = !readOnly
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.handleTapGesture(_:)))
+        view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,5 +50,12 @@ class NotesViewController: UIViewController, TaskDisplay {
                 print("oh no...")
             }
         }
+    }
+    
+    // MARK: - Gestures
+    
+    func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
+        notesTextView.isEditable = true
+        notesTextView.becomeFirstResponder()
     }
 }
