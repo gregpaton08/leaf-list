@@ -14,6 +14,7 @@
 * option to color code tasks (box to left of task name label, option to set image?)
 * Add completed view that sorts by date as sections to see daily progress
 * Add 'Completed on <DATE>' to details view if task is completed
+* Show task as completed if all sub-tasks are completed
 
 ## Completed
 
