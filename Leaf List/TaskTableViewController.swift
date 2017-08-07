@@ -203,6 +203,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         updateUI()
         
         navigationController?.delegate = self
+        
+        tableView.register(UINib.init(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "taskCell")
     }
     
     override func didReceiveMemoryWarning() {
@@ -264,6 +266,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             switch indexPath.row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+                
                 if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
                     cell.taskNameLabel.text = task.name
                     cell.taskNameLabel.isEnabled = !task.taskCompleted
@@ -298,6 +301,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
         
         return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        return
     }
 
     /*
