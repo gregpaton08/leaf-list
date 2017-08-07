@@ -29,19 +29,6 @@ class TabBarController: UITabBarController {
 }
 
 
-extension UIViewController {
-    var rootViewController: UIViewController {
-        get {
-            if let navVC = self as? UINavigationController {
-                return navVC.viewControllers[0]
-            }
-            
-            return self
-        }
-    }
-}
-
-
 extension UIImage {
     static func createImageOfSize(_ size: CGSize, fromImage image: UIImage?) -> UIImage? {
         if let imageToResize = image {

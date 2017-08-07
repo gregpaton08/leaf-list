@@ -2,8 +2,7 @@
 
 ## To Do
 
-* Fix crash in trash view
-* Add ability to sort task order
+* Add ability to reorder tasks
 * enable hyperlinks in notes (add a webview?)
 * Add option to empty trash
 * Design app icon
@@ -21,6 +20,7 @@
 * Build real Details View with two table view: one static and one dynamic
 * Add "trash" view
 * add "completed" view
+* Fix crash in trash view
 
 ## Stretch Goals
 
