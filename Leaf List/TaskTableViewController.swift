@@ -33,11 +33,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
-    var tabBarItemImage: UIImage? { didSet {
-            setupTabBarItem()
-        }
-    }
-    
     var showCompletedTasks = false {
         didSet {
             if isViewLoaded {
@@ -45,6 +40,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             } else {
                 updateCompletedButtonColor()
             }
+        }
+    }
+    
+    var tabBarItemImage: UIImage? { didSet {
+            setupTabBarItem()
         }
     }
     
