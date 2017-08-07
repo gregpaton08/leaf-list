@@ -49,8 +49,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     // MARK: - UI
-
-    @IBOutlet weak var completedButton: UIBarButtonItem!
     
     @IBAction func showCompleted(_ sender: UIBarButtonItem) {
         showCompletedTasks = !showCompletedTasks
