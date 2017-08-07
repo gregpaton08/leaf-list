@@ -387,29 +387,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 taskDisplay.task = taskForCell
             }
         }
-        else if let taskTableView = segue.destination as? TaskTableViewController {
-            if let cell = sender as? TaskTableViewCell {
-                if let indexPath = self.tableView.indexPath(for: cell) {
-                    if let taskForCell = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
-                        taskTableView.task = taskForCell
-                        taskTableView.showCompleted = showCompleted
-                        taskTableView.displayStyle = displayStyle
-                    }
-                }
-            }
-        } else if let notesView = segue.destination as? NotesViewController {
-            notesView.task = task
-            notesView.readOnly = displayStyle == .trash
-        } else if let detailsView = segue.destination as? DetailsMasterViewController {
-            if let cell = sender as? TaskTableViewCell {
-                if let indexPath = self.tableView.indexPath(for: cell) {
-                    if let task = fetchedResultsController?.object(at: IndexPath(row: indexPath.row, section: 0)) {
-                        detailsView.task = task
-                        detailsView.showCompleted = showCompleted
-                    }
-                }
-            }
-        }
     }
     
     // MARK: - Task table view cell delegate
