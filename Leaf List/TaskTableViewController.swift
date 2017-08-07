@@ -13,7 +13,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     // MARK: - API
     
-    // Parent task of the current view. Can be nil if current task is a top level group.
     var task: Task? {
         didSet {
             if isViewLoaded {
@@ -21,13 +20,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
         }
     }
-    
-    var displayStyle: TaskDisplayStyle = .group {
-        didSet {
-            setupTabBarItem()
-        }
-    }
-    
+    var displayStyle: TaskDisplayStyle = .group
     var showCompleted = false {
         didSet {
             if isViewLoaded {
@@ -35,11 +28,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             } else {
                 updateCompletedButtonColor()
             }
-        }
-    }
-    
-    var tabBarItemImage: UIImage? { didSet {
-            setupTabBarItem()
         }
     }
     
@@ -94,9 +82,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         return request
     }
     
-    private func setupTabBarItem() {
-    }
-    
     private func updateUI() {
         fetchedResultsController = NSFetchedResultsController<Task>(fetchRequest: createFetchRequest(), managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
@@ -104,8 +89,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.reloadData()
         
         updateCompletedButtonColor()
-        
-        
     }
     
     private func save(_ context: NSManagedObjectContext) {
