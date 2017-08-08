@@ -3,7 +3,6 @@
 ## To Do
 
 * Bug: when clicking for the details of a completed task the checkbox button unchecks itself
-* Add ability to reorder tasks
 * Add option to empty trash
 * Design app icon
 * Add search option
@@ -16,6 +15,7 @@
 * Add 'Completed on <DATE>' to details view if task is completed
 * Show task as completed if all sub-tasks are completed
 * Load data from xml? (debugging)
+* Clean up task drag-and-drop appearance
 
 ## Completed
 
@@ -24,6 +24,7 @@
 * add "completed" view
 * Fix crash in trash view
 * enable hyperlinks in notes (add a webview?)
+* Add ability to reorder tasks
 
 ## Stretch Goals
 
