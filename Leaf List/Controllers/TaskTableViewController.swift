@@ -38,12 +38,16 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func updateCompletedButtonColor() {
-        if visibleNavigationItem.rightBarButtonItem == nil {
-            let button = UIBarButtonItem(title: "Completed", style: .plain, target: self, action: #selector(TaskTableViewController.showCompleted(_:)))
-            visibleNavigationItem.setRightBarButton(button, animated: true)
+        if displayStyle == .trash {
+            visibleNavigationItem.rightBarButtonItem = nil
+        } else {
+            if visibleNavigationItem.rightBarButtonItem == nil {
+                let button = UIBarButtonItem(title: "Completed", style: .plain, target: self, action: #selector(TaskTableViewController.showCompleted(_:)))
+                visibleNavigationItem.setRightBarButton(button, animated: true)
+            }
+            
+            visibleNavigationItem.rightBarButtonItem?.tintColor = showCompleted ? UIColor.defaultButtonBlue : UIColor.gray
         }
-        
-        visibleNavigationItem.rightBarButtonItem?.tintColor = showCompleted ? UIColor.defaultButtonBlue : UIColor.gray
     }
     
     // MARK: - Data model
