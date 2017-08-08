@@ -2,10 +2,8 @@
 
 ## To Do
 
-* Fix tasks view
 * Bug: when clicking for the details of a completed task the checkbox button unchecks itself
 * Add option to empty trash
-* Add option to restore tasks in trash
 * Design app icon
 * Add search option
 * Subclass UITextView to add placeholder test
@@ -27,6 +25,8 @@
 * Fix crash in trash view
 * enable hyperlinks in notes (add a webview?)
 * Add ability to reorder tasks
+* Add option to restore tasks in trash
+* Fix tasks view
 
 ## Stretch Goals
 
