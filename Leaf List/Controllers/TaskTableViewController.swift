@@ -162,12 +162,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
-    private func getHighestPriority() -> Int {
+    private func getHighestPriority(forParentTask parentTask: Task?) -> Int {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: false)]
-        if (task != nil) {
-            request.predicate = NSPredicate(format: "parent = %@", task!)
+        if (parentTask != nil) {
+            request.predicate = NSPredicate(format: "parent = %@", parentTask!)
         } else {
             request.predicate = NSPredicate(format: "parent = nil")
         }
@@ -175,6 +175,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let context = AppDelegate.viewContext
         let highestPriorityTask = try? context.fetch(request)
         return Int(highestPriorityTask?.first?.priority ?? -1)
+    }
+    
+    private func getHighestPriority() -> Int {
+        return getHighestPriority(forParentTask: task)
     }
     
     // MARK: - View
@@ -365,14 +369,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -389,6 +385,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             let restoreAction = UITableViewRowAction.init(style: .normal, title: "Restore") { (action, indexPath) in
                 if let currentTask = self.fetchedResultsController?.object(at: indexPath) {
                     currentTask.taskDeleted = false
+                    currentTask.priority = Int32(self.getHighestPriority(forParentTask: currentTask.parent) + 1)
                 }
             }
             restoreAction.backgroundColor = UIColor.defaultButtonBlue
@@ -424,10 +421,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {        
         if var taskDisplay = segue.destination as? TaskDisplay {
             if let taskForCell = getTaskForCell(sender) {
                 taskDisplay.initFromTaskDisplay(self)
