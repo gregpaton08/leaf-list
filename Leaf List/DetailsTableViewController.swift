@@ -45,6 +45,8 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        taskNameTextField.resignFirstResponder()
+        
         do {
             try AppDelegate.viewContext.save()
         } catch {
