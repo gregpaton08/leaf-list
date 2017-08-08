@@ -34,3 +34,4 @@
 * Desktop app
 * Web app (possible with iCloud?)
 * Rich text editor with drawing and images (camera, camera roll) in notes view
+* Create a widget?
