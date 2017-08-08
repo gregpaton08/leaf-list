@@ -2,20 +2,20 @@
 
 ## To Do
 
-* Bug: when clicking for the details of a completed task the checkbox button unchecks itself
 * Add option to empty trash
+* Show date task was deleted in trash view
+* Hide completed button in trash view
+* Show parent task in details view under task tab
 * Design app icon
 * Add search option
-* Subclass UITextView to add placeholder test
 * option to export data as xml and send to email
-* Change embedded header "sub-tasks" from section header to table header
 * add some color to the UI
 * option to color code tasks (box to left of task name label, option to set image?)
 * Add completed view that sorts by date as sections to see daily progress
 * Add 'Completed on <DATE>' to details view if task is completed
-* Show task as completed if all sub-tasks are completed
 * Load data from xml? (debugging)
 * Clean up task drag-and-drop appearance
+* Subclass UITextView to add placeholder test
 
 ## Completed
 
@@ -27,6 +27,7 @@
 * Add ability to reorder tasks
 * Add option to restore tasks in trash
 * Fix tasks view
+* Bug: when clicking for the details of a completed task the checkbox button unchecks itself
 
 ## Stretch Goals
 
