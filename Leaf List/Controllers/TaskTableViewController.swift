@@ -400,8 +400,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if displayStyle == .trash {
             let restoreAction = UITableViewRowAction.init(style: .normal, title: "Restore") { (action, indexPath) in
-                print("Restore task at index path \(indexPath)")
+                if let currentTask = self.fetchedResultsController?.object(at: indexPath) {
+                    currentTask.taskDeleted = false
+                }
             }
+            restoreAction.backgroundColor = UIColor.defaultButtonBlue
             return [restoreAction]
         }
         
