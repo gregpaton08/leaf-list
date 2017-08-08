@@ -135,6 +135,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         save(AppDelegate.viewContext)
     }
     
+    private func swapPriority(forTask: Task, withTask: Task) {
+        let priorityFor = forTask.priority
+        forTask.priority = withTask.priority
+        withTask.priority = priorityFor
+//        save(AppDelegate.viewContext)
+    }
+    
     private func deleteTask(at indexPath: IndexPath) {
         if let taskToDelete = fetchedResultsController?.object(at: indexPath) {
             taskToDelete.taskDeleted = true
@@ -227,7 +234,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 My.cellSnapshot!.center = center
                 if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
 //                    swap(&itemsArray[indexPath!.row], &itemsArray[Path.initialIndexPath!.row])
-                    tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
+//                    tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
+                    swapPriority(forTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!, withTask: (fetchedResultsController?.object(at: indexPath!))!)
                     Path.initialIndexPath = indexPath
                 }
             default:
@@ -357,12 +365,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }    
     }
 
-    /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-    */
 
     /*
     // Override to support conditional rearranging of the table view.
