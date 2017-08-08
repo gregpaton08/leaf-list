@@ -338,7 +338,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
                 cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
-                cell.taskNameLabel.isEnabled = !task.taskCompleted
+                cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
                 cell.checkBox.isHidden = displayStyle == .trash
@@ -348,14 +348,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 }
                 
                 cell.delegate = self
-                
-                if displayStyle == .trash && task.children?.count == 0 {
-                    cell.selectionStyle = .none
-                    cell.accessoryType = .none
-                } else {
-                    cell.selectionStyle = .default
-                    cell.accessoryType = .disclosureIndicator
-                }
             }
             
             return cell
