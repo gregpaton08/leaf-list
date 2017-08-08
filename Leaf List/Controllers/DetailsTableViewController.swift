@@ -53,6 +53,45 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
             print("oh no...")
         }
     }
+    
+    // MARK: - Table view data
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 2
+        default:
+            return 0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskDetailCell", for: indexPath)
+        
+        switch indexPath.section {
+        case 0:
+            cell.textLabel?.text = task?.name
+        case 1:
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "Notes"
+            case 1:
+                cell.textLabel?.text = formatDate(task?.dateCreated)
+            default:
+                break
+            }
+        default:
+            break
+        }
+        
+        return cell
+    }
 
     // MARK: - Navigation
 
