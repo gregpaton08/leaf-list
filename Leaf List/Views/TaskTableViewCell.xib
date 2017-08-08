@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wno-Sz-5V3" id="mjZ-qo-Jyx">
-                <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaA-BY-xRx" customClass="CheckBox" customModule="Leaf_List" customModuleProvider="target">
-                        <rect key="frame" x="8" y="7" width="30" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <connections>
                             <action selector="selectCheckBox:" destination="Wno-Sz-5V3" eventType="touchUpInside" id="dzf-23-oDi"/>
@@ -38,7 +38,7 @@
                 <outlet property="checkBox" destination="VaA-BY-xRx" id="8aH-0z-YRb"/>
                 <outlet property="taskNameLabel" destination="gT1-lE-O2i" id="dVr-iF-zee"/>
             </connections>
-            <point key="canvasLocation" x="112" y="-49"/>
+            <point key="canvasLocation" x="111.5" y="-49"/>
         </tableViewCell>
     </objects>
 </document>
