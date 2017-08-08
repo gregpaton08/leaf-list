@@ -142,6 +142,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
 //        save(AppDelegate.viewContext)
     }
     
+    private func normalizePriorities() {
+        for rowIndex in 0..<tableView.numberOfRows(inSection: 0) {
+            if let currentTask = fetchedResultsController?.object(at: IndexPath(row: rowIndex, section: 0)) {
+                currentTask.priority = Int32(rowIndex)
+            }
+        }
+    }
+    
     private func deleteTask(at indexPath: IndexPath) {
         if let taskToDelete = fetchedResultsController?.object(at: indexPath) {
             taskToDelete.taskDeleted = true
@@ -320,7 +328,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
-//                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
+                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
                 cell.taskNameLabel.isEnabled = !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
