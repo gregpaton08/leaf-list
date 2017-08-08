@@ -5,6 +5,7 @@
 * Fix tasks view
 * Bug: when clicking for the details of a completed task the checkbox button unchecks itself
 * Add option to empty trash
+* Add option to restore tasks in trash
 * Design app icon
 * Add search option
 * Subclass UITextView to add placeholder test
