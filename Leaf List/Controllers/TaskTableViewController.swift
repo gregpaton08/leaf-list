@@ -89,10 +89,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.reloadData()
         
         updateCompletedButtonColor()
-        
-        if displayStyle == .group {
-            normalizePriorities()
-        }
     }
     
     private func save(_ context: NSManagedObjectContext) {
@@ -158,6 +154,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if let taskToDelete = fetchedResultsController?.object(at: indexPath) {
             taskToDelete.taskDeleted = true
             save(AppDelegate.viewContext)
+            
+            // If the group view is displayed then normalize the priorities so that the highest priority task is 0.
+            if displayStyle == .group {
+                normalizePriorities()
+            }
         }
     }
     
