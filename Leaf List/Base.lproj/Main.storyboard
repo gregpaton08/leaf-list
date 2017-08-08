@@ -52,7 +52,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskDetailCell" id="MF9-GA-ljO">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MF9-GA-ljO" id="zaE-Qh-NHt">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -66,10 +66,13 @@
                             <outlet property="delegate" destination="0jt-ci-lWw" id="xs2-ej-7it"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="o4o-0w-tmk" kind="show" identifier="showNotesView" id="TsH-eQ-yPa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPE-MA-64f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2332" y="-1098"/>
+            <point key="canvasLocation" x="2332" y="-1069"/>
         </scene>
         <!--Details-->
         <scene sceneID="6fY-6r-sf4">
@@ -124,7 +127,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3G9-wz-TGn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZLd-Nh-dZU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57s-xY-EJw">

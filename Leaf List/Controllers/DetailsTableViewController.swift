@@ -81,6 +81,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = "Notes"
+                cell.accessoryType = .disclosureIndicator
             case 1:
                 cell.textLabel?.text = formatDate(task?.dateCreated)
             default:
@@ -91,6 +92,14 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
         }
         
         return cell
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            performSegue(withIdentifier: "showNotesView", sender: tableView.cellForRow(at: indexPath))
+        }
     }
 
     // MARK: - Navigation
