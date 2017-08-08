@@ -15,7 +15,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     
     var task: Task? {
         didSet {
-            updateUI()
+//            updateUI()
         }
     }
     
@@ -24,28 +24,28 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     
     // MARK: - UI
     
-    @IBOutlet weak var taskNameTextField: UITextField!
-    @IBOutlet weak var dateCreatedCell: UITableViewCell!
-    
-    private func updateUI() {
-        if isViewLoaded {
-            taskNameTextField.text = task?.name ?? "ERROR!"
-            dateCreatedCell.textLabel?.text = formatDate(task?.dateCreated)
-        }
-    }
+//    @IBOutlet weak var taskNameTextField: UITextField!
+//    @IBOutlet weak var dateCreatedCell: UITableViewCell!
+//    
+//    private func updateUI() {
+//        if isViewLoaded {
+//            taskNameTextField.text = task?.name ?? "ERROR!"
+//            dateCreatedCell.textLabel?.text = formatDate(task?.dateCreated)
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateUI()
+//        updateUI()
         
-        taskNameTextField.delegate = self
+//        taskNameTextField.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        taskNameTextField.resignFirstResponder()
+//        taskNameTextField.resignFirstResponder()
         
         do {
             try AppDelegate.viewContext.save()
@@ -65,13 +65,13 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     // MARK: - Test field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        if textField.text?.characters.count ?? 0 > 0 {
-            task?.name = textField.text
-            parent?.navigationItem.title = task?.name
-        } else {
-            textField.text = task?.name
-        }
+//        textField.resignFirstResponder()
+//        if textField.text?.characters.count ?? 0 > 0 {
+//            task?.name = textField.text
+//            parent?.navigationItem.title = task?.name
+//        } else {
+//            textField.text = task?.name
+//        }
         
         return true
     }

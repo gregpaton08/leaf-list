@@ -13,7 +13,6 @@
 		371525111F39436900A394B8 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715250D1F39436900A394B8 /* TaskTableViewCell.swift */; };
 		371525121F39436900A394B8 /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3715250E1F39436900A394B8 /* TaskTableViewCell.xib */; };
 		3715251C1F39449400A394B8 /* DetailsMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371525141F39449400A394B8 /* DetailsMasterViewController.swift */; };
-		3715251D1F39449400A394B8 /* DetailsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371525151F39449400A394B8 /* DetailsTableViewController.xib */; };
 		3715251E1F39449400A394B8 /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371525161F39449400A394B8 /* FetchedResultsTableViewController.swift */; };
 		3715251F1F39449400A394B8 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371525171F39449400A394B8 /* MoreTableViewController.swift */; };
 		371525201F39449400A394B8 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371525181F39449400A394B8 /* NotesViewController.swift */; };
@@ -37,7 +36,6 @@
 		3715250D1F39436900A394B8 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		3715250E1F39436900A394B8 /* TaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		371525141F39449400A394B8 /* DetailsMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsMasterViewController.swift; sourceTree = "<group>"; };
-		371525151F39449400A394B8 /* DetailsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsTableViewController.xib; sourceTree = "<group>"; };
 		371525161F39449400A394B8 /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		371525171F39449400A394B8 /* MoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
 		371525181F39449400A394B8 /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 			children = (
 				371525141F39449400A394B8 /* DetailsMasterViewController.swift */,
 				371525081F39431000A394B8 /* DetailsTableViewController.swift */,
-				371525151F39449400A394B8 /* DetailsTableViewController.xib */,
 				371525161F39449400A394B8 /* FetchedResultsTableViewController.swift */,
 				371525171F39449400A394B8 /* MoreTableViewController.swift */,
 				371525181F39449400A394B8 /* NotesViewController.swift */,
@@ -196,7 +193,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3715251D1F39449400A394B8 /* DetailsTableViewController.xib in Resources */,
 				37ECFF841F178722001A9314 /* LaunchScreen.storyboard in Resources */,
 				37ECFF811F178722001A9314 /* Assets.xcassets in Resources */,
 				37ECFF7C1F178722001A9314 /* Main.storyboard in Resources */,
