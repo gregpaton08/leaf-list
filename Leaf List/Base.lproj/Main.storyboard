@@ -47,7 +47,7 @@
             <objects>
                 <tableViewController id="0jt-ci-lWw" customClass="DetailsTableViewController" customModule="Leaf_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ViC-B5-2cp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -84,15 +84,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mj-RH-bvc">
-                                <rect key="frame" x="0.0" y="321" width="375" height="297"/>
+                                <rect key="frame" x="0.0" y="314" width="375" height="304"/>
                                 <connections>
                                     <segue destination="11T-oD-qrG" kind="embed" id="4Gs-gJ-oXW"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JyK-f7-nRG">
-                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Q8p-Ra-T2S"/>
+                                    <constraint firstAttribute="height" constant="250" id="Q8p-Ra-T2S"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="0jt-ci-lWw" kind="embed" id="aXC-Rn-vJ4"/>
@@ -102,7 +102,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7mj-RH-bvc" firstAttribute="bottom" secondItem="PUx-in-twh" secondAttribute="top" id="H7g-GK-zjx"/>
-                            <constraint firstItem="7mj-RH-bvc" firstAttribute="top" secondItem="JyK-f7-nRG" secondAttribute="bottom" constant="57" id="JJA-r8-yGu"/>
+                            <constraint firstItem="7mj-RH-bvc" firstAttribute="top" secondItem="JyK-f7-nRG" secondAttribute="bottom" id="JJA-r8-yGu"/>
                             <constraint firstItem="7mj-RH-bvc" firstAttribute="leading" secondItem="JyK-f7-nRG" secondAttribute="leading" id="Y3p-kD-peo"/>
                             <constraint firstItem="JyK-f7-nRG" firstAttribute="leading" secondItem="X7b-x4-H6o" secondAttribute="leading" id="bKK-Va-K0j"/>
                             <constraint firstItem="JyK-f7-nRG" firstAttribute="top" secondItem="Aqt-7p-vpq" secondAttribute="bottom" id="cfb-v0-EqN"/>
@@ -213,7 +213,7 @@
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="11T-oD-qrG" customClass="TaskTableViewController" customModule="Leaf_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gTh-qa-FCQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="297"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="304"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -221,7 +221,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g4L-03-FuV" id="FYi-Oh-KO1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
