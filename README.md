@@ -2,6 +2,7 @@
 
 ## To Do
 
+* Make name field in details view an editable text field (reuse NewTaskTableViewCell?).
 * Add option to empty trash
 * Show date task was deleted in trash view
 * Hide completed button in trash view
