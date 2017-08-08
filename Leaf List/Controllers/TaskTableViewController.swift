@@ -61,7 +61,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         switch displayStyle {
         case .task:
             // TODO: need to update this to pull only the highest priority tasks.
-            let predicate = NSPredicate(format: "children.@count == 0")
+            let predicate = NSPredicate(format: "priority == 0 AND children.@count == 0")
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate, notDeletedPredicate])
         case .group:
             var predicate: NSPredicate?
@@ -320,6 +320,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
+//                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
                 cell.taskNameLabel.isEnabled = !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
