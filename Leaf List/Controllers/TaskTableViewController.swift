@@ -221,8 +221,31 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                         }
                     })
                 }
+            case .changed:
+                var center = My.cellSnapshot!.center
+                center.y = locationInView.y
+                My.cellSnapshot!.center = center
+                if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
+//                    swap(&itemsArray[indexPath!.row], &itemsArray[Path.initialIndexPath!.row])
+                    tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
+                    Path.initialIndexPath = indexPath
+                }
             default:
-                break
+                let cell = tableView.cellForRow(at: Path.initialIndexPath!)!
+                cell.isHidden = false
+                cell.alpha = 0.0
+                UIView.animate(withDuration: 0.25, animations: {
+                    My.cellSnapshot!.center = cell.center
+                    My.cellSnapshot!.transform = CGAffineTransform.identity
+                    My.cellSnapshot!.alpha = 0.0
+                    cell.alpha = 1.0
+                }, completion: { (finished) in
+                    if finished {
+                        Path.initialIndexPath = nil
+                        My.cellSnapshot!.removeFromSuperview()
+                        My.cellSnapshot = nil
+                    }
+                })
             }
         }
     }
