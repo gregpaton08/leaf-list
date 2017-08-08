@@ -185,21 +185,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.superview?.superview is TaskNameTableViewCell {
+        if (textField.text == nil || textField.text?.characters.count == 0) {
             textField.resignFirstResponder()
-            if textField.text?.characters.count ?? 0 > 0 {
-                updateName(textField.text!, forTask: task!)
-                configureNavBar()
-            } else {
-                textField.text = task?.name
-            }
         } else {
-            if (textField.text == nil || textField.text?.characters.count == 0) {
-                textField.resignFirstResponder()
-            } else {
-                addTask(with: textField.text!)
-                textField.text = nil
-            }
+            addTask(with: textField.text!)
+            textField.text = nil
         }
         
         return true
