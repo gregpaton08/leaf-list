@@ -25,6 +25,10 @@ class DetailsMasterViewController: UIViewController, TaskDisplay {
         navigationItem.title = task?.name
 
         // Do any additional setup after loading the view.
+        updateChildren()
+    }
+    
+    private func updateChildren() {
         for childView in childViewControllers {
             if var taskDisplay = childView as? TaskDisplay {
                 taskDisplay.initFromTaskDisplay(self)
