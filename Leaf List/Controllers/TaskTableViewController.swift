@@ -89,6 +89,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.reloadData()
         
         updateCompletedButtonColor()
+        
+        if displayStyle == .group {
+            normalizePriorities()
+        }
     }
     
     private func save(_ context: NSManagedObjectContext) {
@@ -143,11 +147,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func normalizePriorities() {
-        for rowIndex in 0..<tableView.numberOfRows(inSection: 0) {
-            if let currentTask = fetchedResultsController?.object(at: IndexPath(row: rowIndex, section: 0)) {
-                currentTask.priority = Int32(rowIndex)
-            }
-        }
+        var priority = 0
+        fetchedResultsController?.fetchedObjects?.forEach({ (currentTask) in
+            currentTask.priority = Int32(priority)
+            priority += 1
+        })
     }
     
     private func deleteTask(at indexPath: IndexPath) {
