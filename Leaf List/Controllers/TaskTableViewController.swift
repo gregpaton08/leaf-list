@@ -339,10 +339,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
     }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        return
-    }
 
     /*
     // Override to support conditional editing of the table view.
