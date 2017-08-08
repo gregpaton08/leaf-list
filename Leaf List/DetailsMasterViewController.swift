@@ -21,6 +21,8 @@ class DetailsMasterViewController: UIViewController, TaskDisplay {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = task?.name
 
         // Do any additional setup after loading the view.
         for childView in childViewControllers {
