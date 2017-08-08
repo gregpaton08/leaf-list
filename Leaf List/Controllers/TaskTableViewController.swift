@@ -207,7 +207,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             switch longPressGesture.state {
             case .began:
-                if indexPath != nil {
+                if indexPath != nil && indexPath?.section == 0 {
                     Path.initialIndexPath = indexPath
                     let cell = tableView.cellForRow(at: indexPath!)!
                     My.cellSnapshot  = snapShotOfCell(inputView: cell)
@@ -229,31 +229,34 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                     })
                 }
             case .changed:
-                var center = My.cellSnapshot!.center
-                center.y = locationInView.y
-                My.cellSnapshot!.center = center
-                if indexPath != nil && indexPath!.section == 0 && indexPath != Path.initialIndexPath {
-//                    swap(&itemsArray[indexPath!.row], &itemsArray[Path.initialIndexPath!.row])
-//                    tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
-                    swapPriority(forTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!, withTask: (fetchedResultsController?.object(at: indexPath!))!)
-                    Path.initialIndexPath = indexPath
+                // Need to check if cell is nil. Could be nil if initial press was in an unsupported section.
+                if let cell = My.cellSnapshot {
+                    var center = cell.center
+                    center.y = locationInView.y
+                    cell.center = center
+                    if indexPath != nil && indexPath!.section == 0 && indexPath != Path.initialIndexPath {
+                        swapPriority(forTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!, withTask: (fetchedResultsController?.object(at: indexPath!))!)
+                        Path.initialIndexPath = indexPath
+                    }
                 }
             default:
-                let cell = tableView.cellForRow(at: Path.initialIndexPath!)!
-                cell.isHidden = false
-                cell.alpha = 0.0
-                UIView.animate(withDuration: 0.25, animations: {
-                    My.cellSnapshot!.center = cell.center
-                    My.cellSnapshot!.transform = CGAffineTransform.identity
-                    My.cellSnapshot!.alpha = 0.0
-                    cell.alpha = 1.0
-                }, completion: { (finished) in
-                    if finished {
-                        Path.initialIndexPath = nil
-                        My.cellSnapshot!.removeFromSuperview()
-                        My.cellSnapshot = nil
-                    }
-                })
+                if let initialIndexPath = Path.initialIndexPath {
+                    let cell = tableView.cellForRow(at: initialIndexPath)!
+                    cell.isHidden = false
+                    cell.alpha = 0.0
+                    UIView.animate(withDuration: 0.25, animations: {
+                        My.cellSnapshot!.center = cell.center
+                        My.cellSnapshot!.transform = CGAffineTransform.identity
+                        My.cellSnapshot!.alpha = 0.0
+                        cell.alpha = 1.0
+                    }, completion: { (finished) in
+                        if finished {
+                            Path.initialIndexPath = nil
+                            My.cellSnapshot!.removeFromSuperview()
+                            My.cellSnapshot = nil
+                        }
+                    })
+                }
             }
         }
     }
