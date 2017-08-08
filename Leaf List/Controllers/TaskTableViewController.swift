@@ -232,7 +232,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 var center = My.cellSnapshot!.center
                 center.y = locationInView.y
                 My.cellSnapshot!.center = center
-                if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
+                if indexPath != nil && indexPath!.section == 0 && indexPath != Path.initialIndexPath {
 //                    swap(&itemsArray[indexPath!.row], &itemsArray[Path.initialIndexPath!.row])
 //                    tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
                     swapPriority(forTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!, withTask: (fetchedResultsController?.object(at: indexPath!))!)
