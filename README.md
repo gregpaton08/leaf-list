@@ -2,6 +2,7 @@
 
 ## To Do
 
+* Fix tasks view
 * Bug: when clicking for the details of a completed task the checkbox button unchecks itself
 * Add option to empty trash
 * Design app icon
