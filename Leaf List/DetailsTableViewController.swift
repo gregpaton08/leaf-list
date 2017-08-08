@@ -66,6 +66,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
         textField.resignFirstResponder()
         if textField.text?.characters.count ?? 0 > 0 {
             task?.name = textField.text
+            parent?.navigationItem.title = task?.name
         } else {
             textField.text = task?.name
         }
