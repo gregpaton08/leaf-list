@@ -39,6 +39,7 @@ class CheckBox: UIButton {
     
     override var frame: CGRect {
         didSet {
+            // TODO: hard code radius to 11 (width = height = 22).
             self.layer.cornerRadius = self.bounds.width / 2
             self.layer.borderWidth = 2.0
             self.layer.borderColor = UIColor.lightGray.cgColor
