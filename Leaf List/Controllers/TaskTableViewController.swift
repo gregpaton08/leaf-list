@@ -304,14 +304,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         performSegue(withIdentifier: "showDetailView", sender: tableView.cellForRow(at: indexPath))
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if parent is DetailsMasterViewController && section == 0 {
-            return "Sub-tasks"
-        }
-        
-        return nil
-    }
-    
     // MARK: - Navigation view controller delegate
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
