@@ -398,6 +398,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if displayStyle == .trash {
+            let restoreAction = UITableViewRowAction.init(style: .normal, title: "Restore") { (action, indexPath) in
+                print("Restore task at index path \(indexPath)")
+            }
+            return [restoreAction]
+        }
+        
         return nil
     }
     
