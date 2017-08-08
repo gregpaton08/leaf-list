@@ -180,6 +180,65 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         tableView.register(UINib.init(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "taskCell")
         tableView.register(UINib.init(nibName: "NewTaskTableViewCell", bundle: nil), forCellReuseIdentifier: "newTaskCell")
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
+        tableView.addGestureRecognizer(longPressGesture)
+    }
+    
+    func handleLongPressGesture(_ gestureRecognizer: UIGestureRecognizer) {
+        if let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
+            
+            let locationInView = longPressGesture.location(in: tableView)
+            let indexPath = tableView.indexPathForRow(at: locationInView)
+            
+            struct My {
+                static var cellSnapshot : UIView? = nil
+            }
+            struct Path {
+                static var initialIndexPath : IndexPath? = nil
+            }
+            
+            switch longPressGesture.state {
+            case .began:
+                if indexPath != nil {
+                    Path.initialIndexPath = indexPath
+                    let cell = tableView.cellForRow(at: indexPath!)!
+                    My.cellSnapshot  = snapShotOfCell(inputView: cell)
+                    var center = cell.center
+                    My.cellSnapshot!.center = center
+                    My.cellSnapshot!.alpha = 0.0
+                    tableView.addSubview(My.cellSnapshot!)
+                    
+                    UIView.animate(withDuration: 0.25, animations: {
+                        center.y = locationInView.y
+                        My.cellSnapshot!.center = center
+                        My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                        My.cellSnapshot!.alpha = 0.98
+                        cell.alpha = 0.0
+                    }, completion: { (finished) in
+                        if finished {
+                            cell.isHidden = true
+                        }
+                    })
+                }
+            default:
+                break
+            }
+        }
+    }
+    
+    func snapShotOfCell(inputView: UIView) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        let cellSnapshot : UIView = UIImageView(image: image)
+        cellSnapshot.layer.masksToBounds = false
+        cellSnapshot.layer.cornerRadius = 0.0
+        cellSnapshot.layer.shadowOffset = CGSize.init(width: -5.0, height: 0.0)
+        cellSnapshot.layer.shadowRadius = 5.0
+        cellSnapshot.layer.shadowOpacity = 0.4
+        return cellSnapshot
     }
     
     // MARK: - Text field delegate
