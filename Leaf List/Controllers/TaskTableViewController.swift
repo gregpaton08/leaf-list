@@ -364,11 +364,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
-                cell.checkBox.isHidden = displayStyle == .trash
-                
-                if task.children?.count ?? 0 > 0 {
-                    cell.checkBox.isHidden = true
-                }
+                cell.checkBox.isHidden = displayStyle == .trash || task.hasActiveChild()
                 
                 cell.delegate = self
             }

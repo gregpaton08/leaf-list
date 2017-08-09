@@ -39,4 +39,16 @@ class Task: NSManagedObject {
         dateDeleted = nil
     }
     
+    func hasActiveChild() -> Bool {
+        var retVal = false
+        children?.forEach { child in
+            if let task = child as? Task, !task.taskCompleted && !task.taskDeleted {
+                retVal = true
+                return
+            }
+        }
+        
+        return retVal
+    }
+    
 }
