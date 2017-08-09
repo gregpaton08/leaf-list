@@ -2,6 +2,7 @@
 
 ## To Do
 
+* Move completed task to end of list, set priority lower than the lowest uncomplete task and higher than the highest completed
 * Make name field in details view an editable text field (reuse NewTaskTableViewCell?).
 * Add option to empty trash
 * Show date task was deleted in trash view
