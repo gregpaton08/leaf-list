@@ -341,7 +341,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
-                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
+//                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
