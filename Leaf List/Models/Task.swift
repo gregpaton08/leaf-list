@@ -31,6 +31,7 @@ class Task: NSManagedObject {
     func delete() {
         taskDeleted = true
         dateDeleted = NSDate()
+        priority = INT32_MAX
     }
     
     func restore() {
