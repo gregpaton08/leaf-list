@@ -158,7 +158,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     private func deleteTask(at indexPath: IndexPath) {
         if let taskToDelete = fetchedResultsController?.object(at: indexPath) {
-            taskToDelete.taskDeleted = true
+            taskToDelete.delete()
             save(AppDelegate.viewContext)
             
             // If the group view is displayed then normalize the priorities so that the highest priority task is 0.
@@ -383,7 +383,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if displayStyle == .trash {
             let restoreAction = UITableViewRowAction.init(style: .normal, title: "Restore") { (action, indexPath) in
                 if let currentTask = self.fetchedResultsController?.object(at: indexPath) {
-                    currentTask.taskDeleted = false
+                    currentTask.restore()
                     currentTask.priority = Int32(self.getHighestPriority(forParentTask: currentTask.parent) + 1)
                 }
             }

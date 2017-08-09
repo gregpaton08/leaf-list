@@ -28,4 +28,14 @@ class Task: NSManagedObject {
         }
     }
     
+    func delete() {
+        taskDeleted = true
+        dateDeleted = NSDate()
+    }
+    
+    func restore() {
+        taskDeleted = false
+        dateDeleted = nil
+    }
+    
 }
