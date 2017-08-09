@@ -83,7 +83,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
                 cell.textLabel?.text = "Notes"
                 cell.accessoryType = .disclosureIndicator
             case 1:
-                cell.textLabel?.text = formatDate(task?.dateCreated)
+                cell.textLabel?.text = formatDate(forTask: task)
             default:
                 break
             }
@@ -136,7 +136,16 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
         let formatter = DateFormatter()
         formatter.locale = Locale.init(identifier: "en_US")
         formatter.setLocalizedDateFormatFromTemplate("MMMMdyyyyHH:mma")
-        return "Created on " + formatter.string(from: (date as Date?)!)
+        return "on " + formatter.string(from: (date as Date?)!)
+    }
+    
+    private func formatDate(forTask task: Task?) -> String {
+        switch displayStyle {
+        case .trash:
+            return "Deleted \(formatDate(task?.dateCreated))"
+        default:
+            return "Created \(formatDate(task?.dateCreated))"
+        }
     }
 
 
