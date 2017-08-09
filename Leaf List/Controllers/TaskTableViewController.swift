@@ -123,7 +123,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             let context = AppDelegate.viewContext
             
             task.taskCompleted = completed
-            task.dateCompleted = NSDate()
+            task.dateCompleted = completed ? NSDate() : nil
             
             save(context)
         }
@@ -434,6 +434,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
 }
+
+
+// MARK: - Extensions
 
 
 extension UIViewController {
