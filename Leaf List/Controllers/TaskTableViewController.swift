@@ -58,8 +58,16 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         
         let sortByPriority = NSSortDescriptor(key: "priority", ascending: true)
-        let sortByDateCompleted = NSSortDescriptor(key: "dateCompleted", ascending: false)
-        request.sortDescriptors = [sortByPriority, sortByDateCompleted]
+        let sortByDate = NSSortDescriptor(key: {
+            switch displayStyle {
+            case .trash:
+                return "dateDeleted"
+            default:
+                return "dateCompleted"
+            }
+        }(), ascending: false)
+        
+        request.sortDescriptors = [sortByPriority, sortByDate]
         
         let uncompletePredicate = showCompleted ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
@@ -114,18 +122,18 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         newTask.name = name
         newTask.dateCreated = NSDate()
         newTask.parent = task
-        newTask.priority = Int32(getHighestPriority() + 1)
+        newTask.priority = Int32(getHighestPriorityInGroup(forTask: newTask) + 1)
         
         save(context)
     }
     
     private func setTask(at indexPath: IndexPath, asCompleted completed: Bool) {
-        if let task = fetchedResultsController?.object(at: indexPath) {
+        if let currentTask = fetchedResultsController?.object(at: indexPath) {
             let context = AppDelegate.viewContext
             
-            task.priority = completed ? INT32_MAX : Int32(getHighestPriority() + 1)
-            task.taskCompleted = completed
-            task.dateCompleted = completed ? NSDate() : nil
+            currentTask.priority = completed ? INT32_MAX : Int32(getHighestPriorityInGroup(forTask: currentTask) + 1)
+            currentTask.taskCompleted = completed
+            currentTask.dateCompleted = completed ? NSDate() : nil
             
             save(context)
         }
@@ -168,27 +176,24 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
-    private func getHighestPriority(forParentTask parentTask: Task?) -> Int {
+    private func getHighestPriorityInGroup(forTask groupTask: Task?) -> Int {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: false)]
-        let parentTaskPredicate = NSPredicate(format: "parent = %@", parentTask ?? "nil")
+        let notSelfPredicate = NSPredicate(format: "self != %@", groupTask!)
+        let parentTaskPredicate = NSPredicate(format: "parent = %@", groupTask?.parent ?? "nil")
         let uncompletePredicate = NSPredicate(format: "taskCompleted == NO")
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
         
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [parentTaskPredicate, uncompletePredicate,notDeletedPredicate])
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [notSelfPredicate, parentTaskPredicate, uncompletePredicate,notDeletedPredicate])
         
         let context = AppDelegate.viewContext
         let highestPriorityTask = try? context.fetch(request)
         let highestPriority = Int(highestPriorityTask?.first?.priority ?? -1)
         if highestPriority == Int(INT32_MAX) {
-            fatalError("Inavlid highest priority found from task name \(parentTask?.name ?? "nil")")
+            fatalError("Inavlid highest priority found from task name \(highestPriorityTask?.first?.name ?? "nil")")
         }
         return highestPriority
-    }
-    
-    private func getHighestPriority() -> Int {
-        return getHighestPriority(forParentTask: task)
     }
     
     // MARK: - View
@@ -355,7 +360,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
-                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
+//                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
@@ -395,7 +400,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             let restoreAction = UITableViewRowAction.init(style: .normal, title: "Restore") { (action, indexPath) in
                 if let currentTask = self.fetchedResultsController?.object(at: indexPath) {
                     currentTask.restore()
-                    currentTask.priority = Int32(self.getHighestPriority(forParentTask: currentTask.parent) + 1)
+                    currentTask.priority = Int32(self.getHighestPriorityInGroup(forTask: currentTask) + 1)
                 }
             }
             restoreAction.backgroundColor = UIColor.defaultButtonBlue
