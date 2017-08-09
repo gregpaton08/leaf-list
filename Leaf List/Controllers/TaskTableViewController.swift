@@ -180,7 +180,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         let context = AppDelegate.viewContext
         let highestPriorityTask = try? context.fetch(request)
-        return Int(highestPriorityTask?.first?.priority ?? -1)
+        let highestPriority = Int(highestPriorityTask?.first?.priority ?? -1)
+        if highestPriority == Int(INT32_MAX) {
+            fatalError("Inavlid highest priority found from task name \(parentTask?.name ?? "nil")")
+        }
+        return highestPriority
     }
     
     private func getHighestPriority() -> Int {
