@@ -172,12 +172,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: false)]
+        let parentTaskPredicate = NSPredicate(format: "parent = %@", parentTask ?? "nil")
         let uncompletePredicate = NSPredicate(format: "taskCompleted == NO")
-        if (parentTask != nil) {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "parent = %@", parentTask!), uncompletePredicate])
-        } else {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "parent = nil"),uncompletePredicate])
-        }
+        let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
+        
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [parentTaskPredicate, uncompletePredicate,notDeletedPredicate])
         
         let context = AppDelegate.viewContext
         let highestPriorityTask = try? context.fetch(request)
