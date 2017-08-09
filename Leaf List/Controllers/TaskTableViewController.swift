@@ -57,8 +57,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     private func createFetchRequest() -> NSFetchRequest<Task> {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         
-        let sortDescriptor = NSSortDescriptor(key: "priority", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
+        let sortByPriority = NSSortDescriptor(key: "priority", ascending: true)
+        let sortByDateCompleted = NSSortDescriptor(key: "dateCompleted", ascending: false)
+        request.sortDescriptors = [sortByPriority, sortByDateCompleted]
         
         let uncompletePredicate = showCompleted ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
@@ -122,6 +123,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if let task = fetchedResultsController?.object(at: indexPath) {
             let context = AppDelegate.viewContext
             
+            task.priority = completed ? INT32_MAX : Int32(getHighestPriority() + 1)
             task.taskCompleted = completed
             task.dateCompleted = completed ? NSDate() : nil
             
@@ -170,10 +172,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: false)]
+        let uncompletePredicate = NSPredicate(format: "taskCompleted == NO")
         if (parentTask != nil) {
-            request.predicate = NSPredicate(format: "parent = %@", parentTask!)
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "parent = %@", parentTask!), uncompletePredicate])
         } else {
-            request.predicate = NSPredicate(format: "parent = nil")
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "parent = nil"),uncompletePredicate])
         }
         
         let context = AppDelegate.viewContext
@@ -341,7 +344,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
-//                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
+                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
