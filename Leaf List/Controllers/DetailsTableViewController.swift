@@ -142,7 +142,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     private func formatDate(forTask task: Task?) -> String {
         switch displayStyle {
         case .trash:
-            return "Deleted \(formatDate(task?.dateCreated))"
+            return "Deleted \(formatDate(task?.dateDeleted))"
         default:
             return "Created \(formatDate(task?.dateCreated))"
         }
