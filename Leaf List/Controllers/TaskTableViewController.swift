@@ -263,12 +263,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 }
             case .changed:
                 // Need to check if cell is nil. Could be nil if initial press was in an unsupported section.
-                if let cell = My.cellSnapshot, indexPath != nil {
+                if let cell = My.cellSnapshot, indexPath != nil && indexPath?.section == 0 {
                     if let swapTask = fetchedResultsController?.object(at: indexPath!), !swapTask.taskCompleted {
                         var center = cell.center
                         center.y = locationInView.y
                         cell.center = center
-                        if indexPath!.section == 0 && indexPath != Path.initialIndexPath {
+                        if indexPath != Path.initialIndexPath {
                             swapPriority(forTask: swapTask, withTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!)
                             Path.initialIndexPath = indexPath
                         }
