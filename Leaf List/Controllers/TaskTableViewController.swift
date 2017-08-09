@@ -225,6 +225,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             let locationInView = longPressGesture.location(in: tableView)
             let indexPath = tableView.indexPathForRow(at: locationInView)
             
+            
             struct My {
                 static var cellSnapshot : UIView? = nil
             }
@@ -235,6 +236,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             switch longPressGesture.state {
             case .began:
                 if indexPath != nil && indexPath?.section == 0 {
+                    if let selectedTask = fetchedResultsController?.object(at: indexPath!) {
+                        if selectedTask.taskCompleted {
+                            break
+                        }
+                    }
                     Path.initialIndexPath = indexPath
                     let cell = tableView.cellForRow(at: indexPath!)!
                     My.cellSnapshot  = snapShotOfCell(inputView: cell)
@@ -257,13 +263,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 }
             case .changed:
                 // Need to check if cell is nil. Could be nil if initial press was in an unsupported section.
-                if let cell = My.cellSnapshot {
-                    var center = cell.center
-                    center.y = locationInView.y
-                    cell.center = center
-                    if indexPath != nil && indexPath!.section == 0 && indexPath != Path.initialIndexPath {
-                        swapPriority(forTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!, withTask: (fetchedResultsController?.object(at: indexPath!))!)
-                        Path.initialIndexPath = indexPath
+                if let cell = My.cellSnapshot, indexPath != nil {
+                    if let swapTask = fetchedResultsController?.object(at: indexPath!), !swapTask.taskCompleted {
+                        var center = cell.center
+                        center.y = locationInView.y
+                        cell.center = center
+                        if indexPath!.section == 0 && indexPath != Path.initialIndexPath {
+                            swapPriority(forTask: swapTask, withTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!)
+                            Path.initialIndexPath = indexPath
+                        }
                     }
                 }
             default:
