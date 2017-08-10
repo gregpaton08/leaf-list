@@ -224,6 +224,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
         tableView.addGestureRecognizer(longPressGesture)
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44.0
     }
     
     func handleLongPressGesture(_ gestureRecognizer: UIGestureRecognizer) {
