@@ -29,7 +29,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT1-lE-O2i">
                         <rect key="frame" x="52" y="0.0" width="282" height="43.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="43.5" id="9z3-Hn-ytc"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="9z3-Hn-ytc"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
