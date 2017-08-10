@@ -1,3 +1,4 @@
+
 //
 //  TaskTableViewController.swift
 //  Leaf List
@@ -7,6 +8,7 @@
 //
 
 import UIKit
+import Foundation
 import CoreData
 
 class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, TaskTableViewCellDelegate, TaskDisplay {
@@ -360,8 +362,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             if let task = fetchedResultsController?.object(at: indexPath) {
                 cell.taskNameLabel.text = task.name
+                
+                cell.taskNameLabel.lineBreakMode = .byWordWrapping
+                cell.taskNameLabel.numberOfLines = 0
 //                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
+                
+                cell.taskNameLabel.isWrapped
                 
                 cell.checkBox.isChecked = task.taskCompleted
                 cell.checkBox.isHidden = displayStyle == .trash || task.hasActiveChild()
@@ -473,5 +480,30 @@ extension UIColor {
         get {
             return UIColor.init(colorLiteralRed: 10.0 / 255, green: 106.0 / 255, blue: 255.0 / 255, alpha: 1.0)
         }
+    }
+}
+
+
+extension UILabel {
+    var isTruncated: Bool {
+        if let nsText = text as NSString? {
+            let size = nsText.size(attributes: [NSFontAttributeName: font])
+            return size.width > bounds.width
+        }
+        
+        return false
+    }
+    
+    var numLines: Int {
+        if let nsText = text as NSString? {
+            let size = nsText.boundingRect(with: CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+            return Int(ceil(CGFloat(size.height) / font.lineHeight))
+        }
+        
+        return 0
+    }
+    
+    var isWrapped: Bool {
+        return numLines > 1
     }
 }
