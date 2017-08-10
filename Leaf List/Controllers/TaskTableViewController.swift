@@ -340,9 +340,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         //    * Task list               - list of current sub-tasks
         //    * New Task (if enabled)   - single cell for adding a new task
         
-        var numSections = 1
-        numSections += displayStyle != .trash ? 1 : 0
-        return numSections
+//        var numSections = 1
+//        numSections += displayStyle != .trash ? 1 : 0
+//        return numSections
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -370,8 +371,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 cell.taskNameLabel.numberOfLines = 0
 //                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
-                
-                cell.taskNameLabel.isWrapped
                 
                 cell.checkBox.isChecked = task.taskCompleted
                 cell.checkBox.isHidden = displayStyle == .trash || task.hasActiveChild()
@@ -418,6 +417,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showDetailView", sender: tableView.cellForRow(at: indexPath))
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableCell(withIdentifier: "newTaskCell")
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 44.0
     }
     
     // MARK: - Navigation view controller delegate
