@@ -15,21 +15,21 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskCell" id="Wno-Sz-5V3" customClass="TaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Wno-Sz-5V3" id="mjZ-qo-Jyx">
-                <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wno-Sz-5V3" id="mjZ-qo-Jyx">
+                <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaA-BY-xRx" customClass="CheckBox" customModule="Leaf_List" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaA-BY-xRx" customClass="CheckBox" customModule="Leaf_List" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="52" height="42"/>
                         <connections>
                             <action selector="selectCheckBox:" destination="Wno-Sz-5V3" eventType="touchUpInside" id="dzf-23-oDi"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT1-lE-O2i">
-                        <rect key="frame" x="52" y="0.0" width="282" height="43.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT1-lE-O2i">
+                        <rect key="frame" x="52" y="8.5" width="282" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="9z3-Hn-ytc"/>
+                            <constraint firstAttribute="height" constant="44" id="GBE-3F-hfe"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -39,8 +39,12 @@
                 <constraints>
                     <constraint firstItem="gT1-lE-O2i" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="44" id="4m2-kh-TSO"/>
                     <constraint firstAttribute="trailing" secondItem="gT1-lE-O2i" secondAttribute="trailing" constant="8" id="7Mb-sX-2Ye"/>
+                    <constraint firstItem="gT1-lE-O2i" firstAttribute="top" secondItem="VaA-BY-xRx" secondAttribute="top" constant="8.5" id="Qpo-KS-jdj"/>
+                    <constraint firstItem="gT1-lE-O2i" firstAttribute="bottom" secondItem="VaA-BY-xRx" secondAttribute="bottom" constant="-5.5" id="a7S-MN-v5s"/>
                     <constraint firstAttribute="bottom" secondItem="gT1-lE-O2i" secondAttribute="bottom" constant="8" id="dvq-fI-441"/>
                     <constraint firstItem="gT1-lE-O2i" firstAttribute="top" secondItem="mjZ-qo-Jyx" secondAttribute="top" constant="8" id="giz-Ej-Odc"/>
+                    <constraint firstItem="VaA-BY-xRx" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leading" id="xlp-sB-uNS"/>
+                    <constraint firstItem="gT1-lE-O2i" firstAttribute="leading" secondItem="VaA-BY-xRx" secondAttribute="trailing" id="yey-fA-doe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
