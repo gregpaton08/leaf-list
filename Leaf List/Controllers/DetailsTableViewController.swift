@@ -46,7 +46,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return 2
+        case 1: return (task?.taskCompleted ?? false) ? 3 : 2
         case 2: return 1
         default: return 0
         }
@@ -74,6 +74,8 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
                 cell.accessoryType = .disclosureIndicator
             case 1:
                 cell.textLabel?.text = formatDate(forTask: task)
+            case 2:
+                cell.textLabel?.text = formatDateCompleted(forTask: task)
             default:
                 break
             }
@@ -144,6 +146,10 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
         default:
             return "Created \(formatDate(task?.dateCreated))"
         }
+    }
+    
+    private func formatDateCompleted(forTask task: Task?) -> String {
+        return "Completed \(formatDate(task?.dateCompleted))"
     }
 
 
