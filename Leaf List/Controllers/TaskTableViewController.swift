@@ -86,7 +86,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
         switch displayStyle {
         case .task where insideDetailsView:
-            request.predicate = NSPredicate(format: "self == %@", task?.parent ?? "nil")
+            request.predicate = NSPredicate(format: "self == nil")
         case .task:
             let predicate = NSPredicate(format: "priority == 0 AND children.@count == 0")
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate, notDeletedPredicate])
@@ -469,7 +469,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if displayStyle != .trash && section == 0 {
+        if shouldDisplayNewTaskFooter() {
             return 44.0
         }
         
