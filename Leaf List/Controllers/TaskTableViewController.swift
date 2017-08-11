@@ -417,8 +417,20 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         performSegue(withIdentifier: "showDetailView", sender: tableView.cellForRow(at: indexPath))
     }
     
+    private func shouldDisplayNewTaskFooter() -> Bool {
+        if displayStyle == .trash {
+            return false
+        }
+        
+        if displayStyle == .task {
+            return false
+        }
+        
+        return true
+    }
+    
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if displayStyle != .trash, let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
+        if shouldDisplayNewTaskFooter(), let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
             //        footer?.layer.borderColor = UIColor.lightGray.cgColor
             //        footer?.layer.borderWidth = 1.0
             footer.newTaskTextField.delegate = self
