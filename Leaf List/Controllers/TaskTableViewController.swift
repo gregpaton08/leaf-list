@@ -42,6 +42,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     // MARK: - UI
     
+    private lazy var newTaskFooter: NewTaskTableViewCell? = {
+        return self.tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell
+    }()
+    
     @IBAction func showCompleted(_ sender: UIBarButtonItem) {
         showCompleted = !showCompleted
     }
@@ -237,6 +241,16 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.estimatedRowHeight = 44.0
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        // Save any task that is in the middle of being typed.
+        if let footer = newTaskFooter {
+            if let taskName = footer.newTaskTextField.text, taskName.characters.count > 0 {
+                addTask(with: taskName)
+            }
+            footer.resignFirstResponder()
+        }
+    }
+    
     func handleLongPressGesture(_ gestureRecognizer: UIGestureRecognizer) {
         if let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
             
@@ -430,7 +444,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if shouldDisplayNewTaskFooter(), let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
+        if shouldDisplayNewTaskFooter(), let footer = newTaskFooter {
             //        footer?.layer.borderColor = UIColor.lightGray.cgColor
             //        footer?.layer.borderWidth = 1.0
             footer.newTaskTextField.delegate = self
