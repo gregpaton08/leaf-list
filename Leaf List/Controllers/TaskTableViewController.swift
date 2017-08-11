@@ -336,13 +336,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Section order:
-        //    * Task list               - list of current sub-tasks
-        //    * New Task (if enabled)   - single cell for adding a new task
-        
-//        var numSections = 1
-//        numSections += displayStyle != .trash ? 1 : 0
-//        return numSections
         return 1
     }
 
@@ -353,7 +346,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 return sections[section].numberOfObjects
             }
         default:
-            return 1
+            break
         }
         
         return 0
@@ -380,10 +373,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             return cell
         default:
-            if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
-                footer.newTaskTextField.delegate = self
-                return footer
-            }
+            break
         }
         
         return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
@@ -420,7 +410,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
+        if displayStyle != .trash, let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
             //        footer?.layer.borderColor = UIColor.lightGray.cgColor
             //        footer?.layer.borderWidth = 1.0
             footer.newTaskTextField.delegate = self
@@ -431,7 +421,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 44.0
+        if displayStyle != .trash && section == 0 {
+            return 44.0
+        }
+        
+        return 0.0
     }
     
     // MARK: - Navigation view controller delegate
