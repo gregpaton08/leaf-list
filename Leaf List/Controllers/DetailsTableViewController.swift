@@ -59,17 +59,16 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     // MARK: - Table view data
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        // For the task view add a third section which displays and segues to the parent task.
+        return displayStyle == .task ? 3 : 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return 1
-        case 1:
-            return 2
-        default:
-            return 0
+        case 0: return 1
+        case 1: return 2
+        case 2: return 1
+        default: return 0
         }
     }
     
@@ -94,6 +93,11 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
                 break
             }
             return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "taskDetailCell", for: indexPath)
+            cell.textLabel?.text = task?.parent?.name
+            cell.accessoryType = .disclosureIndicator
+            return cell
         default:
             break
         }
@@ -106,6 +110,8 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 && indexPath.row == 0 {
             performSegue(withIdentifier: "showNotesView", sender: tableView.cellForRow(at: indexPath))
+        } else if indexPath.section == 2 && indexPath.row == 0 {
+            // perform segue
         }
     }
 
