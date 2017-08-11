@@ -194,6 +194,9 @@
                                                     <state key="normal" title="Empty Trash">
                                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="emptyTrashButtonPressed:" destination="78t-kO-fpc" eventType="touchUpInside" id="Vwa-oB-96D"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
