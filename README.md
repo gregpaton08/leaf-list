@@ -2,7 +2,6 @@
 
 ## To Do
 
-* Add search option
 * Use text view for name field in details view to support multiple lines
 * Design app icon
 * add some color to the UI
@@ -10,6 +9,7 @@
 
 ## Completed
 
+* Add search option
 * Add 'Completed on <DATE>' to details view if task is completed
 * Scroll the task table down when adding a new task
 * Build real Details View with two table view: one static and one dynamic
