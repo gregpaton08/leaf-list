@@ -7,16 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class MoreTableViewController: UITableViewController {
     
     @IBAction func emptyTrashButtonPressed(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Empty Trash?", message: "Are you sure you want to empty the trash? This action cannot be undone.", preferredStyle: .alert)
-        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
-            
-        }
+        let noAction = UIAlertAction(title: "No", style: .cancel)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (action) in
-            // Delete tasks in trash
+            let context = AppDelegate.viewContext
+            context.perform({
+                let request: NSFetchRequest<Task> = Task.fetchRequest()
+                request.sortDescriptors = [NSSortDescriptor(key: "dateDeleted", ascending: false)]
+                request.predicate = NSPredicate(format: "taskDeleted == YES")
+                
+                let deletedTasks = try? context.fetch(request)
+                deletedTasks?.forEach({ (task) in
+                    context.delete(task)
+                })
+                
+                try? context.save()
+            })
         }
         alertController.addAction(noAction)
         alertController.addAction(yesAction)
