@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,14 +19,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Text Field" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaY-25-bHk">
-                        <rect key="frame" x="8" y="6" width="304" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaY-25-bHk">
+                        <rect key="frame" x="8" y="8" width="304" height="27.5"/>
                         <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="leadingMargin" secondItem="gaY-25-bHk" secondAttribute="leading" id="KV3-Q6-r6V"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gaY-25-bHk" secondAttribute="trailing" id="QoL-Js-Loa"/>
+                    <constraint firstItem="gaY-25-bHk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ZfP-Eo-nV2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gaY-25-bHk" secondAttribute="bottom" id="mNP-BR-jyQ"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="textField" destination="gaY-25-bHk" id="0ka-PY-fN9"/>
