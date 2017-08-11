@@ -80,6 +80,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
             if let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as? TextFieldTableViewCell {
                 cell.textField.text = task?.name
                 cell.textField.delegate = self
+                return cell
             }
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskDetailCell", for: indexPath)
