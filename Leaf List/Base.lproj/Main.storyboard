@@ -114,6 +114,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="JyK-f7-nRG" secondAttribute="trailing" constant="-16" id="zeC-XQ-FcG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="detailsTableHeightConstraint" destination="3jg-UY-Pre" id="Mff-EK-LdK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbN-JG-cdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

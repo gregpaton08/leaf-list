@@ -74,6 +74,11 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // Update container view height.
+        if let detailsMaster = parent as? DetailsMasterViewController {
+            detailsMaster.detailsTableHeightConstraint.constant = tableView.contentSize.height
+        }
+        
         switch indexPath.section {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as? TextFieldTableViewCell {

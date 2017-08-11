@@ -18,6 +18,8 @@ class DetailsMasterViewController: UIViewController, TaskDisplay {
     var showCompleted: Bool = false
     
     // MARK: View
+    
+    @IBOutlet weak var detailsTableHeightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
