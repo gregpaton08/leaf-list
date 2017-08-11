@@ -2,22 +2,17 @@
 
 ## To Do
 
-* Replace new task text field with text view to allow multiple lines
 * Make name field in details view an editable text field (reuse NewTaskTableViewCell?).
 * Add option to empty trash
-* Show date task was deleted in trash view
 * Hide completed button in trash view
 * Show parent task in details view under task tab
 * Design app icon
 * Add search option
-* option to export data as xml and send to email
 * add some color to the UI
 * option to color code tasks (box to left of task name label, option to set image?)
-* Add completed view that sorts by date as sections to see daily progress
 * Add 'Completed on <DATE>' to details view if task is completed
-* Load data from xml? (debugging)
-* Clean up task drag-and-drop appearance
 * Subclass UITextView to add placeholder test
+* Show parent task in detail view of a task in the tasks tab
 
 ## Completed
 
@@ -31,6 +26,7 @@
 * Fix tasks view
 * Bug: when clicking for the details of a completed task the checkbox button unchecks itself
 * Move completed task to end of list, set priority lower than the lowest uncomplete task and higher than the highest completed
+* Show date task was deleted in trash view
 
 ## Stretch Goals
 
@@ -39,3 +35,7 @@
 * Web app (possible with iCloud?)
 * Rich text editor with drawing and images (camera, camera roll) in notes view
 * Create a widget?
+* Load data from xml? (debugging)
+* Add completed view that sorts by date as sections to see daily progress
+* option to export data as xml and send to email
+* Clean up task drag-and-drop appearance
