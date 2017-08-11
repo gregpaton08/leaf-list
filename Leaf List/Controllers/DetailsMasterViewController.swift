@@ -33,6 +33,10 @@ class DetailsMasterViewController: UIViewController, TaskDisplay {
             if var taskDisplay = childView as? TaskDisplay {
                 taskDisplay.initFromTaskDisplay(self)
             }
+            
+            if let taskTable = childView as? TaskTableViewController {
+                taskTable.insideDetailsView = true
+            }
         }
     }
 }

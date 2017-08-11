@@ -33,6 +33,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
+    // Flag to signal if the view controller is contained inside the detail view controller.
+    var insideDetailsView = false {
+        didSet {
+            updateUI()
+        }
+    }
+    
     // MARK: - UI
     
     @IBAction func showCompleted(_ sender: UIBarButtonItem) {
@@ -74,8 +81,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let uncompletePredicate = showCompleted ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
         switch displayStyle {
+        case .task where insideDetailsView:
+            break
         case .task:
-            // TODO: need to update this to pull only the highest priority tasks.
             let predicate = NSPredicate(format: "priority == 0 AND children.@count == 0")
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate, notDeletedPredicate])
         case .group:
