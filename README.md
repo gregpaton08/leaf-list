@@ -3,6 +3,7 @@
 ## To Do
 
 * Make parent task in detail view part of the details view table, not the task view table (cleaner API this way, too!)
+    * need to make container view resize to height of table view
 * Add 'Completed on <DATE>' to details view if task is completed
 * Add search option
 * Use text view for name field in details view to support multiple lines
