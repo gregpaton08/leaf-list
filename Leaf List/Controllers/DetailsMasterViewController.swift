@@ -35,6 +35,10 @@ class DetailsMasterViewController: UIViewController, TaskDisplay {
             if var taskDisplay = childView as? TaskDisplay {
                 taskDisplay.initFromTaskDisplay(self)
             }
+            
+            if let taskTableView = childView as? TaskTableViewController {
+                taskTableView.hasSearchBar = false
+            }
         }
     }
 }

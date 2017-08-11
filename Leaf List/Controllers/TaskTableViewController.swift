@@ -33,6 +33,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
+    var hasSearchBar: Bool {
+        get {
+            return tableView.tableHeaderView != nil
+        }
+        set(val) {
+            tableView.tableHeaderView = val ? searchController.searchBar : nil
+        }
+    }
+    
     // MARK: - UI
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -242,6 +251,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        
+        hasSearchBar = displayStyle != .task
     }
     
     override func viewWillAppear(_ animated: Bool) {
