@@ -13,41 +13,21 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
 
     // MARK: - API
     
-    var task: Task? {
-        didSet {
-//            updateUI()
-        }
-    }
+    var task: Task?
     
     var displayStyle: TaskDisplayStyle = .group
     var showCompleted: Bool = false
     
     // MARK: - UI
     
-//    @IBOutlet weak var taskNameTextField: UITextField!
-//    @IBOutlet weak var dateCreatedCell: UITableViewCell!
-//    
-//    private func updateUI() {
-//        if isViewLoaded {
-//            taskNameTextField.text = task?.name ?? "ERROR!"
-//            dateCreatedCell.textLabel?.text = formatDate(task?.dateCreated)
-//        }
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        updateUI()
-        
-//        taskNameTextField.delegate = self
         
         tableView.register(UINib.init(nibName: "TextFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "textFieldCell")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-//        taskNameTextField.resignFirstResponder()
         
         do {
             try AppDelegate.viewContext.save()
