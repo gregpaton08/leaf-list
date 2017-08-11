@@ -2,7 +2,6 @@
 
 ## To Do
 
-* Make name field in details view an editable text field (reuse NewTaskTableViewCell?).
 * Add option to empty trash
 * Hide completed button in trash view
 * Show parent task in details view under task tab
@@ -13,6 +12,7 @@
 * Add 'Completed on <DATE>' to details view if task is completed
 * Subclass UITextView to add placeholder test
 * Show parent task in detail view of a task in the tasks tab
+* Use text view for name field in details view to support multiple lines
 
 ## Completed
 
@@ -27,6 +27,7 @@
 * Bug: when clicking for the details of a completed task the checkbox button unchecks itself
 * Move completed task to end of list, set priority lower than the lowest uncomplete task and higher than the highest completed
 * Show date task was deleted in trash view
+* Make name field in details view an editable text field
 
 ## Stretch Goals
 
