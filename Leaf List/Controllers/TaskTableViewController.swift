@@ -82,7 +82,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
         switch displayStyle {
         case .task where insideDetailsView:
-            break
+            request.predicate = NSPredicate(format: "self == %@", task?.parent ?? "nil")
         case .task:
             let predicate = NSPredicate(format: "priority == 0 AND children.@count == 0")
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate, notDeletedPredicate])
