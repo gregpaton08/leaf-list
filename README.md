@@ -2,7 +2,7 @@
 
 ## To Do
 
-* Show parent task in detail view of a task in the tasks tab
+* Make parent task in detail view part of the details view table, not the task view table (cleaner API this way, too!)
 * Add 'Completed on <DATE>' to details view if task is completed
 * Add search option
 * Use text view for name field in details view to support multiple lines
@@ -26,6 +26,7 @@
 * Make name field in details view an editable text field
 * Add option to empty trash
 * Hide completed button in trash view
+* Show parent task in detail view of a task in the tasks tab
 
 ## Stretch Goals
 
