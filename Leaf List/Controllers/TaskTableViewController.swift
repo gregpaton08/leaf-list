@@ -105,14 +105,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         return request
     }
     
-    private func createFetchRequest(forSearchTerm searchTerm: String) -> NSFetchRequest<Task> {
-        let request: NSFetchRequest<Task> = Task.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
-        request.predicate = NSPredicate(format: "name CONTAINS[c] %@", searchTerm)
-        
-        return request
-    }
-    
     private func updateUI() {
         fetchedResultsController = NSFetchedResultsController<Task>(fetchRequest: createFetchRequest(), managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
@@ -503,14 +495,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Search results updating
     
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text)
-        
-        if !searchController.isActive {
-//            fetchedResultsController?.fetchRequest.
+        if !searchController.isActive || searchController.searchBar.text?.characters.count ?? 0 == 0 {
+            updateUI()
         } else {
             fetchedResultsController?.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
             fetchedResultsController?.fetchRequest.predicate = NSPredicate(format: "name CONTAINS[c] %@", searchController.searchBar.text ?? "")
-            //            fetchedResultsController?.fetchRequest = createFetchRequest(forSearchTerm: searchController.searchBar.text)
             try? fetchedResultsController?.performFetch()
             tableView.reloadData()
         }
