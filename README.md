@@ -2,17 +2,13 @@
 
 ## To Do
 
-* Add option to empty trash
-* Hide completed button in trash view
-* Show parent task in details view under task tab
-* Design app icon
+* Show parent task in detail view of a task in the tasks tab
+* Add 'Completed on <DATE>' to details view if task is completed
 * Add search option
+* Use text view for name field in details view to support multiple lines
+* Design app icon
 * add some color to the UI
 * option to color code tasks (box to left of task name label, option to set image?)
-* Add 'Completed on <DATE>' to details view if task is completed
-* Subclass UITextView to add placeholder test
-* Show parent task in detail view of a task in the tasks tab
-* Use text view for name field in details view to support multiple lines
 
 ## Completed
 
@@ -28,6 +24,8 @@
 * Move completed task to end of list, set priority lower than the lowest uncomplete task and higher than the highest completed
 * Show date task was deleted in trash view
 * Make name field in details view an editable text field
+* Add option to empty trash
+* Hide completed button in trash view
 
 ## Stretch Goals
 
@@ -40,3 +38,4 @@
 * Add completed view that sorts by date as sections to see daily progress
 * option to export data as xml and send to email
 * Clean up task drag-and-drop appearance
+* Subclass UITextView to add placeholder test
