@@ -420,10 +420,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell")
-//        footer?.layer.borderColor = UIColor.lightGray.cgColor
-//        footer?.layer.borderWidth = 1.0
-        return footer
+        if let footer = tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell {
+            //        footer?.layer.borderColor = UIColor.lightGray.cgColor
+            //        footer?.layer.borderWidth = 1.0
+            footer.newTaskTextField.delegate = self
+            return footer
+        }
+        
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
