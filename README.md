@@ -2,6 +2,8 @@
 
 ## To Do
 
+* When deleting a task with sub tasks show a pop up alert to confirm
+* When deleting a task with sub tasks delete all the subtasks
 * Use text view for name field in details view to support multiple lines
 * Design app icon
 * add some color to the UI
