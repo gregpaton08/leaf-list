@@ -239,6 +239,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+    }
+    
+    func keyboardDidShow() {
+        if tableView.numberOfRows(inSection: 0) > 0 {
+            tableView.scrollToRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: true)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -344,12 +352,22 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     // MARK: - Text field delegate
     
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        if tableView.numberOfRows(inSection: 0) > 0 {
+//            tableView.scrollToRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: false)
+//        }
+//    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text == nil || textField.text?.characters.count == 0) {
             textField.resignFirstResponder()
         } else {
             addTask(with: textField.text!)
             textField.text = nil
+            
+            if tableView.numberOfRows(inSection: 0) > 0 {
+                tableView.scrollToRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: false)
+            }
         }
         
         return true
