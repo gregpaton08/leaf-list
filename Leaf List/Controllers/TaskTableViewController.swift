@@ -414,7 +414,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             //        footer?.layer.borderColor = UIColor.lightGray.cgColor
             //        footer?.layer.borderWidth = 1.0
             footer.newTaskTextField.delegate = self
-            return footer
+            
+            // Need to return the content view or the footer will disappear when editing the table.
+            return footer.contentView
         }
         
         return nil
