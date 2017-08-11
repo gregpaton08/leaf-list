@@ -11,7 +11,7 @@ import UIKit
 import Foundation
 import CoreData
 
-class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, TaskTableViewCellDelegate, TaskDisplay {
+class TaskTableViewController: FetchedResultsTableViewController, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, TaskTableViewCellDelegate, TaskDisplay, UISearchResultsUpdating {
     
     // MARK: - API
     
@@ -34,6 +34,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     // MARK: - UI
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     private lazy var newTaskFooter: NewTaskTableViewCell? = {
         return self.tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell
@@ -235,6 +237,17 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.estimatedRowHeight = 44.0
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide the search bar by default.
+        tableView.contentOffset.y = searchController.searchBar.frame.height
     }
     
     func keyboardDidShow() {
@@ -477,6 +490,12 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if let nextVC = viewController as? TaskTableViewController {
             nextVC.showCompleted = showCompleted
         }
+    }
+    
+    // MARK: - Search results updating
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text)
     }
 
     // MARK: - Navigation
