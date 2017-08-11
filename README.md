@@ -2,7 +2,6 @@
 
 ## To Do
 
-* Scroll the task table down when adding a new task
 * Make parent task in detail view part of the details view table, not the task view table (cleaner API this way, too!)
     * need to make container view resize to height of table view
 * Add 'Completed on <DATE>' to details view if task is completed
@@ -14,6 +13,7 @@
 
 ## Completed
 
+* Scroll the task table down when adding a new task
 * Build real Details View with two table view: one static and one dynamic
 * Add "trash" view
 * add "completed" view
