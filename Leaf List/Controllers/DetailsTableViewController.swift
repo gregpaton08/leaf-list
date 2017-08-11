@@ -40,6 +40,8 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
 //        updateUI()
         
 //        taskNameTextField.delegate = self
+        
+        tableView.register(UINib.init(nibName: "TextFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "textFieldCell")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,12 +74,15 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskDetailCell", for: indexPath)
         
         switch indexPath.section {
         case 0:
-            cell.textLabel?.text = task?.name
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as? TextFieldTableViewCell {
+                cell.textField.text = task?.name
+                cell.textField.delegate = self
+            }
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "taskDetailCell", for: indexPath)
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = "Notes"
@@ -87,11 +92,12 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
             default:
                 break
             }
+            return cell
         default:
             break
         }
         
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: "taskDetailCell", for: indexPath)
     }
     
     // MARK: - Table view delegate
