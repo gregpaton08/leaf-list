@@ -33,13 +33,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
-    // Flag to signal if the view controller is contained inside the detail view controller.
-    var insideDetailsView = false {
-        didSet {
-            updateUI()
-        }
-    }
-    
     // MARK: - UI
     
     private lazy var newTaskFooter: NewTaskTableViewCell? = {
@@ -85,7 +78,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let uncompletePredicate = showCompleted ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
         switch displayStyle {
-        case .task where insideDetailsView:
+        case .task where parent is DetailsMasterViewController:
+            // If contained in a detail view then do not show any tasks.
             request.predicate = NSPredicate(format: "self == nil")
         case .task:
             let predicate = NSPredicate(format: "priority == 0 AND children.@count == 0")
