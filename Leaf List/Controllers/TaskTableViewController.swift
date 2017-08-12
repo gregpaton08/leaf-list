@@ -272,7 +272,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Hide the search bar by default.
-        tableView.contentOffset.y = searchController.searchBar.frame.height
+        if hasSearchBar {
+            tableView.contentOffset.y = searchController.searchBar.frame.height
+        }
     }
     
     func keyboardDidShow() {
