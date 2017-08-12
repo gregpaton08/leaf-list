@@ -9,11 +9,19 @@
 import UIKit
 
 class WarningAlertViewController: UIAlertController {
+    
+    var completedAction: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let noAction = UIAlertAction(title: "No", style: .cancel)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (alert) in
+            self.completedAction?()
+        }
+        addAction(noAction)
+        addAction(yesAction)
     }
 
     override func didReceiveMemoryWarning() {
