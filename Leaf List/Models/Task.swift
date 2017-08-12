@@ -32,11 +32,17 @@ class Task: NSManagedObject {
         taskDeleted = true
         dateDeleted = NSDate()
         priority = INT32_MAX
+        children?.forEach({ (child) in
+            if let task = child as? Task {
+                task.delete()
+            }
+        })
     }
     
     func restore() {
         taskDeleted = false
         dateDeleted = nil
+        parent?.restore()
     }
     
     func hasActiveChild() -> Bool {
