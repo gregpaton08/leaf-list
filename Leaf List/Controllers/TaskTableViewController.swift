@@ -154,6 +154,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             currentTask.taskCompleted = completed
             currentTask.dateCompleted = completed ? NSDate() : nil
             
+            normalizePriorities()
+            
             save(context)
         }
     }
@@ -426,7 +428,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 
                 cell.taskNameLabel.lineBreakMode = .byWordWrapping
                 cell.taskNameLabel.numberOfLines = 0
-//                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
+                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
