@@ -251,7 +251,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: self)
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
