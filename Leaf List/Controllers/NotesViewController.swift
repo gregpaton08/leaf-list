@@ -43,10 +43,17 @@ class NotesViewController: UIViewController, TaskDisplay {
         view.addGestureRecognizer(tapGestureRecognizer)
         
         doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
+        
+        // If the notes view is empty then display the keyboard.
+        if notesTextView.text.characters.count == 0 {
+            showKeyboard()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        dismissKeyboard()
         
         if !readOnly && task?.notes?.compare(notesTextView.text) != .orderedSame {
             task?.notes = notesTextView.text
