@@ -185,13 +185,19 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     private func deleteTask(at indexPath: IndexPath) {
         if let taskToDelete = fetchedResultsController?.object(at: indexPath) {
-            taskToDelete.delete()
-            save(AppDelegate.viewContext)
-            
-            // If the group view is displayed then normalize the priorities so that the highest priority task is 0.
-            if displayStyle == .group {
-                normalizePriorities()
+            let alertController = WarningAlertViewController(title: "Delete all tasks", message: "Delete all the tasks within \(taskToDelete.name ?? "ERROR!")", preferredStyle: .alert)
+            alertController.completedAction = {
+                AppDelegate.viewContext.perform({
+                    taskToDelete.delete()
+                    self.save(AppDelegate.viewContext)
+                    
+                    // If the group view is displayed then normalize the priorities so that the highest priority task is 0.
+                    if self.displayStyle == .group {
+                        self.normalizePriorities()
+                    }
+                })
             }
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
