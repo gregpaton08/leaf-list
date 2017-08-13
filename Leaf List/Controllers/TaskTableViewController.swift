@@ -178,12 +178,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func normalizePrioritiesInGroup(forTask: Task?) {
-//        var priority = 0
-//        fetchedResultsController?.fetchedObjects?.forEach({ (currentTask) in
-//            currentTask.priority = Int32(priority)
-//            priority += 1
-//        })
-        
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: true)]
         request.predicate = NSPredicate(format: "parent == %@ and taskCompleted = NO and taskDeleted = NO", forTask?.parent ?? "nil")
@@ -192,10 +186,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         var priority = 0
         tasksInGroup?.forEach({ (groupTask) in
-            if groupTask.priority != INT32_MAX {
-                groupTask.priority = Int32(priority)
-                priority += 1
-            }
+            assert(groupTask.priority != INT32_MAX)
+            groupTask.priority = Int32(priority)
+            priority += 1
         })
     }
     
