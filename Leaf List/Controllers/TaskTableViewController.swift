@@ -200,22 +200,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                     AppDelegate.viewContext.perform({
                         taskToDelete.delete()
                         self.save(AppDelegate.viewContext)
-                        
-                        // If the group view is displayed then normalize the priorities so that the highest priority task is 0.
-                        if self.displayStyle == .group {
-                            self.normalizePrioritiesInGroup(forTask: taskToDelete)
-                        }
+                        self.normalizePrioritiesInGroup(forTask: taskToDelete)
                     })
                 }
                 self.present(alertController, animated: true, completion: nil)
             } else {
                 taskToDelete.delete()
                 self.save(AppDelegate.viewContext)
-                
-                // If the group view is displayed then normalize the priorities so that the highest priority task is 0.
-                if self.displayStyle == .group {
-                    self.normalizePrioritiesInGroup(forTask: taskToDelete)
-                }
+                self.normalizePrioritiesInGroup(forTask: taskToDelete)
             }
         }
     }
