@@ -93,7 +93,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             // If contained in a detail view then do not show any tasks.
             request.predicate = NSPredicate(format: "self == nil")
         case .task:
-            let predicate = NSPredicate(format: "priority == 0 AND children.@count == 0")
+            // TODO: change children.@count == 0 to a subquery that checks for non-completed and non-deleted children.
+            let predicate = NSPredicate(format: "priority == 0 AND SUBQUERY(children, $child, $child.taskCompleted == NO AND $child.taskDeleted == NO).@count == 0")
+//            let predicate = NSPredicate(format: "priority == 0 AND children.@count == 0")
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, uncompletePredicate, notDeletedPredicate])
         case .group:
             var predicate: NSPredicate?
@@ -180,7 +182,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     private func normalizePrioritiesInGroup(forTask: Task?) {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: true)]
-        request.predicate = NSPredicate(format: "parent == %@ and taskCompleted = NO and taskDeleted = NO", forTask?.parent ?? "nil")
+        request.predicate = NSPredicate(format: "parent == %@ and taskCompleted == NO and taskDeleted == NO", forTask?.parent ?? "nil")
         
         let tasksInGroup = try? AppDelegate.viewContext.fetch(request)
         
