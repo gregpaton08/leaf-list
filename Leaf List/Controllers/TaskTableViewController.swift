@@ -143,7 +143,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         newTask.name = name
         newTask.dateCreated = NSDate()
         newTask.parent = task
-        newTask.priority = Int32(getHighestPriorityInGroup(forTask: newTask) + 1)
+        newTask.set(priority: getHighestPriorityInGroup(forTask: newTask) + 1)
         
         save(context)
     }
@@ -152,7 +152,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if let currentTask = fetchedResultsController?.object(at: indexPath) {
             let context = AppDelegate.viewContext
             
-            currentTask.priority = completed ? INT32_MAX : Int32(getHighestPriorityInGroup(forTask: currentTask) + 1)
+            currentTask.set(priority: completed ? Int(INT32_MAX) : (getHighestPriorityInGroup(forTask: currentTask) + 1))
             currentTask.taskCompleted = completed
             currentTask.dateCompleted = completed ? NSDate() : nil
             
@@ -174,8 +174,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     
     private func swapPriority(forTask: Task, withTask: Task) {
         let priorityFor = forTask.priority
-        forTask.priority = withTask.priority
-        withTask.priority = priorityFor
+        forTask.set(priority: Int(withTask.priority))
+        withTask.set(priority: Int(priorityFor))
 //        save(AppDelegate.viewContext)
     }
     
@@ -193,7 +193,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         var priority = 0
         tasksInGroup?.forEach({ (groupTask) in
             assert(groupTask.priority != INT32_MAX)
-            groupTask.priority = Int32(priority)
+            groupTask.set(priority: priority)
             priority += 1
         })
     }
@@ -445,7 +445,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 
                 cell.taskNameLabel.lineBreakMode = .byWordWrapping
                 cell.taskNameLabel.numberOfLines = 0
-                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority)"
+                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority), \(task.groupPriority)"
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
@@ -478,7 +478,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             let restoreAction = UITableViewRowAction.init(style: .normal, title: "Restore") { (action, indexPath) in
                 if let currentTask = self.fetchedResultsController?.object(at: indexPath) {
                     currentTask.restore()
-                    currentTask.priority = Int32(self.getHighestPriorityInGroup(forTask: currentTask) + 1)
+                    currentTask.set(priority: self.getHighestPriorityInGroup(forTask: currentTask) + 1)
                 }
             }
             restoreAction.backgroundColor = UIColor.defaultButtonBlue
