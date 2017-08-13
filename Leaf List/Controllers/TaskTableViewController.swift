@@ -311,7 +311,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     func handleLongPressGesture(_ gestureRecognizer: UIGestureRecognizer) {
-        if let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
+        if displayStyle == .group, let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
             
             let locationInView = longPressGesture.location(in: tableView)
             let indexPath = tableView.indexPathForRow(at: locationInView)
