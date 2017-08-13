@@ -45,6 +45,23 @@ class Task: NSManagedObject {
         parent?.restore()
     }
     
+    func set(priority newPriority: Int) {
+        assert(newPriority <= Int(INT32_MAX))
+        priority = Int32(newPriority)
+        if parent == nil {
+            set(groupPriority: newPriority)
+        }
+    }
+    
+    private func set(groupPriority newGroupPriority: Int) {
+        groupPriority = Int32(newGroupPriority)
+        children?.forEach({ (child) in
+            if let task = child as? Task {
+                task.set(groupPriority: newGroupPriority)
+            }
+        })
+    }
+    
     func hasActiveChild() -> Bool {
         var retVal = false
         children?.forEach { child in
