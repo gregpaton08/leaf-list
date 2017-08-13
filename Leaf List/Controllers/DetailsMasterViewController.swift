@@ -38,6 +38,9 @@ class DetailsMasterViewController: UIViewController, TaskDisplay {
             
             if let taskTableView = childView as? TaskTableViewController {
                 taskTableView.hasSearchBar = false
+                
+                // Set the task table view as the navigation controller delegate so that the completed button status can be passed back when this view is popped off the stack.
+                navigationController?.delegate = taskTableView
             }
         }
     }
