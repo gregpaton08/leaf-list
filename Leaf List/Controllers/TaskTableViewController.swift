@@ -55,7 +55,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func updateCompletedButtonColor() {
-        if displayStyle == .trash {
+        if displayStyle != .group {
             visibleNavigationItem.rightBarButtonItem = nil
         } else {
             if visibleNavigationItem.rightBarButtonItem == nil {
