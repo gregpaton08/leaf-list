@@ -154,7 +154,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             currentTask.taskCompleted = completed
             currentTask.dateCompleted = completed ? NSDate() : nil
             
-            normalizePriorities()
+            normalizePrioritiesInGroup(forTask: currentTask)
             
             save(context)
         }
@@ -177,17 +177,31 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
 //        save(AppDelegate.viewContext)
     }
     
-    private func normalizePriorities() {
+    private func normalizePrioritiesInGroup(forTask: Task?) {
+//        var priority = 0
+//        fetchedResultsController?.fetchedObjects?.forEach({ (currentTask) in
+//            currentTask.priority = Int32(priority)
+//            priority += 1
+//        })
+        
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: true)]
+        request.predicate = NSPredicate(format: "parent == %@ and taskCompleted = NO and taskDeleted = NO", forTask?.parent ?? "nil")
+        
+        let tasksInGroup = try? AppDelegate.viewContext.fetch(request)
+        
         var priority = 0
-        fetchedResultsController?.fetchedObjects?.forEach({ (currentTask) in
-            currentTask.priority = Int32(priority)
-            priority += 1
+        tasksInGroup?.forEach({ (groupTask) in
+            if groupTask.priority != INT32_MAX {
+                groupTask.priority = Int32(priority)
+                priority += 1
+            }
         })
     }
     
     private func deleteTask(at indexPath: IndexPath) {
         if let taskToDelete = fetchedResultsController?.object(at: indexPath) {
-            if taskToDelete.children?.count > 0 {
+            if taskToDelete.children?.count ?? 0 > 0 {
                 let alertController = WarningAlertViewController(title: "Delete all tasks", message: "Delete all the tasks within \(taskToDelete.name ?? "ERROR!")", preferredStyle: .alert)
                 alertController.completedAction = {
                     AppDelegate.viewContext.perform({
@@ -196,7 +210,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                         
                         // If the group view is displayed then normalize the priorities so that the highest priority task is 0.
                         if self.displayStyle == .group {
-                            self.normalizePriorities()
+                            self.normalizePrioritiesInGroup(forTask: taskToDelete)
                         }
                     })
                 }
@@ -207,7 +221,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 
                 // If the group view is displayed then normalize the priorities so that the highest priority task is 0.
                 if self.displayStyle == .group {
-                    self.normalizePriorities()
+                    self.normalizePrioritiesInGroup(forTask: taskToDelete)
                 }
             }
         }
