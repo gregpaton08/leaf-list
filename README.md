@@ -44,3 +44,4 @@
 * option to export data as xml and send to email
 * Clean up task drag-and-drop appearance
 * Subclass UITextView to add placeholder test
+* Add option to move a task to a different group
