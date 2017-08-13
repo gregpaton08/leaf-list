@@ -63,7 +63,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 visibleNavigationItem.setRightBarButton(button, animated: true)
             }
             
-            visibleNavigationItem.rightBarButtonItem?.tintColor = showCompleted ? UIColor.defaultButtonBlue : UIColor.gray
+            visibleNavigationItem.rightBarButtonItem?.tintColor = showCompleted ? UIColor.white : UIColor.init(white: 128.0 / 255, alpha: 1.0)
         }
     }
     
