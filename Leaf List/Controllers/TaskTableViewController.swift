@@ -255,11 +255,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             self.title = navigationController?.tabBarItem.title
         }
         
-        navigationController?.navigationBar.barTintColor = UIColor.carribeanGreen
-        navigationController?.navigationBar.titleTextAttributes?[NSForegroundColorAttributeName] = UIColor.white
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.isTranslucent = false
+        setNavBarColor()
     }
 
     override func viewDidLoad() {
@@ -598,6 +594,14 @@ extension UIViewController {
                 return self.navigationItem
             }
         }
+    }
+    
+    func setNavBarColor() {
+        navigationController?.navigationBar.barTintColor = UIColor.carribeanGreen
+        navigationController?.navigationBar.titleTextAttributes?[NSForegroundColorAttributeName] = UIColor.white
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.isTranslucent = false
     }
 }
 

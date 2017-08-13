@@ -31,6 +31,12 @@ class MoreTableViewController: UITableViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setNavBarColor()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let taskVC = segue.destination as? TaskTableViewController {
             taskVC.displayStyle = .trash
