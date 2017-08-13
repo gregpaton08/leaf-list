@@ -2,6 +2,7 @@
 
 ## To Do
 
+* Change bar button tint color to green (?)
 * Use text view for name field in details view to support multiple lines
 * Design app icon
 * add some color to the UI
