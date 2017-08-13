@@ -74,7 +74,15 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     private func createFetchRequest() -> NSFetchRequest<Task> {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
         
-        let sortByPriority = NSSortDescriptor(key: "priority", ascending: true)
+        let sortByPriority = NSSortDescriptor(key: {
+            switch displayStyle {
+            case .task:
+                return "groupPriority"
+            default:
+                return "priority"
+            }
+        }(), ascending: true)
+        
         let sortByDate = NSSortDescriptor(key: {
             switch displayStyle {
             case .trash:
