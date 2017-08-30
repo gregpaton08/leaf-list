@@ -460,6 +460,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if displayStyle == .completed {
+            return String(section)
+        }
+        
+        return nil
+    }
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
