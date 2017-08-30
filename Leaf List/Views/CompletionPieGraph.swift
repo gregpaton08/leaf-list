@@ -20,7 +20,7 @@ class CompletionPieGraph: UIView {
         }
     }
     
-    private var _percentComplete = 50
+    private var _percentComplete = 90
     
     private func getPointFor(radius: CGFloat, andTheta theta: CGFloat, fromOrigin origin: CGPoint) -> CGPoint {
         return CGPoint(x: origin.x + (radius * cos(theta)), y: origin.y + (radius * sin(theta)))
@@ -41,14 +41,14 @@ class CompletionPieGraph: UIView {
 //            path.move(to: self.center)
             
 //            path.move(to: self.center)
-            let theta = -(CGFloat(_percentComplete) * 2 * CGFloat.pi) / 100.0
+            let theta = (-CGFloat.pi / 2) + (CGFloat(_percentComplete) * 2 * CGFloat.pi) / 100.0
             //            path.addLine(to: getPointFor(radius: radius, andTheta: theta, fromOrigin: self.center))
             path.addArc(withCenter: self.center, radius: radius, startAngle: -CGFloat.pi / 2, endAngle: theta, clockwise: true)
             path.addLine(to: self.center)
-            path.addLine(to: CGPoint(x: self.center.x, y: self.center.y - 11.0))
+//            path.addLine(to: CGPoint(x: self.center.x, y: self.center.y - 11.0))
             
             path.stroke()
-            path.fill()
+//            path.fill()
         }
     }
     
