@@ -39,8 +39,19 @@ class MoreTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let taskVC = segue.destination as? TaskTableViewController {
-            taskVC.displayStyle = .trash
-            taskVC.showCompleted = true
+            if let taskCell = sender as? UITableViewCell {
+                if let indexPath = tableView.indexPath(for: taskCell) {
+                    switch indexPath.row {
+                    case 0:
+                        taskVC.displayStyle = .trash
+                        taskVC.showCompleted = true
+                    case 2:
+                        taskVC.displayStyle = .completed
+                    default:
+                        break
+                    }
+                }
+            }
         }
     }
 

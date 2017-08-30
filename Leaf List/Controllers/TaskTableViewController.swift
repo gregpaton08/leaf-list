@@ -111,6 +111,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 predicate = NSPredicate(format: "parent = nil")
             }
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, uncompletePredicate, notDeletedPredicate])
+        case .completed:
+            request.predicate = NSPredicate(format: "taskCompleted == YES")
         case .trash:
             if task != nil {
                 request.predicate = NSPredicate(value: false)
@@ -123,7 +125,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func updateUI() {
-        fetchedResultsController = NSFetchedResultsController<Task>(fetchRequest: createFetchRequest(), managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController<Task>(fetchRequest: createFetchRequest(), managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: displayStyle == .completed ? "dateCompleted" : nil, cacheName: nil)
         fetchedResultsController?.delegate = self
         try? fetchedResultsController?.performFetch()
         tableView.reloadData()
@@ -421,25 +423,20 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchedResultsController?.sections?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            if let sections = fetchedResultsController?.sections {
-                return sections[section].numberOfObjects
-            }
-        default:
-            break
-        }
+        if let sections = fetchedResultsController?.sections {
+            return sections[section].numberOfObjects
+        }            
         
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+//        switch indexPath.section {
+//        case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
             
             if let task = fetchedResultsController?.object(at: indexPath) {
@@ -464,11 +461,11 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
             
             return cell
-        default:
-            break
-        }
+//        default:
+//            break
+//        }
         
-        return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+//        return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
     }
 
     // Override to support editing the table view.
@@ -507,6 +504,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
         
         if displayStyle == .task {
+            return false
+        }
+        
+        if displayStyle == .completed {
             return false
         }
         

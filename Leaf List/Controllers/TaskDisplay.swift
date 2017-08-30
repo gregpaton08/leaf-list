@@ -12,6 +12,7 @@ import CoreData
 enum TaskDisplayStyle {
     case task
     case group
+    case completed
     case trash
 }
 
