@@ -28,27 +28,22 @@ class CompletionPieGraph: UIView {
     
     override func draw(_ rect: CGRect) {
         // Draw the checkbox border.
-//        let path = UIBezierPath()
+        let path = UIBezierPath()
         let radius: CGFloat = 11.0
-//        path.addArc(withCenter: self.center, radius: radius, startAngle: 0, endAngle: 2.0 * CGFloat.pi, clockwise: false)
+        path.addArc(withCenter: self.center, radius: radius, startAngle: 0, endAngle: 2.0 * CGFloat.pi, clockwise: false)
         graphColor.setStroke()
         graphColor.setFill()
-//        path.lineWidth = 1.0
-//        path.stroke()
+        path.lineWidth = 1.0
+        path.stroke()
         
         if _percentComplete > 0 {
             let path = UIBezierPath()
-//            path.move(to: self.center)
-            
-//            path.move(to: self.center)
             let theta = (-CGFloat.pi / 2) + (CGFloat(_percentComplete) * 2 * CGFloat.pi) / 100.0
-            //            path.addLine(to: getPointFor(radius: radius, andTheta: theta, fromOrigin: self.center))
             path.addArc(withCenter: self.center, radius: radius, startAngle: -CGFloat.pi / 2, endAngle: theta, clockwise: true)
             path.addLine(to: self.center)
-//            path.addLine(to: CGPoint(x: self.center.x, y: self.center.y - 11.0))
-            
-            path.stroke()
-//            path.fill()
+            path.addLine(to: CGPoint(x: self.center.x, y: self.center.y - 11.0))
+        
+            path.fill()
         }
     }
     
