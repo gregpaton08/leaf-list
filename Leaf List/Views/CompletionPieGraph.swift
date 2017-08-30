@@ -11,16 +11,17 @@ import UIKit
 @IBDesignable
 class CompletionPieGraph: UIView {
     
-    var percentComplete: Int {
+    var percentComplete: CGFloat {
         get {
             return _percentComplete
         }
         set {
             _percentComplete = newValue
+            setNeedsDisplay()
         }
     }
     
-    private var _percentComplete = 90
+    private var _percentComplete: CGFloat = 0.0
     
     private func getPointFor(radius: CGFloat, andTheta theta: CGFloat, fromOrigin origin: CGPoint) -> CGPoint {
         return CGPoint(x: origin.x + (radius * cos(theta)), y: origin.y + (radius * sin(theta)))
@@ -38,7 +39,7 @@ class CompletionPieGraph: UIView {
         
         if _percentComplete > 0 {
             let path = UIBezierPath()
-            let theta = (-CGFloat.pi / 2) + (CGFloat(_percentComplete) * 2 * CGFloat.pi) / 100.0
+            let theta = (-CGFloat.pi / 2) + (_percentComplete * 2 * CGFloat.pi) / 100.0
             path.addArc(withCenter: self.center, radius: radius, startAngle: -CGFloat.pi / 2, endAngle: theta, clockwise: true)
             path.addLine(to: self.center)
             path.addLine(to: CGPoint(x: self.center.x, y: self.center.y - 11.0))

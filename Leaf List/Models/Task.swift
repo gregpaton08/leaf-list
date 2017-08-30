@@ -74,4 +74,23 @@ class Task: NSManagedObject {
         return retVal
     }
     
+    func numChildren() -> Int {
+        var numChildren = 0
+        children?.forEach { child in
+            if let task = child as? Task {
+                numChildren += 1 + task.numChildren()
+            }
+        }
+        return numChildren
+    }
+    
+    func numCompleteChildren() -> Int {
+        var numCompleteChildren = 0
+        children?.forEach { child in
+            if let task = child as? Task {
+                numCompleteChildren += (task.taskCompleted ? 1 : 0) + task.numChildren()
+            }
+        }
+        return numCompleteChildren    }
+    
 }

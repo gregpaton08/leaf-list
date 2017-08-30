@@ -451,7 +451,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
                 
                 cell.checkBox.isChecked = task.taskCompleted
-                cell.checkBox.isHidden = displayStyle == .trash || task.hasActiveChild()
+                if displayStyle == .trash || task.hasActiveChild() {
+                    cell.checkBox.isHidden = true
+                    cell.completionGraph.isHidden = false
+                    cell.completionGraph.percentComplete = 100.0 * CGFloat(task.numCompleteChildren()) / CGFloat(task.numChildren())
+                } else {
+                    cell.checkBox.isHidden = false
+                    cell.completionGraph.isHidden = true
+                }
                 
                 cell.delegate = self
             }
