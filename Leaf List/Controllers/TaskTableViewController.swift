@@ -429,43 +429,36 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController?.sections {
             return sections[section].numberOfObjects
-        }            
+        }
         
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        switch indexPath.section {
-//        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
+        
+        if let task = fetchedResultsController?.object(at: indexPath) {
+            cell.taskNameLabel.text = task.name
             
-            if let task = fetchedResultsController?.object(at: indexPath) {
-                cell.taskNameLabel.text = task.name
-                
-                cell.taskNameLabel.lineBreakMode = .byWordWrapping
-                cell.taskNameLabel.numberOfLines = 0
+            cell.taskNameLabel.lineBreakMode = .byWordWrapping
+            cell.taskNameLabel.numberOfLines = 0
 //                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority), \(task.groupPriority)"
-                cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
-                
-                cell.checkBox.isChecked = task.taskCompleted
-                if displayStyle == .trash || task.hasActiveChild() {
-                    cell.checkBox.isHidden = true
-                    cell.completionGraph.isHidden = false
-                    cell.completionGraph.percentComplete = 100.0 * CGFloat(task.numCompleteChildren()) / CGFloat(task.numChildren())
-                } else {
-                    cell.checkBox.isHidden = false
-                    cell.completionGraph.isHidden = true
-                }
-                
-                cell.delegate = self
+            cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
+            
+            cell.checkBox.isChecked = task.taskCompleted
+            if displayStyle == .trash || task.hasActiveChild() {
+                cell.checkBox.isHidden = true
+                cell.completionGraph.isHidden = false
+                cell.completionGraph.percentComplete = 100.0 * CGFloat(task.numCompleteChildren()) / CGFloat(task.numChildren())
+            } else {
+                cell.checkBox.isHidden = false
+                cell.completionGraph.isHidden = true
             }
             
-            return cell
-//        default:
-//            break
-//        }
+            cell.delegate = self
+        }
         
-//        return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+        return cell
     }
 
     // Override to support editing the table view.
