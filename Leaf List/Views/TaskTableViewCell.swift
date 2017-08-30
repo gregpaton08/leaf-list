@@ -15,6 +15,7 @@ protocol TaskTableViewCellDelegate {
 class TaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var checkBox: CheckBox!
+    @IBOutlet weak var completionGraph: CompletionPieGraph!
     @IBOutlet weak var taskNameLabel: UILabel!
     
     var delegate: TaskTableViewCellDelegate?

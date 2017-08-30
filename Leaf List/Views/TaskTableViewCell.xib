@@ -35,7 +35,7 @@
                             <action selector="selectCheckBox:" destination="Wno-Sz-5V3" eventType="touchUpInside" id="dzf-23-oDi"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qm9-xa-VAq" customClass="CompletionPieGraph" customModule="Leaf_List" customModuleProvider="target">
+                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qm9-xa-VAq" customClass="CompletionPieGraph" customModule="Leaf_List" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,6 +50,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="checkBox" destination="VaA-BY-xRx" id="8aH-0z-YRb"/>
+                <outlet property="completionGraph" destination="Qm9-xa-VAq" id="s5W-8f-jwh"/>
                 <outlet property="taskNameLabel" destination="gT1-lE-O2i" id="dVr-iF-zee"/>
             </connections>
             <point key="canvasLocation" x="93.5" y="-50"/>
