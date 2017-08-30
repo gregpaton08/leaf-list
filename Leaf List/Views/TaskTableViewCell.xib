@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,6 +35,11 @@
                             <action selector="selectCheckBox:" destination="Wno-Sz-5V3" eventType="touchUpInside" id="dzf-23-oDi"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qm9-xa-VAq" customClass="CompletionPieGraph" customModule="Leaf_List" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gT1-lE-O2i" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="44" id="4m2-kh-TSO"/>
@@ -47,7 +52,7 @@
                 <outlet property="checkBox" destination="VaA-BY-xRx" id="8aH-0z-YRb"/>
                 <outlet property="taskNameLabel" destination="gT1-lE-O2i" id="dVr-iF-zee"/>
             </connections>
-            <point key="canvasLocation" x="111.5" y="-49"/>
+            <point key="canvasLocation" x="93.5" y="-50"/>
         </tableViewCell>
     </objects>
 </document>
