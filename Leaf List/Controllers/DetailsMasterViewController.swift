@@ -15,7 +15,6 @@ class DetailsMasterViewController: UIViewController, TaskDisplay {
     
     var task: Task?
     var displayStyle: TaskDisplayStyle = .group
-    var showCompleted: Bool = false
     
     // MARK: View
     

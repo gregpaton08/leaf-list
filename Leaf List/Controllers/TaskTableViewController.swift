@@ -23,15 +23,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     var displayStyle: TaskDisplayStyle = .group
-    var showCompleted = false {
-        didSet {
-            if isViewLoaded {
-                updateUI()
-            } else {
-                updateCompletedButtonColor()
-            }
-        }
-    }
     
     var hasSearchBar: Bool {
         get {
@@ -49,23 +40,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     private lazy var newTaskFooter: NewTaskTableViewCell? = {
         return self.tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell
     }()
-    
-    @IBAction func showCompleted(_ sender: UIBarButtonItem) {
-        showCompleted = !showCompleted
-    }
-    
-    private func updateCompletedButtonColor() {
-        if displayStyle != .group {
-            visibleNavigationItem.rightBarButtonItem = nil
-        } else {
-            if visibleNavigationItem.rightBarButtonItem == nil {
-                let button = UIBarButtonItem(title: "Completed", style: .plain, target: self, action: #selector(TaskTableViewController.showCompleted(_:)))
-                visibleNavigationItem.setRightBarButton(button, animated: true)
-            }
-            
-            visibleNavigationItem.rightBarButtonItem?.tintColor = showCompleted ? UIColor.white : UIColor.init(white: 128.0 / 255, alpha: 1.0)
-        }
-    }
     
     // MARK: - Data model
     
@@ -94,7 +68,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         request.sortDescriptors = [sortByPriority, sortByDate]
         
-        let uncompletePredicate = showCompleted ? NSPredicate(value: true) : NSPredicate(format: "taskCompleted == NO")
+        let uncompletePredicate = NSPredicate(format: "taskCompleted == NO")
         let notDeletedPredicate = NSPredicate(format: "taskDeleted == NO")
         switch displayStyle {
         case .task where parent is DetailsMasterViewController:
@@ -129,8 +103,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         fetchedResultsController?.delegate = self
         try? fetchedResultsController?.performFetch()
         tableView.reloadData()
-        
-        updateCompletedButtonColor()
     }
     
     private func save(_ context: NSManagedObjectContext) {
@@ -534,15 +506,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
         
         return 0.0
-    }
-    
-    // MARK: - Navigation view controller delegate
-    
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        // Pass the state of the 'Completed' button back up the navigation controller stack when views are popped off.
-        if let nextVC = viewController as? TaskTableViewController {
-            nextVC.showCompleted = showCompleted
-        }
     }
     
     // MARK: - Search results updating

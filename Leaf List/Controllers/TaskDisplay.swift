@@ -24,9 +24,6 @@ protocol TaskDisplay {
     
     // The style used for displaying the task.
     var displayStyle: TaskDisplayStyle { get set }
-    
-    // Flag for whether or not to display completed tasks
-    var showCompleted: Bool { get set }
 }
 
 
@@ -34,6 +31,5 @@ extension TaskDisplay {
     mutating func initFromTaskDisplay(_ taskDisplay: TaskDisplay) {
         task = taskDisplay.task
         displayStyle = taskDisplay.displayStyle
-        showCompleted = taskDisplay.showCompleted
     }
 }

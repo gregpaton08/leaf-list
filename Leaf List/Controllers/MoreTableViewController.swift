@@ -44,7 +44,6 @@ class MoreTableViewController: UITableViewController {
                     switch indexPath.row {
                     case 0:
                         taskVC.displayStyle = .trash
-                        taskVC.showCompleted = true
                     case 2:
                         taskVC.displayStyle = .completed
                     default:

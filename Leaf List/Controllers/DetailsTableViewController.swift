@@ -16,7 +16,6 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     var task: Task?
     
     var displayStyle: TaskDisplayStyle = .group
-    var showCompleted: Bool = false
     
     // MARK: - UI
     
