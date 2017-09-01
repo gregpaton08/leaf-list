@@ -8,6 +8,7 @@
 * Design app icon
 * add some color to the UI
 * option to color code tasks (box to left of task name label, option to set image?)
+* Fix bug: after searching the offset for the nav bar is doubled and the search bar can't be hidden
 
 ## Completed
 
