@@ -279,8 +279,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if let footer = newTaskFooter {
             if let taskName = footer.newTaskTextField.text, taskName.characters.count > 0 {
                 addTask(with: taskName)
+                footer.newTaskTextField.text = ""
             }
-            footer.resignFirstResponder()
+            footer.newTaskTextField.resignFirstResponder()
         }
     }
     
@@ -534,7 +535,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if var taskDisplay = segue.destination as? TaskDisplay {
             if let taskForCell = getTaskForCell(sender) {
                 taskDisplay.initFromTaskDisplay(self)
