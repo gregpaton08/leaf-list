@@ -256,8 +256,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         hasSearchBar = displayStyle != .task
         
-        tableView.setEditing(true, animated: false)
-        tableView.allowsSelectionDuringEditing = true
+//        tableView.setEditing(true, animated: false)
+//        tableView.allowsSelectionDuringEditing = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -324,7 +324,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             cell.taskNameLabel.lineBreakMode = .byWordWrapping
             cell.taskNameLabel.numberOfLines = 0
-//                cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority), \(task.groupPriority)"
+            cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority), \(task.groupPriority)"
             cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
             
             cell.checkBox.isChecked = task.taskCompleted
@@ -426,14 +426,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
         
         return 0.0
-    }
-    
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .none
-    }
-    
-    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
     }
     
     // MARK: - Search results updating
