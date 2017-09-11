@@ -45,6 +45,11 @@ class CompletionPieGraph: UIView {
             path.addLine(to: CGPoint(x: self.center.x, y: self.center.y - 11.0))
         
             path.fill()
+        } else {
+            let path = UIBezierPath()
+            path.move(to: self.center)
+            path.addLine(to: CGPoint(x: self.center.x, y: self.center.y - 11.0))
+            path.stroke()
         }
     }
     
