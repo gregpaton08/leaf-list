@@ -338,6 +338,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
             
             cell.delegate = self
+            
+            cell.editingAccessoryType = .disclosureIndicator
         }
         
         return cell
