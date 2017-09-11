@@ -48,12 +48,12 @@
             <objects>
                 <tableViewController id="0jt-ci-lWw" customClass="DetailsTableViewController" customModule="Leaf_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ViC-B5-2cp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskDetailCell" id="MF9-GA-ljO">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MF9-GA-ljO" id="zaE-Qh-NHt">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -131,7 +131,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3G9-wz-TGn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZLd-Nh-dZU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57s-xY-EJw">
@@ -325,8 +325,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="N4u-R0-fdJ"/>
+        <segue reference="gEN-zL-yCW"/>
         <segue reference="nC0-z2-cQn"/>
-        <segue reference="5RB-wX-LAj"/>
+        <segue reference="N4u-R0-fdJ"/>
     </inferredMetricsTieBreakers>
 </document>

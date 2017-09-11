@@ -244,8 +244,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.register(UINib.init(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "taskCell")
         tableView.register(UINib.init(nibName: "NewTaskTableViewCell", bundle: nil), forCellReuseIdentifier: "newTaskCell")
         
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
-        tableView.addGestureRecognizer(longPressGesture)
+//        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
+//        tableView.addGestureRecognizer(longPressGesture)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
@@ -258,6 +258,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         tableView.tableHeaderView = searchController.searchBar
         
         hasSearchBar = displayStyle != .task
+        
+        tableView.setEditing(true, animated: false)
+        tableView.allowsSelectionDuringEditing = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -285,96 +288,96 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
-    func handleLongPressGesture(_ gestureRecognizer: UIGestureRecognizer) {
-        if displayStyle == .group, let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
-            
-            let locationInView = longPressGesture.location(in: tableView)
-            let indexPath = tableView.indexPathForRow(at: locationInView)
-            
-            
-            struct My {
-                static var cellSnapshot : UIView? = nil
-            }
-            struct Path {
-                static var initialIndexPath : IndexPath? = nil
-            }
-            
-            switch longPressGesture.state {
-            case .began:
-                if indexPath != nil && indexPath?.section == 0 {
-                    if let selectedTask = fetchedResultsController?.object(at: indexPath!) {
-                        if selectedTask.taskCompleted {
-                            break
-                        }
-                    }
-                    Path.initialIndexPath = indexPath
-                    let cell = tableView.cellForRow(at: indexPath!)!
-                    My.cellSnapshot  = snapShotOfCell(inputView: cell)
-                    var center = cell.center
-                    My.cellSnapshot!.center = center
-                    My.cellSnapshot!.alpha = 0.0
-                    tableView.addSubview(My.cellSnapshot!)
-                    
-                    UIView.animate(withDuration: 0.25, animations: {
-                        center.y = locationInView.y
-                        My.cellSnapshot!.center = center
-                        My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-                        My.cellSnapshot!.alpha = 0.98
-                        cell.alpha = 0.0
-                    }, completion: { (finished) in
-                        if finished {
-                            cell.isHidden = true
-                        }
-                    })
-                }
-            case .changed:
-                // Need to check if cell is nil. Could be nil if initial press was in an unsupported section.
-                if let cell = My.cellSnapshot, indexPath != nil && indexPath?.section == 0 {
-                    if let swapTask = fetchedResultsController?.object(at: indexPath!), !swapTask.taskCompleted {
-                        var center = cell.center
-                        center.y = locationInView.y
-                        cell.center = center
-                        if indexPath != Path.initialIndexPath {
-                            swapPriority(forTask: swapTask, withTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!)
-                            Path.initialIndexPath = indexPath
-                        }
-                    }
-                }
-            default:
-                if let initialIndexPath = Path.initialIndexPath {
-                    let cell = tableView.cellForRow(at: initialIndexPath)!
-                    cell.isHidden = false
-                    cell.alpha = 0.0
-                    UIView.animate(withDuration: 0.25, animations: {
-                        My.cellSnapshot!.center = cell.center
-                        My.cellSnapshot!.transform = CGAffineTransform.identity
-                        My.cellSnapshot!.alpha = 0.0
-                        cell.alpha = 1.0
-                    }, completion: { (finished) in
-                        if finished {
-                            Path.initialIndexPath = nil
-                            My.cellSnapshot!.removeFromSuperview()
-                            My.cellSnapshot = nil
-                        }
-                    })
-                }
-            }
-        }
-    }
-    
-    func snapShotOfCell(inputView: UIView) -> UIView {
-        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
-        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        let cellSnapshot : UIView = UIImageView(image: image)
-        cellSnapshot.layer.masksToBounds = false
-        cellSnapshot.layer.cornerRadius = 0.0
-        cellSnapshot.layer.shadowOffset = CGSize.init(width: -5.0, height: 0.0)
-        cellSnapshot.layer.shadowRadius = 5.0
-        cellSnapshot.layer.shadowOpacity = 0.4
-        return cellSnapshot
-    }
+//    func handleLongPressGesture(_ gestureRecognizer: UIGestureRecognizer) {
+//        if displayStyle == .group, let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
+//            
+//            let locationInView = longPressGesture.location(in: tableView)
+//            let indexPath = tableView.indexPathForRow(at: locationInView)
+//            
+//            
+//            struct My {
+//                static var cellSnapshot : UIView? = nil
+//            }
+//            struct Path {
+//                static var initialIndexPath : IndexPath? = nil
+//            }
+//            
+//            switch longPressGesture.state {
+//            case .began:
+//                if indexPath != nil && indexPath?.section == 0 {
+//                    if let selectedTask = fetchedResultsController?.object(at: indexPath!) {
+//                        if selectedTask.taskCompleted {
+//                            break
+//                        }
+//                    }
+//                    Path.initialIndexPath = indexPath
+//                    let cell = tableView.cellForRow(at: indexPath!)!
+//                    My.cellSnapshot  = snapShotOfCell(inputView: cell)
+//                    var center = cell.center
+//                    My.cellSnapshot!.center = center
+//                    My.cellSnapshot!.alpha = 0.0
+//                    tableView.addSubview(My.cellSnapshot!)
+//                    
+//                    UIView.animate(withDuration: 0.25, animations: {
+//                        center.y = locationInView.y
+//                        My.cellSnapshot!.center = center
+//                        My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+//                        My.cellSnapshot!.alpha = 0.98
+//                        cell.alpha = 0.0
+//                    }, completion: { (finished) in
+//                        if finished {
+//                            cell.isHidden = true
+//                        }
+//                    })
+//                }
+//            case .changed:
+//                // Need to check if cell is nil. Could be nil if initial press was in an unsupported section.
+//                if let cell = My.cellSnapshot, indexPath != nil && indexPath?.section == 0 {
+//                    if let swapTask = fetchedResultsController?.object(at: indexPath!), !swapTask.taskCompleted {
+//                        var center = cell.center
+//                        center.y = locationInView.y
+//                        cell.center = center
+//                        if indexPath != Path.initialIndexPath {
+//                            swapPriority(forTask: swapTask, withTask: (fetchedResultsController?.object(at: Path.initialIndexPath!))!)
+//                            Path.initialIndexPath = indexPath
+//                        }
+//                    }
+//                }
+//            default:
+//                if let initialIndexPath = Path.initialIndexPath {
+//                    let cell = tableView.cellForRow(at: initialIndexPath)!
+//                    cell.isHidden = false
+//                    cell.alpha = 0.0
+//                    UIView.animate(withDuration: 0.25, animations: {
+//                        My.cellSnapshot!.center = cell.center
+//                        My.cellSnapshot!.transform = CGAffineTransform.identity
+//                        My.cellSnapshot!.alpha = 0.0
+//                        cell.alpha = 1.0
+//                    }, completion: { (finished) in
+//                        if finished {
+//                            Path.initialIndexPath = nil
+//                            My.cellSnapshot!.removeFromSuperview()
+//                            My.cellSnapshot = nil
+//                        }
+//                    })
+//                }
+//            }
+//        }
+//    }
+//    
+//    func snapShotOfCell(inputView: UIView) -> UIView {
+//        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+//        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+//        let image = UIGraphicsGetImageFromCurrentImageContext()!
+//        UIGraphicsEndImageContext()
+//        let cellSnapshot : UIView = UIImageView(image: image)
+//        cellSnapshot.layer.masksToBounds = false
+//        cellSnapshot.layer.cornerRadius = 0.0
+//        cellSnapshot.layer.shadowOffset = CGSize.init(width: -5.0, height: 0.0)
+//        cellSnapshot.layer.shadowRadius = 5.0
+//        cellSnapshot.layer.shadowOpacity = 0.4
+//        return cellSnapshot
+//    }
     
     // MARK: - Text field delegate
     
@@ -451,6 +454,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }    
     }
     
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+    }
+    
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -507,6 +518,14 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
         
         return 0.0
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     // MARK: - Search results updating
