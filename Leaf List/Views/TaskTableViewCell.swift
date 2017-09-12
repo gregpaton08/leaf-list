@@ -24,8 +24,11 @@ class TaskTableViewCell: UITableViewCell {
                 groupNameLabel.text = nil
             } else {
                 groupNameLabel.isHidden = false
-                groupNameLabelHeightConstraint.constant = 14.5
                 groupNameLabel.text = groupName
+                groupNameLabelHeightConstraint.constant = 14.5
+                
+                groupNameLabel.numberOfLines = 0
+                groupNameLabel.sizeToFit()
             }
         }
     }
