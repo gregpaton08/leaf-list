@@ -42,7 +42,7 @@ class ColorLabel: UIView {
         label.sizeToFit()
         super.sizeToFit()
         
-        bounds.size.height = label.bounds.size.height
+        bounds.size.height = label.bounds.size.height + (marginSize * 2)
     }
     
     override func awakeFromNib() {
