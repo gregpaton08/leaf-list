@@ -38,6 +38,13 @@ class ColorLabel: UIView {
     
     private let marginSize: CGFloat = 3.0
     
+    override func sizeToFit() {
+        label.sizeToFit()
+        super.sizeToFit()
+        
+        bounds.size.height = label.bounds.size.height
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
