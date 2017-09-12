@@ -51,5 +51,7 @@ class TaskTableViewCell: UITableViewCell {
         groupNameLabel.layer.cornerRadius = groupNameLabel.frame.height / 2
         groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
         groupNameLabel.textColor = UIColor.white
+        
+        groupName = nil
     }
 }

@@ -335,6 +335,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 cell.checkBox.mode = .checkBox
             }
             
+            if displayStyle == .task {
+                cell.groupName = task.parent?.name
+            }
+            
             cell.delegate = self
             
             cell.editingAccessoryType = .disclosureIndicator
