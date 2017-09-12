@@ -23,7 +23,6 @@
 		371525281F39461C00A394B8 /* Leaf_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371525261F39461C00A394B8 /* Leaf_List.xcdatamodeld */; };
 		3715252A1F39463C00A394B8 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371525291F39463C00A394B8 /* CheckBox.swift */; };
 		3715252C1F39464800A394B8 /* TaskNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715252B1F39464800A394B8 /* TaskNameTableViewCell.swift */; };
-		376D35691F67A28900572EEE /* LabelWithMargin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D35681F67A28900572EEE /* LabelWithMargin.swift */; };
 		37986F6F1F3DD95600263075 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37986F6D1F3DD95600263075 /* TextFieldTableViewCell.swift */; };
 		37986F701F3DD95600263075 /* TextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37986F6E1F3DD95600263075 /* TextFieldTableViewCell.xib */; };
 		37A00F891F5652D9001CB268 /* CompletionPieGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A00F881F5652D9001CB268 /* CompletionPieGraph.swift */; };
@@ -51,7 +50,6 @@
 		371525271F39461C00A394B8 /* Leaf_List.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Leaf_List.xcdatamodel; sourceTree = "<group>"; };
 		371525291F39463C00A394B8 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		3715252B1F39464800A394B8 /* TaskNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskNameTableViewCell.swift; sourceTree = "<group>"; };
-		376D35681F67A28900572EEE /* LabelWithMargin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithMargin.swift; sourceTree = "<group>"; };
 		37986F6D1F3DD95600263075 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		37986F6E1F3DD95600263075 /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		37A00F881F5652D9001CB268 /* CompletionPieGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionPieGraph.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 				3715250E1F39436900A394B8 /* TaskTableViewCell.xib */,
 				37986F6D1F3DD95600263075 /* TextFieldTableViewCell.swift */,
 				37986F6E1F3DD95600263075 /* TextFieldTableViewCell.xib */,
-				376D35681F67A28900572EEE /* LabelWithMargin.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,7 +237,6 @@
 				3715252A1F39463C00A394B8 /* CheckBox.swift in Sources */,
 				371525231F39449400A394B8 /* TaskTableViewController.swift in Sources */,
 				37A00F891F5652D9001CB268 /* CompletionPieGraph.swift in Sources */,
-				376D35691F67A28900572EEE /* LabelWithMargin.swift in Sources */,
 				371525111F39436900A394B8 /* TaskTableViewCell.swift in Sources */,
 				37ECFF771F178722001A9314 /* AppDelegate.swift in Sources */,
 			);
