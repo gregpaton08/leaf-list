@@ -13,6 +13,22 @@ protocol TaskTableViewCellDelegate {
 }
 
 class TaskTableViewCell: UITableViewCell {
+    
+    // MARK: - API
+    
+    var groupName: String? {
+        didSet {
+            if groupName == nil {
+                groupNameLabel.isHidden = true
+                groupNameLabelHeightConstraint.constant = 0.0
+                groupNameLabel.text = nil
+            } else {
+                groupNameLabel.isHidden = false
+                groupNameLabelHeightConstraint.constant = 14.5
+                groupNameLabel.text = groupName
+            }
+        }
+    }
 
     @IBOutlet weak var checkBox: CheckBox!
     @IBOutlet weak var taskNameLabel: UILabel!
@@ -30,14 +46,10 @@ class TaskTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-//        groupNameLabel.isHidden = true
-//        groupNameLabelHeightConstraint.constant = 0.0
-        
         groupNameLabel.layer.borderWidth = 1.0
         groupNameLabel.layer.borderColor = UIColor.defaultButtonBlue.cgColor
         groupNameLabel.layer.cornerRadius = groupNameLabel.frame.height / 2
         groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
-//        groupNameLabel.backgroundColor = UIColor.defaultButtonBlue
         groupNameLabel.textColor = UIColor.white
     }
 }
