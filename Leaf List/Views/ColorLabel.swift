@@ -27,6 +27,15 @@ class ColorLabel: UIView {
         }
     }
     
+    override var backgroundColor: UIColor? {
+        get {
+            return UIColor.white
+        }
+        set {
+            
+        }
+    }
+    
     private let marginSize: CGFloat = 3.0
     
     override func awakeFromNib() {
