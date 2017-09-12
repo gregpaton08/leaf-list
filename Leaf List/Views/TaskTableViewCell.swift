@@ -27,7 +27,6 @@ class TaskTableViewCell: UITableViewCell {
                 groupNameLabel.label.text = groupName
                 groupNameLabelHeightConstraint.constant = 40.0//14.5
                 
-                groupNameLabel.label.numberOfLines = 0
                 groupNameLabel.label.sizeToFit()
                 groupNameLabel.sizeToFit()
                 

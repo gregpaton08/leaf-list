@@ -45,6 +45,7 @@ class ColorLabel: UIView {
         label.frame = CGRect(x: marginSize, y: marginSize, width: viewSize.width - (marginSize * 2), height: viewSize.height - (marginSize * 2))
         label.textColor = UIColor.white
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        label.numberOfLines = 0
         self.addSubview(label)
         
         self.backgroundColor = UIColor.defaultButtonBlue
