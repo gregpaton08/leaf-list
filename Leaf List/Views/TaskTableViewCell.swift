@@ -16,6 +16,8 @@ class TaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var checkBox: CheckBox!
     @IBOutlet weak var taskNameLabel: UILabel!
+    @IBOutlet weak var groupNameLabel: UILabel!
+    @IBOutlet weak var groupNameLabelHeightConstraint: NSLayoutConstraint!
     
     var delegate: TaskTableViewCellDelegate?
     
@@ -27,5 +29,8 @@ class TaskTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        groupNameLabel.isHidden = true
+        groupNameLabelHeightConstraint.constant = 0.0
     }
 }
