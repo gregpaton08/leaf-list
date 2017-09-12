@@ -45,30 +45,13 @@ class TaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var checkBox: CheckBox!
     @IBOutlet weak var taskNameLabel: UILabel!
-//    @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var groupNameLabel: ColorLabel!
     @IBOutlet weak var groupNameLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var groupNameLabelWidthConstraint: NSLayoutConstraint!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-//        groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
         groupNameLabel.backgroundColor = UIColor.defaultButtonBlue
-    }
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-//        groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
-        
-    }
-    
-    override func willTransition(to state: UITableViewCellStateMask) {
-        
-        
-    }
-    
-    override func didTransition(to state: UITableViewCellStateMask) {
-        
-        
     }
     
     @IBAction func selectCheckBox(_ sender: CheckBox) {
