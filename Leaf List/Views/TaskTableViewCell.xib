@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="67" id="Wno-Sz-5V3" customClass="TaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="81" id="Wno-Sz-5V3" customClass="TaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wno-Sz-5V3" id="mjZ-qo-Jyx">
-                <rect key="frame" x="0.0" y="0.0" width="341" height="67"/>
+                <rect key="frame" x="0.0" y="0.0" width="341" height="81"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-TO-ONw">
@@ -44,23 +44,20 @@
                             <constraint firstItem="VaA-BY-xRx" firstAttribute="top" secondItem="ObH-TO-ONw" secondAttribute="top" id="Kx4-qV-AWL"/>
                         </constraints>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHP-5z-4Tm">
-                        <rect key="frame" x="44" y="44" width="35" height="15"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8c-a1-8Mm" customClass="ColorLabel" customModule="Leaf_List" customModuleProvider="target">
+                        <rect key="frame" x="44" y="44" width="6" height="28.5"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="GNl-FH-MRr"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14.5" id="H4B-zK-YU9"/>
+                            <constraint firstAttribute="height" constant="28.5" id="0Xa-tz-wt4"/>
                         </constraints>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gHP-5z-4Tm" firstAttribute="leading" secondItem="gT1-lE-O2i" secondAttribute="leading" id="cHA-hI-247"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="R8c-a1-8Mm" secondAttribute="bottom" id="1PP-52-5h2"/>
+                    <constraint firstItem="ObH-TO-ONw" firstAttribute="bottom" secondItem="R8c-a1-8Mm" secondAttribute="top" id="BqB-NS-Cpe"/>
+                    <constraint firstItem="R8c-a1-8Mm" firstAttribute="leading" secondItem="gT1-lE-O2i" secondAttribute="leading" id="ObO-8i-DqJ"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="top" secondItem="mjZ-qo-Jyx" secondAttribute="topMargin" constant="-8" id="f86-kz-PBA"/>
-                    <constraint firstItem="gHP-5z-4Tm" firstAttribute="top" secondItem="ObH-TO-ONw" secondAttribute="bottom" id="iyL-EA-whB"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="-8" id="n7a-4V-ZXo"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="gHP-5z-4Tm" secondAttribute="bottom" id="w1I-mT-K89"/>
                 </constraints>
             </tableViewCellContentView>
             <constraints>
@@ -68,11 +65,11 @@
             </constraints>
             <connections>
                 <outlet property="checkBox" destination="VaA-BY-xRx" id="8aH-0z-YRb"/>
-                <outlet property="groupNameLabel" destination="gHP-5z-4Tm" id="kaA-Ow-vl5"/>
-                <outlet property="groupNameLabelHeightConstraint" destination="H4B-zK-YU9" id="rQ4-SF-z2w"/>
+                <outlet property="groupNameLabel" destination="R8c-a1-8Mm" id="7YK-GC-CrQ"/>
+                <outlet property="groupNameLabelHeightConstraint" destination="0Xa-tz-wt4" id="5Is-20-Lff"/>
                 <outlet property="taskNameLabel" destination="gT1-lE-O2i" id="dVr-iF-zee"/>
             </connections>
-            <point key="canvasLocation" x="93.5" y="-38.5"/>
+            <point key="canvasLocation" x="93.5" y="-31.5"/>
         </tableViewCell>
     </objects>
 </document>

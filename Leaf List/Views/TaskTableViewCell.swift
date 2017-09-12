@@ -21,24 +21,54 @@ class TaskTableViewCell: UITableViewCell {
             if groupName == nil {
                 groupNameLabel.isHidden = true
                 groupNameLabelHeightConstraint.constant = 0.0
-                groupNameLabel.text = nil
+                groupNameLabel.label.text = nil
             } else {
                 groupNameLabel.isHidden = false
-                groupNameLabel.text = groupName
-                groupNameLabelHeightConstraint.constant = 14.5
+                groupNameLabel.label.text = groupName
+                groupNameLabelHeightConstraint.constant = 40.0//14.5
                 
-                groupNameLabel.numberOfLines = 0
+                groupNameLabel.label.numberOfLines = 0
+                groupNameLabel.label.sizeToFit()
                 groupNameLabel.sizeToFit()
+                
+                print("label size \(groupNameLabel.label.bounds.size)")
+                print("view  size \(groupNameLabel.bounds.size)")
+                
+                groupNameLabel.bounds.size.height = groupNameLabel.label.bounds.size.height
+                groupNameLabelHeightConstraint.constant = groupNameLabel.label.bounds.size.height + 6
+//                groupNameLabelWidthConstraint.constant = groupNameLabel.label.bounds.size.width + 6
             }
         }
     }
+    
+    var delegate: TaskTableViewCellDelegate?
 
     @IBOutlet weak var checkBox: CheckBox!
     @IBOutlet weak var taskNameLabel: UILabel!
-    @IBOutlet weak var groupNameLabel: UILabel!
+//    @IBOutlet weak var groupNameLabel: UILabel!
+    @IBOutlet weak var groupNameLabel: ColorLabel!
     @IBOutlet weak var groupNameLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var groupNameLabelWidthConstraint: NSLayoutConstraint!
     
-    var delegate: TaskTableViewCellDelegate?
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+//        groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+//        groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
+        
+    }
+    
+    override func willTransition(to state: UITableViewCellStateMask) {
+        
+        
+    }
+    
+    override func didTransition(to state: UITableViewCellStateMask) {
+        
+        
+    }
     
     @IBAction func selectCheckBox(_ sender: CheckBox) {
         checkBox.toggleState()
@@ -53,7 +83,7 @@ class TaskTableViewCell: UITableViewCell {
         groupNameLabel.layer.borderColor = UIColor.defaultButtonBlue.cgColor
         groupNameLabel.layer.cornerRadius = groupNameLabel.frame.height / 2
         groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
-        groupNameLabel.textColor = UIColor.white
+        groupNameLabel.label.textColor = UIColor.white
         
         groupName = nil
     }
