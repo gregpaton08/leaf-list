@@ -31,9 +31,6 @@ class TaskTableViewCell: UITableViewCell {
                 groupNameLabel.label.sizeToFit()
                 groupNameLabel.sizeToFit()
                 
-                print("label size \(groupNameLabel.label.bounds.size)")
-                print("view  size \(groupNameLabel.bounds.size)")
-                
                 groupNameLabel.bounds.size.height = groupNameLabel.label.bounds.size.height
                 groupNameLabelHeightConstraint.constant = groupNameLabel.label.bounds.size.height + 6
 //                groupNameLabelWidthConstraint.constant = groupNameLabel.label.bounds.size.width + 6
