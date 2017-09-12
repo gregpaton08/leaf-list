@@ -45,7 +45,7 @@
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHP-5z-4Tm">
-                        <rect key="frame" x="44" y="48" width="35" height="14.5"/>
+                        <rect key="frame" x="44" y="44" width="35" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14.5" id="H4B-zK-YU9"/>
                         </constraints>
@@ -57,9 +57,9 @@
                 <constraints>
                     <constraint firstItem="gHP-5z-4Tm" firstAttribute="leading" secondItem="gT1-lE-O2i" secondAttribute="leading" id="cHA-hI-247"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="top" secondItem="mjZ-qo-Jyx" secondAttribute="topMargin" constant="-8" id="f86-kz-PBA"/>
-                    <constraint firstItem="gHP-5z-4Tm" firstAttribute="top" secondItem="ObH-TO-ONw" secondAttribute="bottom" constant="4" id="iyL-EA-whB"/>
+                    <constraint firstItem="gHP-5z-4Tm" firstAttribute="top" secondItem="ObH-TO-ONw" secondAttribute="bottom" id="iyL-EA-whB"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="-8" id="n7a-4V-ZXo"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="gHP-5z-4Tm" secondAttribute="bottom" constant="-4" id="w1I-mT-K89"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gHP-5z-4Tm" secondAttribute="bottom" id="w1I-mT-K89"/>
                 </constraints>
             </tableViewCellContentView>
             <constraints>
