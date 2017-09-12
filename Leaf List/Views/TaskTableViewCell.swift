@@ -21,10 +21,10 @@ class TaskTableViewCell: UITableViewCell {
             if groupName == nil {
                 groupNameLabel.isHidden = true
                 groupNameLabelHeightConstraint.constant = 0.0
-                groupNameLabel.label.text = nil
+                groupNameLabel.text = nil
             } else {
                 groupNameLabel.isHidden = false
-                groupNameLabel.label.text = groupName
+                groupNameLabel.text = groupName
                 
                 groupNameLabel.sizeToFit()
                 // TODO: find an automatic way to do this (intrinsic size?)

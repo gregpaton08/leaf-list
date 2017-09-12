@@ -19,6 +19,15 @@ class ColorLabel: UIView {
     }
     */
     
+    var text: String? {
+        get {
+            return label.text
+        }
+        set {
+            label.text = newValue
+        }
+    }
+    
     var label = UILabel()
     
     override var intrinsicContentSize: CGSize {
