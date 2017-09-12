@@ -30,7 +30,14 @@ class TaskTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        groupNameLabel.isHidden = true
-        groupNameLabelHeightConstraint.constant = 0.0
+//        groupNameLabel.isHidden = true
+//        groupNameLabelHeightConstraint.constant = 0.0
+        
+        groupNameLabel.layer.borderWidth = 1.0
+        groupNameLabel.layer.borderColor = UIColor.defaultButtonBlue.cgColor
+        groupNameLabel.layer.cornerRadius = groupNameLabel.frame.height / 2
+        groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
+//        groupNameLabel.backgroundColor = UIColor.defaultButtonBlue
+        groupNameLabel.textColor = UIColor.white
     }
 }
