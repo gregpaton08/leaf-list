@@ -12,65 +12,53 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="69" id="Wno-Sz-5V3" customClass="TaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="44" id="Wno-Sz-5V3" customClass="TaskTableViewCell" customModule="Leaf_List" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wno-Sz-5V3" id="mjZ-qo-Jyx">
-                <rect key="frame" x="0.0" y="0.0" width="341" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaA-BY-xRx" customClass="CheckBox" customModule="Leaf_List" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <connections>
-                            <action selector="selectCheckBox:" destination="Wno-Sz-5V3" eventType="touchUpInside" id="dzf-23-oDi"/>
-                        </connections>
-                    </button>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qm9-xa-VAq" customClass="CompletionPieGraph" customModule="Leaf_List" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-TO-ONw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaA-BY-xRx" customClass="CheckBox" customModule="Leaf_List" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="HiK-PW-XDW"/>
+                                    <constraint firstAttribute="width" constant="44" id="qUg-de-IE0"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="selectCheckBox:" destination="Wno-Sz-5V3" eventType="touchUpInside" id="dzf-23-oDi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT1-lE-O2i">
+                                <rect key="frame" x="44" y="0.0" width="331" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="e6a-A1-mhf"/>
+                            <constraint firstItem="VaA-BY-xRx" firstAttribute="leading" secondItem="ObH-TO-ONw" secondAttribute="leading" id="FHC-Q9-lKl"/>
+                            <constraint firstItem="VaA-BY-xRx" firstAttribute="top" secondItem="ObH-TO-ONw" secondAttribute="top" id="Kx4-qV-AWL"/>
                         </constraints>
-                    </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00u-Ms-sd8">
-                        <rect key="frame" x="52" y="40" width="35" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="vfv-aq-mxu"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT1-lE-O2i">
-                        <rect key="frame" x="51" y="6" width="283" height="33"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="9z3-Hn-ytc"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gT1-lE-O2i" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="43" id="4m2-kh-TSO"/>
-                    <constraint firstAttribute="trailing" secondItem="gT1-lE-O2i" secondAttribute="trailing" constant="8" id="7Mb-sX-2Ye"/>
-                    <constraint firstItem="gT1-lE-O2i" firstAttribute="centerY" secondItem="Qm9-xa-VAq" secondAttribute="centerY" id="8ma-nz-y05"/>
-                    <constraint firstItem="Qm9-xa-VAq" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="-8" id="9wM-Cv-7D3"/>
-                    <constraint firstItem="00u-Ms-sd8" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="44" id="KYA-hI-Qe9"/>
-                    <constraint firstItem="Qm9-xa-VAq" firstAttribute="top" secondItem="mjZ-qo-Jyx" secondAttribute="topMargin" constant="-8" id="SDv-Tw-tq0"/>
-                    <constraint firstItem="00u-Ms-sd8" firstAttribute="top" secondItem="gT1-lE-O2i" secondAttribute="bottom" constant="1.5" id="Tl3-AC-Heu"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="00u-Ms-sd8" secondAttribute="bottom" constant="-0.5" id="auB-yL-oXd"/>
-                    <constraint firstItem="gT1-lE-O2i" firstAttribute="top" secondItem="mjZ-qo-Jyx" secondAttribute="top" constant="6" id="giz-Ej-Odc"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ObH-TO-ONw" secondAttribute="bottom" constant="-8.5" id="Qc3-YU-kRV"/>
+                    <constraint firstItem="ObH-TO-ONw" firstAttribute="top" secondItem="mjZ-qo-Jyx" secondAttribute="topMargin" constant="-8" id="f86-kz-PBA"/>
+                    <constraint firstItem="ObH-TO-ONw" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="-8" id="n7a-4V-ZXo"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ObH-TO-ONw" secondAttribute="trailing" id="fE9-u8-T3Q"/>
+            </constraints>
             <connections>
                 <outlet property="checkBox" destination="VaA-BY-xRx" id="8aH-0z-YRb"/>
-                <outlet property="completionGraph" destination="Qm9-xa-VAq" id="s5W-8f-jwh"/>
-                <outlet property="groupNameLabel" destination="00u-Ms-sd8" id="abr-Ld-o79"/>
                 <outlet property="taskNameLabel" destination="gT1-lE-O2i" id="dVr-iF-zee"/>
             </connections>
-            <point key="canvasLocation" x="93.5" y="-37.5"/>
+            <point key="canvasLocation" x="93.5" y="-50"/>
         </tableViewCell>
     </objects>
 </document>
