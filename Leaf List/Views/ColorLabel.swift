@@ -38,7 +38,8 @@ class ColorLabel: UIView {
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         self.addSubview(label)
         
-        self.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
+        self.backgroundColor = UIColor.defaultButtonBlue
+//        self.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
         self.layer.borderWidth = 1.0
         self.layer.borderColor = UIColor.defaultButtonBlue.cgColor
         self.layer.cornerRadius = 3.0

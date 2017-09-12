@@ -53,6 +53,7 @@ class TaskTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 //        groupNameLabel.layer.backgroundColor = UIColor.defaultButtonBlue.cgColor
+        groupNameLabel.backgroundColor = UIColor.defaultButtonBlue
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
