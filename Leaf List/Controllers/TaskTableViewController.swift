@@ -339,6 +339,13 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
                 cell.groupName = task.parent?.name
             }
             
+            var parent = task.parent
+            print(task.name)
+            while parent != nil {
+                print("    \(parent!.name))")
+                parent = parent?.parent
+            }
+            
             cell.delegate = self
             
             cell.editingAccessoryType = .disclosureIndicator
