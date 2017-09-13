@@ -11,8 +11,8 @@ import UIKit
 class TabBarController: UITabBarController {
     
     private let viewControllerData = [
-        0: (title: "Groups", displayStyle: TaskDisplayStyle.group, image: "branch.png"),
-        1: (title: "Tasks", displayStyle: TaskDisplayStyle.task, image: "leaf.png")
+        0: (title: "Tasks", displayStyle: TaskDisplayStyle.task, image: "leaf.png"),
+        1: (title: "Groups", displayStyle: TaskDisplayStyle.group, image: "branch.png")
     ]
     
     override func viewDidLoad() {
