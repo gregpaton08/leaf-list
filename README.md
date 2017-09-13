@@ -2,7 +2,9 @@
 
 ## To Do
 
-* Fix crash case when moving task in details view with keyboard shown and the entire visible table is filled
+* Split group into separate type: no longer same as task, more like a "tag"
+* Make tasks movable again
+* Add ability to move task to be a subtask
 * Change bar button tint color to green (?)
 * Use text view for name field in details view to support multiple lines
 * Design app icon
@@ -34,6 +36,7 @@
 * Show parent task in detail view of a task in the tasks tab
 * Make parent task in detail view part of the details view table, not the task view table (cleaner API this way, too!)
     * need to make container view resize to height of table view
+* Fix crash case when moving task in details view with keyboard shown and the entire visible table is filled
 
 ## Stretch Goals
 
