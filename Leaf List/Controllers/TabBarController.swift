@@ -11,15 +11,16 @@ import UIKit
 class TabBarController: UITabBarController {
     
     private let viewControllerData = [
-        0: (title: "Tasks", displayStyle: TaskDisplayStyle.task, image: "leaf.png"),
-        1: (title: "Groups", displayStyle: TaskDisplayStyle.group, image: "branch.png")
+        (title: "Tasks", displayStyle: TaskDisplayStyle.task, image: "leaf.png"),
+        (title: "Groups", displayStyle: TaskDisplayStyle.group, image: "branch.png")
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for (index, data) in viewControllerData {
+        for index in 0..<viewControllerData.count {
             if let taskView = viewControllers?[index].rootViewController as? TaskTableViewController {
+                let data = viewControllerData[index]
                 taskView.displayStyle = data.displayStyle
                 taskView.navigationController?.tabBarItem.title = data.title
                 taskView.navigationController?.tabBarItem.image = UIImage.createImageOfSize(CGSize(width: 30, height: 30), fromImage: UIImage(named: data.image))
