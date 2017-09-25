@@ -324,7 +324,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             cell.taskNameLabel.lineBreakMode = .byWordWrapping
             cell.taskNameLabel.numberOfLines = 0
-            cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority), \(task.groupPriority)"
+            
+            // DEBUG: Uncomment this line to display task priority next to task name.
+//            cell.taskNameLabel.text = cell.taskNameLabel.text! + " P\(task.priority), \(task.groupPriority)"
+            
             cell.taskNameLabel.isEnabled = displayStyle == .trash || !task.taskCompleted
             
             cell.checkBox.isChecked = task.taskCompleted
