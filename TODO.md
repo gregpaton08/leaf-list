@@ -3,6 +3,7 @@
 ## To Do
 
 * Bug: can't edit notes once text has been added - add an edit button in nav bar
+* Bug: tasks with long names that extend past two lines in the table view cell get cut off
 * Add task dependencies
 * Show chain of tasks in task details
 * Split group into separate type: no longer same as task, more like a "tag"
