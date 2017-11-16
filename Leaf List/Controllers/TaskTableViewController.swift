@@ -121,7 +121,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         let context = AppDelegate.viewContext
         let newTask = Task(context: context)
         newTask.name = name
-        newTask.dateCreated = NSDate()
+        newTask.dateCreated = Date()
         newTask.parent = task
         newTask.set(priority: getHighestPriorityInGroup(forTask: newTask) + 1)
         
@@ -134,7 +134,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             
             currentTask.set(priority: completed ? Int(INT32_MAX) : (getHighestPriorityInGroup(forTask: currentTask) + 1))
             currentTask.taskCompleted = completed
-            currentTask.dateCompleted = completed ? NSDate() : nil
+            currentTask.dateCompleted = completed ? Date() : nil
             
             normalizePrioritiesInGroup(forTask: currentTask)
             

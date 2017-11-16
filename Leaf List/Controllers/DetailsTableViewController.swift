@@ -125,7 +125,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     
     // MARK: - Supporting functions
     
-    private func formatDate(_ date: NSDate?) -> String {
+    private func formatDate(_ date: Date?) -> String {
         if date == nil {
             return "ERROR!"
         }

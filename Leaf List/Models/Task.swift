@@ -30,7 +30,7 @@ class Task: NSManagedObject {
     
     func delete() {
         taskDeleted = true
-        dateDeleted = NSDate()
+        dateDeleted = Date()
         priority = INT32_MAX
         children?.forEach({ (child) in
             if let task = child as? Task {

@@ -21,6 +21,7 @@ class NotesViewController: UIViewController, TaskDisplay {
     // MARK: - View
     
     private var doneBarButton: UIBarButtonItem!
+    private var editBarButton: UIBarButtonItem!
     
     private var readOnly: Bool {
         get {
@@ -44,9 +45,13 @@ class NotesViewController: UIViewController, TaskDisplay {
         
         doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
         
+        editBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(NotesViewController.editButtonPressed(_:)))
+        
         // If the notes view is empty then display the keyboard.
         if notesTextView.text.count == 0 {
             showKeyboard()
+        } else {
+            visibleNavigationItem.setRightBarButton(editBarButton, animated: true)
         }
     }
     
@@ -69,6 +74,10 @@ class NotesViewController: UIViewController, TaskDisplay {
         dismissKeyboard()
     }
     
+    @objc func editButtonPressed(_ sender: UIBarButtonItem) {
+        showKeyboard()
+    }
+    
     private func showKeyboard() {
         notesTextView.isEditable = true
         notesTextView.becomeFirstResponder()
@@ -78,7 +87,7 @@ class NotesViewController: UIViewController, TaskDisplay {
     private func dismissKeyboard() {
         notesTextView.resignFirstResponder()
         notesTextView.isEditable = false
-        visibleNavigationItem.setRightBarButton(nil, animated: true)
+        visibleNavigationItem.setRightBarButton(editBarButton, animated: true)
     }
     
     // MARK: - Gestures
