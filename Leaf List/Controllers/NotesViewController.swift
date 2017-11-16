@@ -43,7 +43,7 @@ class NotesViewController: UIViewController, TaskDisplay {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.handleTapGesture(_:)))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapGestureRecognizer.numberOfTouchesRequired = 1
-        view.addGestureRecognizer(tapGestureRecognizer)
+        notesTextView.addGestureRecognizer(tapGestureRecognizer)
         
         doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
         
