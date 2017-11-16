@@ -41,6 +41,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         return self.tableView.dequeueReusableCell(withIdentifier: "newTaskCell") as? NewTaskTableViewCell
     }()
     
+    private var editBarButton: UIBarButtonItem!
+    private var doneBarButton: UIBarButtonItem!
+    
     // MARK: - Data model
     
     private var fetchedResultsController: NSFetchedResultsController<Task>?
@@ -258,6 +261,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
 //        tableView.setEditing(true, animated: false)
 //        tableView.allowsSelectionDuringEditing = true
+        
+        doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(TaskTableViewController.doneBarButtonPressed(_:)))
+        editBarButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(TaskTableViewController.editBarButtonPressed(_:)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -266,6 +272,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         if hasSearchBar {
             tableView.contentOffset.y = searchController.searchBar.frame.height
         }
+        
+        visibleNavigationItem.setRightBarButton(editBarButton, animated: false)
     }
     
     @objc func keyboardDidShow() {
@@ -283,6 +291,16 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
             footer.newTaskTextField.resignFirstResponder()
         }
+    }
+    
+    @objc func doneBarButtonPressed(_ sender: UIBarButtonItem) {
+        self.tableView.setEditing(false, animated: true)
+        visibleNavigationItem.setRightBarButton(editBarButton, animated: true)
+    }
+    
+    @objc func editBarButtonPressed(_ sender: UIBarButtonItem) {
+        self.tableView.setEditing(true, animated: true)
+        visibleNavigationItem.setRightBarButton(doneBarButton, animated: true)
     }
         
     // MARK: - Text field delegate
