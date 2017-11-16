@@ -11,7 +11,6 @@ import CoreData
 
 class NotesViewController: UIViewController, TaskDisplay {
     
-    
     // MARK: - API
     
     var task: Task?
@@ -25,7 +24,7 @@ class NotesViewController: UIViewController, TaskDisplay {
     
     private var readOnly: Bool {
         get {
-            return displayStyle == .trash
+            return displayStyle == .trash || displayStyle == .completed
         }
     }
 
