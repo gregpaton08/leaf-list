@@ -259,9 +259,6 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         
         hasSearchBar = displayStyle != .task
         
-//        tableView.setEditing(true, animated: false)
-//        tableView.allowsSelectionDuringEditing = true
-        
         doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(TaskTableViewController.doneBarButtonPressed(_:)))
         editBarButton = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(TaskTableViewController.editBarButtonPressed(_:)))
     }
