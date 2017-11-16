@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-TO-ONw">
-                        <rect key="frame" x="0.0" y="3" width="1386" height="30"/>
+                        <rect key="frame" x="0.0" y="3" width="341.5" height="30"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaA-BY-xRx" customClass="CheckBox" customModule="Leaf_List" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="44" height="30"/>
@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT1-lE-O2i">
-                                <rect key="frame" x="44" y="0.0" width="1342" height="30"/>
+                                <rect key="frame" x="44" y="0.0" width="297.5" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,8 +53,9 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="R8c-a1-8Mm" secondAttribute="bottom" id="1PP-52-5h2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="R8c-a1-8Mm" secondAttribute="bottom" constant="8" id="1PP-52-5h2"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="bottom" secondItem="R8c-a1-8Mm" secondAttribute="top" id="BqB-NS-Cpe"/>
+                    <constraint firstAttribute="trailing" secondItem="ObH-TO-ONw" secondAttribute="trailing" constant="-0.5" id="FEP-Vw-NtZ"/>
                     <constraint firstItem="R8c-a1-8Mm" firstAttribute="leading" secondItem="gT1-lE-O2i" secondAttribute="leading" id="ObO-8i-DqJ"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leading" id="PVK-6V-bmx"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="top" secondItem="mjZ-qo-Jyx" secondAttribute="topMargin" constant="-8" id="f86-kz-PBA"/>
@@ -63,6 +64,7 @@
             <connections>
                 <outlet property="checkBox" destination="VaA-BY-xRx" id="8aH-0z-YRb"/>
                 <outlet property="groupNameLabel" destination="R8c-a1-8Mm" id="7YK-GC-CrQ"/>
+                <outlet property="groupNameLabelBottomMarginConstraint" destination="1PP-52-5h2" id="5w5-wZ-dqD"/>
                 <outlet property="groupNameLabelHeightConstraint" destination="0Xa-tz-wt4" id="5Is-20-Lff"/>
                 <outlet property="taskNameLabel" destination="gT1-lE-O2i" id="dVr-iF-zee"/>
             </connections>

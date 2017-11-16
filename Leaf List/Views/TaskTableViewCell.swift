@@ -21,6 +21,7 @@ class TaskTableViewCell: UITableViewCell {
             if groupName == nil {
                 groupNameLabel.isHidden = true
                 groupNameLabelHeightConstraint.constant = 0.0
+                groupNameLabelBottomMarginConstraint.constant = -8.0
                 groupNameLabel.text = nil
             } else {
                 groupNameLabel.isHidden = false
@@ -40,6 +41,7 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var groupNameLabel: ColorLabel!
     @IBOutlet weak var groupNameLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var groupNameLabelWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var groupNameLabelBottomMarginConstraint: NSLayoutConstraint!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

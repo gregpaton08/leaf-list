@@ -271,6 +271,8 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
         
         visibleNavigationItem.setRightBarButton(editBarButton, animated: false)
+        
+        self.tableView.separatorStyle = .none
     }
     
     @objc func keyboardDidShow() {
