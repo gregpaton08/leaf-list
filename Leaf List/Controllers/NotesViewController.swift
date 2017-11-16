@@ -41,6 +41,8 @@ class NotesViewController: UIViewController, TaskDisplay {
         navigationItem.title = "Notes"
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.handleTapGesture(_:)))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        tapGestureRecognizer.numberOfTouchesRequired = 1
         view.addGestureRecognizer(tapGestureRecognizer)
         
         doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
@@ -93,10 +95,12 @@ class NotesViewController: UIViewController, TaskDisplay {
     // MARK: - Gestures
     
     @objc func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
-        if notesTextView.isFirstResponder {
-            dismissKeyboard()
-        } else {
-            showKeyboard()
+        if recognizer.state == .ended {
+            if notesTextView.isFirstResponder {
+                dismissKeyboard()
+            } else {
+                showKeyboard()
+            }
         }
     }
 }
