@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ObH-TO-ONw">
-                        <rect key="frame" x="8" y="3.5" width="367" height="44"/>
+                        <rect key="frame" x="0.0" y="3" width="1386" height="30"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaA-BY-xRx" customClass="CheckBox" customModule="Leaf_List" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="HiK-PW-XDW"/>
                                     <constraint firstAttribute="width" constant="44" id="qUg-de-IE0"/>
@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT1-lE-O2i">
-                                <rect key="frame" x="-8" y="0.0" width="0.0" height="44"/>
+                                <rect key="frame" x="44" y="0.0" width="1342" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                         </constraints>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8c-a1-8Mm" customClass="ColorLabel" customModule="Leaf_List" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="47.5" width="6" height="28.5"/>
+                        <rect key="frame" x="44" y="33" width="6" height="29"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28.5" id="0Xa-tz-wt4"/>
@@ -56,13 +56,10 @@
                     <constraint firstAttribute="bottomMargin" secondItem="R8c-a1-8Mm" secondAttribute="bottom" id="1PP-52-5h2"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="bottom" secondItem="R8c-a1-8Mm" secondAttribute="top" id="BqB-NS-Cpe"/>
                     <constraint firstItem="R8c-a1-8Mm" firstAttribute="leading" secondItem="gT1-lE-O2i" secondAttribute="leading" id="ObO-8i-DqJ"/>
+                    <constraint firstItem="ObH-TO-ONw" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leading" id="PVK-6V-bmx"/>
                     <constraint firstItem="ObH-TO-ONw" firstAttribute="top" secondItem="mjZ-qo-Jyx" secondAttribute="topMargin" constant="-8" id="f86-kz-PBA"/>
-                    <constraint firstItem="ObH-TO-ONw" firstAttribute="leading" secondItem="mjZ-qo-Jyx" secondAttribute="leadingMargin" constant="-8" id="n7a-4V-ZXo"/>
                 </constraints>
             </tableViewCellContentView>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="ObH-TO-ONw" secondAttribute="trailing" id="fE9-u8-T3Q"/>
-            </constraints>
             <connections>
                 <outlet property="checkBox" destination="VaA-BY-xRx" id="8aH-0z-YRb"/>
                 <outlet property="groupNameLabel" destination="R8c-a1-8Mm" id="7YK-GC-CrQ"/>
