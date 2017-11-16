@@ -45,7 +45,7 @@ class NotesViewController: UIViewController, TaskDisplay {
         doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
         
         // If the notes view is empty then display the keyboard.
-        if notesTextView.text.characters.count == 0 {
+        if notesTextView.text.count == 0 {
             showKeyboard()
         }
     }
@@ -65,7 +65,7 @@ class NotesViewController: UIViewController, TaskDisplay {
         }
     }
     
-    func doneButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
         dismissKeyboard()
     }
     
@@ -83,7 +83,7 @@ class NotesViewController: UIViewController, TaskDisplay {
     
     // MARK: - Gestures
     
-    func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
+    @objc func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
         if notesTextView.isFirstResponder {
             dismissKeyboard()
         } else {

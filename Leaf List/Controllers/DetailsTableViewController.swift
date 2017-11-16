@@ -113,7 +113,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        if textField.text?.characters.count ?? 0 > 0 {
+        if textField.text?.count ?? 0 > 0 {
             task?.name = textField.text
             parent?.navigationItem.title = task?.name
         } else {

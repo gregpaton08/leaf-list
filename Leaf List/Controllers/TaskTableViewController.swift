@@ -114,7 +114,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     private func addTask(with name: String) {
-        if (name.characters.count == 0) {
+        if (name.count == 0) {
             return
         }
         
@@ -268,7 +268,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
         }
     }
     
-    func keyboardDidShow() {
+    @objc func keyboardDidShow() {
         if tableView.numberOfRows(inSection: 0) > 0 {
             tableView.scrollToRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: true)
         }
@@ -277,7 +277,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     override func viewWillDisappear(_ animated: Bool) {
         // Save any task that is in the middle of being typed.
         if let footer = newTaskFooter {
-            if let taskName = footer.newTaskTextField.text, taskName.characters.count > 0 {
+            if let taskName = footer.newTaskTextField.text, taskName.count > 0 {
                 addTask(with: taskName)
                 footer.newTaskTextField.text = ""
             }
@@ -288,7 +288,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if (textField.text == nil || textField.text?.characters.count == 0) {
+        if (textField.text == nil || textField.text?.count == 0) {
             textField.resignFirstResponder()
         } else {
             addTask(with: textField.text!)
@@ -343,9 +343,9 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
             }
             
             var parent = task.parent
-            print(task.name)
+            print(task.name ?? "task name is nil")
             while parent != nil {
-                print("    \(parent!.name))")
+                print("    \(parent!.name ?? "name is nil"))")
                 parent = parent?.parent
             }
             
@@ -443,7 +443,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     // MARK: - Search results updating
     
     func updateSearchResults(for searchController: UISearchController) {
-        if !searchController.isActive || searchController.searchBar.text?.characters.count ?? 0 == 0 {
+        if !searchController.isActive || searchController.searchBar.text?.count ?? 0 == 0 {
             updateUI()
         } else {
             fetchedResultsController?.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
@@ -502,7 +502,7 @@ extension UIViewController {
     
     func setNavBarColor() {
         navigationController?.navigationBar.barTintColor = UIColor.carribeanGreen
-        navigationController?.navigationBar.titleTextAttributes?[NSForegroundColorAttributeName] = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes?[NSAttributedStringKey.foregroundColor] = UIColor.white
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.isTranslucent = false
@@ -528,7 +528,7 @@ extension UIColor {
 extension UILabel {
     var isTruncated: Bool {
         if let nsText = text as NSString? {
-            let size = nsText.size(attributes: [NSFontAttributeName: font])
+            let size = nsText.size(withAttributes: [NSAttributedStringKey.font: font])
             return size.width > bounds.width
         }
         
@@ -537,7 +537,7 @@ extension UILabel {
     
     var numLines: Int {
         if let nsText = text as NSString? {
-            let size = nsText.boundingRect(with: CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+            let size = nsText.boundingRect(with: CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
             return Int(ceil(CGFloat(size.height) / font.lineHeight))
         }
         
