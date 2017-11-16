@@ -40,16 +40,18 @@ class NotesViewController: UIViewController, TaskDisplay {
         
         navigationItem.title = "Notes"
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.handleTapGesture(_:)))
-        tapGestureRecognizer.numberOfTapsRequired = 1
-        tapGestureRecognizer.numberOfTouchesRequired = 1
-        notesTextView.addGestureRecognizer(tapGestureRecognizer)
-        
-        doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
-        
-        // If the notes view is empty then display the keyboard.
-        if notesTextView.text.count == 0 {
-            showKeyboard()
+        if !readOnly {
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NotesViewController.handleTapGesture(_:)))
+            tapGestureRecognizer.numberOfTapsRequired = 1
+            tapGestureRecognizer.numberOfTouchesRequired = 1
+            notesTextView.addGestureRecognizer(tapGestureRecognizer)
+            
+            doneBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotesViewController.doneButtonPressed(_:)))
+            
+            // If the notes view is empty then display the keyboard.
+            if notesTextView.text.count == 0 {
+                showKeyboard()
+            }
         }
     }
     
@@ -88,9 +90,7 @@ class NotesViewController: UIViewController, TaskDisplay {
     
     @objc func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
         if recognizer.state == .ended {
-            if notesTextView.isFirstResponder {
-                dismissKeyboard()
-            } else {
+            if !notesTextView.isFirstResponder {
                 showKeyboard()
             }
         }
