@@ -2,12 +2,12 @@
 
 ## To Do
 
+* Create branch to: Split group into separate type: no longer same as task, more like a "tag" (or "group" is a good name)
 * Bug: can't edit notes once text has been added - add an edit button in nav bar
 * Bug: tasks with long names that extend past two lines in the table view cell get cut off
 * Add red exclamation point, highlight task red when it gets older than set amount of time (one work, for example)
 * Add task dependencies
 * Show chain of tasks in task details
-* Split group into separate type: no longer same as task, more like a "tag"
 * Make tasks movable again
 * Add ability to move task to be a subtask
 * Change bar button tint color to green (?)
