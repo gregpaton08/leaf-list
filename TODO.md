@@ -2,6 +2,7 @@
 
 ## To Do
 
+* bug: moving tasks does not update data model and is therefore not persistant
 * Move notes and date created to a separate view exposed by a detail disclosure in the top right nav bar
 * Create branch to: Split group into separate type: no longer same as task, more like a "tag" (or "group" is a good name)
 * Bug: can't edit notes once text has been added - add an edit button in nav bar
@@ -9,7 +10,6 @@
 * Add red exclamation point, highlight task red when it gets older than set amount of time (one work, for example)
 * Add task dependencies
 * Show chain of tasks in task details
-* Make tasks movable again
 * Add ability to move task to be a subtask
 * Change bar button tint color to green (?)
 * Use text view for name field in details view to support multiple lines
@@ -20,6 +20,7 @@
 
 ## Completed
 
+* Make tasks movable again
 * When deleting a task with sub tasks show a pop up alert to confirm
 * When deleting a task with sub tasks delete all the subtasks
 * Add search option
