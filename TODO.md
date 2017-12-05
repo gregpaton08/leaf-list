@@ -2,6 +2,7 @@
 
 ## To Do
 
+* Move notes and date created to a separate view exposed by a detail disclosure in the top right nav bar
 * Create branch to: Split group into separate type: no longer same as task, more like a "tag" (or "group" is a good name)
 * Bug: can't edit notes once text has been added - add an edit button in nav bar
 * Bug: tasks with long names that extend past two lines in the table view cell get cut off
