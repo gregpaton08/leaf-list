@@ -5,21 +5,21 @@
 * bug: moving tasks does not update data model and is therefore not persistant
 * Move notes and date created to a separate view exposed by a detail disclosure in the top right nav bar
 * Create branch to: Split group into separate type: no longer same as task, more like a "tag" (or "group" is a good name)
-* Bug: can't edit notes once text has been added - add an edit button in nav bar
 * Bug: tasks with long names that extend past two lines in the table view cell get cut off
 * Add red exclamation point, highlight task red when it gets older than set amount of time (one work, for example)
 * Add task dependencies
 * Show chain of tasks in task details
 * Add ability to move task to be a subtask
-* Change bar button tint color to green (?)
 * Use text view for name field in details view to support multiple lines
-* Design app icon
-* add some color to the UI
 * option to color code tasks (box to left of task name label, option to set image?)
 * Fix bug: after searching the offset for the nav bar is doubled and the search bar can't be hidden
 
 ## Completed
 
+* Bug: can't edit notes once text has been added - add an edit button in nav bar
+* Change bar button tint color to green (?)
+* add some color to the UI
+* Design app icon
 * Make tasks movable again
 * When deleting a task with sub tasks show a pop up alert to confirm
 * When deleting a task with sub tasks delete all the subtasks
