@@ -396,7 +396,7 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
+        // TODO: need to update the data model.
     }
     
     // MARK: - Table view delegate
