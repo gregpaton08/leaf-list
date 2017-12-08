@@ -396,7 +396,10 @@ class TaskTableViewController: FetchedResultsTableViewController, UINavigationCo
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        // TODO: need to update the data model.
+        if let sourceTask = fetchedResultsController?.object(at: sourceIndexPath), let destinationTask = fetchedResultsController?.object(at: destinationIndexPath) {
+            normalizePrioritiesInGroup(forTask: sourceTask.parent)
+            swapPriority(forTask: sourceTask, withTask: destinationTask)
+        }
     }
     
     // MARK: - Table view delegate
