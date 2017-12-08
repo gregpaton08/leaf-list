@@ -62,6 +62,7 @@
 		37ECFF801F178722001A9314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37ECFF831F178722001A9314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37ECFF851F178722001A9314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37F32ABB1FDB481000A0EF09 /* Leaf_List 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Leaf_List 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +432,7 @@
 		371525261F39461C00A394B8 /* Leaf_List.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				37F32ABB1FDB481000A0EF09 /* Leaf_List 2.xcdatamodel */,
 				371525271F39461C00A394B8 /* Leaf_List.xcdatamodel */,
 			);
 			currentVersion = 371525271F39461C00A394B8 /* Leaf_List.xcdatamodel */;
