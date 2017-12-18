@@ -15,6 +15,7 @@
 * Use text view for name field in details view to support multiple lines
 * option to color code tasks (box to left of task name label, option to set image?)
 * Fix bug: after searching the offset for the nav bar is doubled and the search bar can't be hidden
+* hide edit button when there are no tasks in detail view
 
 ## Completed
 
