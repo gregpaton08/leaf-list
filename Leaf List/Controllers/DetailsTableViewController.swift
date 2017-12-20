@@ -28,6 +28,9 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // Save the text field in case the name has been change, but the user did not hit return.
+        saveTextFieldText()
+        
         do {
             try AppDelegate.viewContext.save()
         } catch {
@@ -113,14 +116,18 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        saveTextFieldText()
+        
+        return true
+    }
+    
+    private func saveTextFieldText() {
         if textField.text?.count ?? 0 > 0 {
             task?.name = textField.text
             parent?.navigationItem.title = task?.name
         } else {
             textField.text = task?.name
         }
-        
-        return true
     }
     
     // MARK: - Supporting functions
