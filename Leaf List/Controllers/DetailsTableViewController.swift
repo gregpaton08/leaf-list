@@ -122,13 +122,13 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
     }
     
     private func saveTextFieldText() {
-        let textField = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
-        
-        if textField?.textLabel?.text?.count ?? 0 > 0 {
-            task?.name = textField!.textLabel?.text
-            parent?.navigationItem.title = task?.name
-        } else {
-            textField?.textLabel?.text = task?.name
+        if let taskNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TextFieldTableViewCell {
+            if taskNameCell.textField.text?.count ?? 0 > 0 {
+                task?.name = taskNameCell.textField.text
+                parent?.navigationItem.title = task?.name
+            } else {
+                taskNameCell.textField.text = task?.name
+            }
         }
     }
     
