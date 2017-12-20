@@ -109,7 +109,7 @@ class DetailsTableViewController: UITableViewController, UITextFieldDelegate, Ta
         }
     }
     
-    // MARK: - Test field delegate
+    // MARK: - Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
