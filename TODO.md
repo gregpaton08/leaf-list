@@ -4,9 +4,10 @@
 
 * define data model
     * define in JSON (or some standard format i.e. XML) and make it easily exportable for migration
+* Use firebase for backend
+* Create branch to: Split group into separate type: no longer same as task, more like a "tag" (or "group" is a good name)
 * bug: moving tasks does not update data model and is therefore not persistant
 * Move notes and date created to a separate view exposed by a detail disclosure in the top right nav bar
-* Create branch to: Split group into separate type: no longer same as task, more like a "tag" (or "group" is a good name)
 * Bug: tasks with long names that extend past two lines in the table view cell get cut off
 * Add red exclamation point, highlight task red when it gets older than set amount of time (one work, for example)
 * Add task dependencies
