@@ -23,6 +23,7 @@
 		371525281F39461C00A394B8 /* Leaf_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371525261F39461C00A394B8 /* Leaf_List.xcdatamodeld */; };
 		3715252A1F39463C00A394B8 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371525291F39463C00A394B8 /* CheckBox.swift */; };
 		3715252C1F39464800A394B8 /* TaskNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715252B1F39464800A394B8 /* TaskNameTableViewCell.swift */; };
+		3721EB821FDB57AB007E5940 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721EB811FDB57AB007E5940 /* Group.swift */; };
 		376D356D1F68599100572EEE /* ColorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D356C1F68599100572EEE /* ColorLabel.swift */; };
 		37986F6F1F3DD95600263075 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37986F6D1F3DD95600263075 /* TextFieldTableViewCell.swift */; };
 		37986F701F3DD95600263075 /* TextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37986F6E1F3DD95600263075 /* TextFieldTableViewCell.xib */; };
@@ -32,6 +33,7 @@
 		37ECFF7C1F178722001A9314 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ECFF7A1F178722001A9314 /* Main.storyboard */; };
 		37ECFF811F178722001A9314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37ECFF801F178722001A9314 /* Assets.xcassets */; };
 		37ECFF841F178722001A9314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ECFF821F178722001A9314 /* LaunchScreen.storyboard */; };
+		37F32ABD1FDB500700A0EF09 /* Leaf_List1-2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 37F32ABC1FDB500600A0EF09 /* Leaf_List1-2.xcmappingmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,7 @@
 		371525271F39461C00A394B8 /* Leaf_List.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Leaf_List.xcdatamodel; sourceTree = "<group>"; };
 		371525291F39463C00A394B8 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		3715252B1F39464800A394B8 /* TaskNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskNameTableViewCell.swift; sourceTree = "<group>"; };
+		3721EB811FDB57AB007E5940 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		376D356C1F68599100572EEE /* ColorLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorLabel.swift; sourceTree = "<group>"; };
 		37986F6D1F3DD95600263075 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		37986F6E1F3DD95600263075 /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldTableViewCell.xib; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 		37ECFF801F178722001A9314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37ECFF831F178722001A9314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37ECFF851F178722001A9314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37F32ABB1FDB481000A0EF09 /* Leaf_List 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Leaf_List 2.xcdatamodel"; sourceTree = "<group>"; };
+		37F32ABC1FDB500600A0EF09 /* Leaf_List1-2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Leaf_List1-2.xcmappingmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				371525241F3945C000A394B8 /* Task.swift */,
+				3721EB811FDB57AB007E5940 /* Group.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,6 +150,7 @@
 				37ECFF821F178722001A9314 /* LaunchScreen.storyboard */,
 				37ECFF851F178722001A9314 /* Info.plist */,
 				371525261F39461C00A394B8 /* Leaf_List.xcdatamodeld */,
+				37F32ABC1FDB500600A0EF09 /* Leaf_List1-2.xcmappingmodel */,
 			);
 			path = "Leaf List";
 			sourceTree = "<group>";
@@ -225,6 +232,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3721EB821FDB57AB007E5940 /* Group.swift in Sources */,
+				37F32ABD1FDB500700A0EF09 /* Leaf_List1-2.xcmappingmodel in Sources */,
 				371525091F39431000A394B8 /* DetailsTableViewController.swift in Sources */,
 				3715250F1F39436900A394B8 /* NewTaskTableViewCell.swift in Sources */,
 				3715251C1F39449400A394B8 /* DetailsMasterViewController.swift in Sources */,
@@ -431,6 +440,7 @@
 		371525261F39461C00A394B8 /* Leaf_List.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				37F32ABB1FDB481000A0EF09 /* Leaf_List 2.xcdatamodel */,
 				371525271F39461C00A394B8 /* Leaf_List.xcdatamodel */,
 			);
 			currentVersion = 371525271F39461C00A394B8 /* Leaf_List.xcdatamodel */;
